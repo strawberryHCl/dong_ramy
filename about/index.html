@@ -1,1 +1,354 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>동그라미 스토어 - 공식 쇼핑몰 | 디자인 브랜드</title>
+  <meta name="description" content="동그라미 스토어는 공식 온라인 쇼핑몰입니다. 브랜드 정품을 빠르고 쉽게 구매하세요.
+    블로그와 함께 다양한 콘텐츠도 제공합니다.">
+  <meta name="keywords" content="동그라미, 핸드폰, 휴대폰, 스마트폰, 갤럭시, 아이폰, dong_ramy, Dong_ramy, Dong_Ramy, DONG_RAMY, Dongramy,
+    동그라미 스토어, 동그라미스토어, 동그라미 공식, 동그라미공식, 동그라미 정품, 동그라미정품, 홍대, 홍대동그라미, 홍대 동그라미, 아이폰x, 아이폰10,
+    아이폰11, 아이폰12, 아이폰13, 아이폰13미니, 아이폰 프로, 아이폰12미니, 아이폰15, 아이폰16, 아이폰16프로, 아이폰16e, 16e, 삼성, 애플, s22, s23, s24, s24울트라, s24 울트라,
+    dongramy">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://dongramystore.co.kr/">
+  
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #ffffff;
+      color: #222;
+    }
+    
+    /* Header 스타일 */
+    header {
+      background: #b5ddf6;
+      color: black;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    /* 네비게이션 바 스타일 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #b5ddf6;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #007acc;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+}
+
+    /* Footer 스타일 */
+    footer {
+      background: #b5ddf6;
+      color: black;
+      padding: 1rem;
+    }
+    
+    /* Footer 내부 정렬 */
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .footer-logo {
+      max-width: 100%;
+      height: auto;
+      width: 300px;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+
+    .footer-text {
+      font-size: 0.8rem;
+      text-align: right;
+      margin: 0;
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /*본문 밑 로고 이미지 관련*/
+    .responsive-image-container {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.responsive-image-container img {
+  width: 100%;
+  max-width: 250px; /* 원래 이미지 기준 또는 적절한 값 */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+    .message-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: #333;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.message-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.highlight {
+  margin: 2rem 0;
+  padding: 1rem;
+  font-style: italic;
+  background-color: #e6f3fc;
+  border-left: 5px solid #007acc;
+  color: #444;
+}
+
+.signature {
+  text-align: right;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+    
+    /* Main 콘텐츠 */
+    main {
+      padding-top: 2rem;
+      padding-bottom: 5rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      margin: auto;
+      text-align: left;
+      max-width: 100%;
+
+        position: relative;
+        z-index: 1;
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80vw; /* 원래 60vw였던 걸 80vw로 확대 */
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background-image: url('https://i.imgur.com/fq1dJVn.jpeg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.05;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+    /* 섹션 좌측 여백 조정 */
+    .left-padding-section {
+      padding-left: 10%;
+    }
+
+    /* 모바일 및 작은 화면을 위한 반응형 처리 */
+    @media (max-width: 1024px) {
+      .left-padding-section {
+        padding-left: 5%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .footer-logo {
+        width: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .left-padding-section {
+        padding-left: 2%;
+      }
+      header, footer {
+        padding: 1rem;
+      }
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    /* 링크 스타일 */
+    a {
+      color: #007acc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* 리스트 스타일 */
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    /* 버튼 스타일 */
+    .button {
+      display: inline-block;
+      margin: 1rem 0;
+      padding: 0.8rem 1.5rem;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background-color: #005f99;
+    }
+
+    /* 기본 폰트 스타일 */
+    p {
+      font-size: 1rem;
+    }
+    
+    /* 제목 스타일 */
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .section-text {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <h1>동그라미</h1>
+    <p>누구나 평등하고 많은 서비스를 누릴 수 있는 온라인 일등 휴대폰 판매매장 "동그라미”</p>
+
+       <div class="navbar">
+    <a href="/dong_ramy/" class="logo">동그라미</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="/dong_ramy/">홈</a></li>
+        <li><a href="/dong_ramy/about/">회사 소개</a></li>
+        <li><a href="/dong_ramy/contact/">문의하기</a></li>
+      </ul>
+    </nav>
+  </div>
+    
+  </header>
+
+    <main>
+  <section class="message-section">
+    <h2 class="message-title">대표님의 말씀</h2>
+    <p>
+      작고 초라해보일 수 있지만 나름 <br><br>
+      그 작은 것들 속 하나하나에 소중한 의미가 존재하고 <br><br>
+      지금 생각해보면 힘든 순간도 많았지만 <br>
+      결국 그 또한 행복의 연속이였던거 같아요..! <br><br>
+
+      우리 동그라미는 여기서 멈추지 않을거에요!<br><br>
+      앞으로 또 많은 역사를 쓰며 나아갈 것이고, <br>
+      더 많은 추억들을 만들며 <br><br>
+      시작은 작더라도 끝은 창대하게, <br>
+      빠르지 않고 느리더라도 길고 굵게..<br><br>
+
+      이만 또 더 좋은 동그라미 일상으로 여러분을 찾아뵐게요!<br>
+      다들 오늘 하루도 정말 고생 많았습니다.
+    </p>
+
+    <blockquote class="highlight">
+      따듯한 빛을 보내주는 태양,<br>
+      어두운 밤을 비춰주는 달,<br>
+      맛있게 먹을 수 있는 모든 과일 열매들,<br>
+      빨리 나아갈 수 있게 해주는 바퀴,<br>
+      추운 계절이 지나면 어김없이 돌아오는 봄을 비롯한<br>
+      사계절의 순환을 갖는 공통점은 바로 동그라미 입니다.
+    </blockquote>
+
+    <p class="signature">— DONG_RAMY 대표 한동길</p>
+  </section>
+</main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="https://strawberryhcl.github.io/dong_ramy/">
+        <img src="https://i.imgur.com/tpRkEqi.png" class="footer-logo" alt="DONGRAMY 로고">
+      </a>
+      <p class="footer-text">
+        Copyright © 2021 Dongramy Co. All rights reserved. <br> | 서울특별시 마포구 와우산로19길 6-11, 4층 (서교동) <br> | 사업자번호 : 689-39-00711   동그라미 대표 : 한동길 <br>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
 
