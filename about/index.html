@@ -589,30 +589,47 @@ main::before {
     <!-- 자바스크립트로 내용이 동적으로 추가됩니다. -->
   </div>
 
-<script>
+  <script>
     document.addEventListener("DOMContentLoaded", function() {
       var breadcrumb = document.querySelector(".breadcrumb");
       var path = window.location.pathname; // 현재 페이지 URL 경로
 
       // 기본적으로 홈 링크
-      var breadcrumbHTML = '<a href="/dong_ramy/">홈</a>';
+      var breadcrumbHTML = '<a href="/">홈</a>';
 
-      // URL 경로에 따라 브레드크럼 추가
-      if (path === "/about") {
-        breadcrumbHTML += ' > <a href="/dong_ramy/about/">회사소개</a>';
-      } else if (path === "/services") {
-        breadcrumbHTML += ' > <a href="/dong_ramy/service/">서비스</a>';
-      } else if (path === "/media") {
-        breadcrumbHTML += ' > <a href="/dong_ramy/media/">미디어</a>';
-      } else if (path === "/story") {
-        breadcrumbHTML += ' > <a href="/dong_ramy/story/">스토리</a>';
-      } else if (path === "/careers") {
-        breadcrumbHTML += ' > <a href="/dong_ramy/recruit/">채용</a>';
+      // 경로에 맞춰 브레드크럼을 추가
+      var pageTitle = ''; // 페이지 제목을 위한 변수
+
+      // 경로가 '/dong_ramy/about/'일 경우
+      if (path === "/dong_ramy/about" || path === "/dong_ramy/about/") {
+        breadcrumbHTML += ' > <a href="/dong_ramy/about">회사소개</a>';
+        pageTitle = "회사소개";
+      } 
+      // 다른 페이지 경로에 대한 조건 추가 (예: 서비스, 미디어 등)
+      else if (path === "/dong_ramy/services" || path === "/dong_ramy/services/") {
+        breadcrumbHTML += ' > <a href="/dong_ramy/services">서비스</a>';
+        pageTitle = "서비스";
+      } else if (path === "/dong_ramy/media" || path === "/dong_ramy/media/") {
+        breadcrumbHTML += ' > <a href="/dong_ramy/media">미디어</a>';
+        pageTitle = "미디어";
+      } else if (path === "/dong_ramy/story" || path === "/dong_ramy/story/") {
+        breadcrumbHTML += ' > <a href="/dong_ramy/story">스토리</a>';
+        pageTitle = "스토리";
+      } else if (path === "/dong_ramy/recruit" || path === "/dong_ramy/recruit/") {
+        breadcrumbHTML += ' > <a href="/dong_ramy/recruit">채용</a>';
+        pageTitle = "채용";
+      } else {
+        pageTitle = "홈";
       }
 
+      // 브레드크럼 HTML 삽입
       breadcrumb.innerHTML = breadcrumbHTML;
+
+      // 페이지 제목 동적으로 변경
+      document.title = pageTitle + " 페이지";  // 브라우저 탭에 제목을 반영
     });
   </script>
+
 
       
   <section class="message-section">
