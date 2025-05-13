@@ -223,11 +223,20 @@ header p {
 }
 
 .responsive-image-container img {
-  width: 100%;
-  max-width: 250px; /* 원래 이미지 기준 또는 적절한 값 */
+   content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80vw;
   height: auto;
-  display: block;
-  margin: 0 auto;
+  max-width: 250px; /* 원래 이미지 기준 또는 적절한 값 */
+    background-size: cover; /* 이미지 크기 유지하면서 영역을 채움 */
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.05;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
 }
 
     .message-section {
