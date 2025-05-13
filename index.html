@@ -23,7 +23,6 @@ html, body {
 
 body {
   display: flex;
-  flex-direction: column;
   font-family: 'Segoe UI', sans-serif;
   line-height: 1.6;
   background-color: #ffffff;
@@ -96,6 +95,43 @@ header p {
   color: #ffda6b;
 }
 
+        /* Footer 스타일 */
+    footer {
+      background: #b5ddf6;
+      color: black;
+      padding: 1rem;
+    }
+    
+     /* Footer 내부 정렬 */
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .footer-logo {
+      max-width: 100%;
+      height: auto;
+      width: 300px;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+
+    .footer-text {
+      font-size: 0.8rem;
+      text-align: right;
+      margin: 0;
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
 /* Main 콘텐츠 스타일 */
 main {
   flex: 1 0 auto;
@@ -108,49 +144,7 @@ main {
   position: relative;
 }
 
-    /* Footer 스타일 */
-    footer {
-      background: #b5ddf6;
-      color: black;
-      padding: 1rem;
-    }
-    
-    /* Footer 내부 정렬 */
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      max-width: 1000px;
-      margin: 0 auto
-      padding: 0 2rem; 
-    }
-    
-    .footer-logo {
-      margin-left: 0;
-      align-self: flex-strart;
-        width: 300px;
-        height: auto;
-        max-width: 100%
-        object-fit: contain;
-    }
-
-    .footer-text {
-      font-size: 0.8rem;
-      text-align: right;
-      margin: 0;
-      margin-left: auto;
-    }
-    
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-/* Main 콘텐츠 배경 */
+    /* Main 콘텐츠 배경 */
 main::before {
   content: "";
   position: absolute;
