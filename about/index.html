@@ -248,20 +248,23 @@ header p {
 
 .highlight {
   background-color: #e6f3fc;
-  border-left: 5px solid #007acc;
+  border-right: 5px solid #007acc; /* 오른쪽에 border 적용 */
   padding: 1.5rem;
-  padding-right: 2.5rem;  /* 오른쪽 여백 넉넉하게 */
+  padding-left: 2.5rem;   /* 왼쪽 여백 추가 */
   margin: 1.5rem 0;
   font-style: italic;
-  text-align: right;       /* 텍스트 오른쪽 정렬 */
+  text-align: right;       /* 텍스트는 왼쪽 정렬 유지 */
 }
 
 .signature {
   font-weight: bold;
   text-align: right;
   margin-top: 2rem;
-  margin-right: 2rem;      /* 우측 여백 추가로 더 붙게 */
+  margin-left: auto;       /* 박스를 오른쪽으로 밀기 */
+  padding-right: 2rem;     /* 안의 텍스트 오른쪽 여백 */
+  max-width: 300px;        /* 적당한 너비로 제한 (선택 사항) */
 }
+
 
 
 
