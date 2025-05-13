@@ -15,7 +15,7 @@
   
   <style>
 
-      html, body {
+  html, body {
     margin: 0;
     padding: 0;
     height: 100%;
@@ -27,11 +27,46 @@
   }
 
   main {
-    flex: 1;
-    padding-bottom: 1rem; /* 필요시 줄이기 */
+    flex-grow: 1;
+    padding-bottom: 1rem; /* 필요시 조정 */
   }
 
-  /* 기존 스타일들은 그대로 두세요 */
+  footer {
+    background: #b5ddf6;
+    color: black;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  /* 기존 스타일 */
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #ffffff;
+    color: #222;
+  }
+
+  header {
+    background: #b5ddf6;
+    color: black;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #b5ddf6;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  /* 나머지 스타일들은 그대로 두세요 */
   body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
