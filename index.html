@@ -146,6 +146,10 @@ main {
   overflow: hidden; /* 넘치는 부분 잘라내기 */
 }
 
+    main > * {
+  text-align: left; /* main 내부 자식 요소들에만 적용 */
+}
+
     /* Main 콘텐츠 배경 */
 main::before {
   content: "";
