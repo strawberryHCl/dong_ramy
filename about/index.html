@@ -208,10 +208,11 @@ header p {
       margin: 0 auto;
     }
 
+/* 전체 메시지 섹션 */
 .message-section {
     max-width: 1600px;
     margin: 0 auto;
-    padding: 3rem 10rem 3rem 3rem; /* 상단 3rem, 우측 10rem, 하단 3rem, 좌측 3rem */
+    padding: 3rem 10rem 3rem 3rem;
     font-size: 1rem;
     line-height: 1.8;
     color: #333;
@@ -219,32 +220,62 @@ header p {
     border-radius: 12px;
     border: 10px solid #848484;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    text-align: left; /* 섹션 본문 왼쪽 정렬 */
+    display: flex; /* flexbox로 설정 */
+    flex-direction: column; /* 요소들이 수직으로 배치되도록 */
+    align-items: flex-start; /* 기본적으로 왼쪽 정렬 */
 }
 
+/* 제목 */
 .message-title {
-    text-align: center; /* 제목 중앙 정렬 */
+    text-align: center; /* 타이틀은 가운데 정렬 */
     font-size: 1.6rem;
     font-weight: bold;
-    margin-bottom: 2rem; /* 제목 아래 마진 */
+    margin-bottom: 2rem;
+    width: 100%; /* 전체 너비로 확장 */
 }
 
+/* 하이라이트 */
 .highlight {
     margin: 2rem 0;
-    padding: 2rem 3rem; /* 상하 여백 2rem, 좌우 여백 3rem */
+    padding: 2rem 3rem;
     font-style: italic;
     background-color: #e6f3fc;
     border-left: 5px solid #007acc;
     color: #444;
-    text-align: right; /* 하이라이트는 우측 정렬 */
+    text-align: right; /* 오른쪽 정렬 */
+    width: 100%; /* 전체 너비로 확장 */
 }
 
+/* 시그니처 */
 .signature {
-    text-align: right; /* 시그니처 우측 정렬 */
-    padding: 1rem 3rem; /* 상하 여백 1rem, 좌우 여백 3rem */
+    text-align: right; /* 오른쪽 정렬 */
+    padding: 1rem 3rem;
     font-weight: bold;
-    margin-top: 2rem; /* 상단 여백 */
+    margin-top: 2rem;
+    width: 100%; /* 전체 너비로 확장 */
 }
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .message-section {
+        padding: 2rem 3rem;
+    }
+
+    .message-title {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .highlight {
+        padding: 1.5rem 2rem;
+    }
+
+    .signature {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+}
+
 
 
     /* Main 콘텐츠 스타일 */
