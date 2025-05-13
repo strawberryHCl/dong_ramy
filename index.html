@@ -13,33 +13,7 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://dongramystore.co.kr/">
   
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-XXXXXXX'); // ← GTM ID 입력
-  </script>
-  <!-- End Google Tag Manager -->
-
   <style>
-  .left-padding-section {
-    padding-left: 20rem;
-  }
-
-  @media (max-width: 768px) {
-    .left-padding-section {
-      padding-left: 1.5rem;
-    }
-  }
-
-    @media (max-width: 480px) {
-  .left-padding-section {
-    padding-left: 1rem;
-  }
-}
-   
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
@@ -48,6 +22,8 @@
       background-color: #ffffff;
       color: #222;
     }
+    
+    /* Header 스타일 */
     header {
       background: #b5ddf6;
       color: black;
@@ -55,62 +31,105 @@
       text-align: center;
     }
 
+    /* Footer 스타일 */
     footer {
       background: #b5ddf6;
       color: black;
       padding: 1rem;
     }
-
+    
+    /* Footer 내부 정렬 */
     .footer-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
     
     .footer-logo {
+      max-width: 100%;
       height: auto;
-      width: 500px;
+      width: 300px;
       object-fit: contain;
-      margin-right: 5rem;
-      margin-left: 5rem;
+      margin: 0 auto;
     }
 
     .footer-text {
       font-size: 0.8rem;
-      padding-right: 5rem;
       text-align: right;
+      margin: 0;
     }
     
     .footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-    
-    main {
-    padding-top: 2rem;
-    padding-bottom: 10rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    max0width: 900px;
-    margin: auto;
-    text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
     }
+
+    /* Main 콘텐츠 */
+    main {
+      padding-top: 2rem;
+      padding-bottom: 5rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      margin: auto;
+      text-align: left;
+      max-width: 100%;
+    }
+
+    /* 섹션 좌측 여백 조정 */
+    .left-padding-section {
+      padding-left: 10%;
+    }
+
+    /* 모바일 및 작은 화면을 위한 반응형 처리 */
+    @media (max-width: 1024px) {
+      .left-padding-section {
+        padding-left: 5%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .footer-logo {
+        width: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .left-padding-section {
+        padding-left: 2%;
+      }
+      header, footer {
+        padding: 1rem;
+      }
+    }
+
     h1, h2 {
       color: #333;
     }
+
+    /* 링크 스타일 */
     a {
       color: #007acc;
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
+
+    /* 리스트 스타일 */
     ul {
       padding-left: 1.2rem;
     }
+
+    /* 버튼 스타일 */
     .button {
       display: inline-block;
       margin: 1rem 0;
@@ -122,25 +141,31 @@
       text-decoration: none;
       font-weight: bold;
     }
+
     .button:hover {
       background-color: #005f99;
     }
 
-    @media (max-width: 600px) {
-      main {
-        padding: 1rem;
-      }
+    /* 기본 폰트 스타일 */
+    p {
+      font-size: 1rem;
+    }
+    
+    /* 제목 스타일 */
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .section-text {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
   <header>
     <h1>동그라미</h1>
     <p>누구나 평등하고 많은 서비스를 누릴 수 있는 온라인 일등 휴대폰 판매매장 "동그라미”</p>
@@ -148,31 +173,21 @@
 
   <main>     
     <section>
-  <h2 style="text-align: center; font-size: 28px; font-weight: bold;">
-    DONG_RAMY <br>
-    DREAM COME TRUE.
-  </h2>
-  <p style="text-align: center; font-size: 18px; font-weight: 600;">
-    모든 대한민국 사람들이 통신하면 '동그라미'라는게 머리속에 자연스럽게 떠오르는 그날까지! </p>
-  <p style="text-align: center; font-size: 18px; font-weight: 600;">
-    동그라미를 통해 여러분들의 삶이 조금은 더 따듯했으면 합니다  </p>
-</section>
+      <h2 class="section-title">
+        DONG_RAMY <br>
+        DREAM COME TRUE.
+      </h2>
+      <p class="section-text">
+        모든 대한민국 사람들이 통신하면 '동그라미'라는게 머리속에 자연스럽게 떠오르는 그날까지! 
+      </p>
+      <p class="section-text">
+        동그라미를 통해 여러분들의 삶이 조금은 더 따듯했으면 합니다
+      </p>
+    </section>
     
     <section class="left-padding-section">
       <h2>동그라미</h2>
-      <p>따듯한 빛을 보내주는 태양, <br>
-
-어두운 밤을 비춰주는 달, <br>
-
-맛있게 먹을 수 있는 모든 과일 열매들, <br>
-
-빨리 나아갈 수 있게 해주는 바퀴, <br>
-
-추운 계절이 지나면 어김없이 돌아오는 봄을 비롯한  <br>
-
-사계절의 순환을 갖는 공통점은 바로 동그라미 입니다. <br>
-<br>
-<strong>공식 쇼핑몰</strong>인 동그라미 스토어에서는 인증된 정품을 빠르게 만나보실 수 있습니다.</p>
+      <p>따듯한 빛을 보내주는 태양, <br>어두운 밤을 비춰주는 달, <br>맛있게 먹을 수 있는 모든 과일 열매들, <br>빨리 나아갈 수 있게 해주는 바퀴, <br>추운 계절이 지나면 어김없이 돌아오는 봄을 비롯한  <br>사계절의 순환을 갖는 공통점은 바로 동그라미 입니다. <br><br><strong>공식 쇼핑몰</strong>인 동그라미 스토어에서는 인증된 정품을 빠르게 만나보실 수 있습니다.</p>
     </section>
 
     <section class="left-padding-section">
@@ -185,33 +200,22 @@
       <a class="button" href="https://dongramystore.co.kr/" target="_blank">스토어 바로가기</a>
     </section>
 
-     <div style="text-align: center; margin: 40px 0;">
-  <img src="https://i.imgur.com/fq1dJVn.jpeg" style="width: 250px;">
-  <p style="font-size: 20px; font-family: sans-serif; margin-top: 10px;"> </p>
-</div>
-   
+    <div style="text-align: center; margin: 40px 0;">
+      <img src="https://i.imgur.com/fq1dJVn.jpeg" style="width: 250px;">
+      <p style="font-size: 20px; font-family: sans-serif; margin-top: 10px;"> </p>
+    </div>
   </main>
 
-  <footer class= "footer">
-   <div class="footer-inner">
-  <a href="https://strawberryhcl.github.io/dong_ramy/">
-    <img src="https://i.imgur.com/tpRkEqi.png" class="footer-logo" alt="DONGRAMY 로고">
-  </a>
-       <p class= "footer-text">
-         Copyright © 2021 Dongramy Co. All rights reserved. <br>
-     | 서울특별시 마포구 와우산로19길 6-11, 4층 (서교동) <br>
-     | 사업자번호 : 689-39-00711   동그라미 대표 : 한동길 <br>
-    </p>
-     </div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="https://strawberryhcl.github.io/dong_ramy/">
+        <img src="https://i.imgur.com/tpRkEqi.png" class="footer-logo" alt="DONGRAMY 로고">
+      </a>
+      <p class="footer-text">
+        Copyright © 2021 Dongramy Co. All rights reserved. <br> | 서울특별시 마포구 와우산로19길 6-11, 4층 (서교동) <br> | 사업자번호 : 689-39-00711   동그라미 대표 : 한동길 <br>
+      </p>
+    </div>
   </footer>
 
-  <!-- Google Analytics (예시 코드 - GA4 사용 시 Tag Manager로 통합 권장) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXX'); // ← GA 측정 ID 입력
-  </script>
 </body>
 </html>
