@@ -93,7 +93,7 @@
       max-width: 100%;
 
         position: relative;
-  z-index: 1;
+        z-index: 1;
 }
 
 main::before {
@@ -101,8 +101,9 @@ main::before {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 600px;
-  height: 600px;
+  width: 80vw; /* 원래 60vw였던 걸 80vw로 확대 */
+  height: auto;
+  aspect-ratio: 1 / 1;
   background-image: url('https://i.imgur.com/fq1dJVn.jpeg');
   background-size: contain;
   background-repeat: no-repeat;
@@ -111,7 +112,7 @@ main::before {
   transform: translate(-50%, -50%);
   z-index: 0;
   pointer-events: none;
-    }
+}
 
     /* 섹션 좌측 여백 조정 */
     .left-padding-section {
