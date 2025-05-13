@@ -281,24 +281,6 @@ header p {
   text-align: left; /* main 내부 자식 요소들에만 적용 */
 }
 
-main::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80vw; /* 원래 60vw였던 걸 80vw로 확대 */
-  height: auto;
-  aspect-ratio: 1 / 1;
-  background-image: url('https://i.imgur.com/fq1dJVn.jpeg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.05;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  pointer-events: none;
-}
-
   /* 섹션에 좌측 여백 */
 .left-padding-section {
   padding-left: 5%;
