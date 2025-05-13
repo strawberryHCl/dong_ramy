@@ -24,11 +24,20 @@
   body {
     display: flex;
     flex-direction: column;
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    background-color: #ffffff;
+    color: #222;
   }
 
   main {
     flex-grow: 1;
-    padding-bottom: 1rem; /* 필요시 조정 */
+    padding: 2rem 2rem 5rem 2rem; /* top, left, right, bottom */
+    max-width: 100%;
+    margin: auto;
+    text-align: left;
+    position: relative;
+    z-index: 1;
   }
 
   footer {
@@ -36,18 +45,29 @@
     color: black;
     padding: 1rem;
     text-align: center;
+    position: relative; /* ensures footer stays below the content */
   }
 
-  /* 기존 스타일 */
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    background-color: #ffffff;
-    color: #222;
+  /* Background for the main section */
+  main::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80vw; /* 원래 60vw였던 걸 80vw로 확대 */
+    height: auto;
+    aspect-ratio: 1 / 1;
+    background-image: url('https://i.imgur.com/fq1dJVn.jpeg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.05;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
   }
 
+  /* Header 스타일 */
   header {
     background: #b5ddf6;
     color: black;
@@ -66,253 +86,167 @@
     z-index: 1000;
   }
 
-  /* 나머지 스타일들은 그대로 두세요 */
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    background-color: #ffffff;
-    color: #222;
-  }
-    
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background-color: #ffffff;
-      color: #222;
-    }
-    
-    /* Header 스타일 */
-    header {
-      background: #b5ddf6;
-      color: black;
-      padding: 1rem;
-      text-align: center;
-    }
-
-    /* 네비게이션 바 스타일 */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #b5ddf6;
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: black;
-  text-decoration: none;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li a {
-  text-decoration: none;
-  color: black;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.nav-links li a:hover {
-  color: #007acc;
-}
-
-/* 모바일 대응 */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
   }
 
   .nav-links {
-    flex-direction: column;
-    width: 100%;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
   }
-}
 
-    /* Footer 스타일 */
-    footer {
-      background: #b5ddf6;
-      color: black;
+  .nav-links li a {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links li a:hover {
+    color: #007acc;
+  }
+
+  /* 모바일 대응 */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .nav-links {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+  }
+
+  /* Footer 내부 정렬 */
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo {
+    max-width: 100%;
+    height: auto;
+    width: 300px;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+
+  .footer-text {
+    font-size: 0.8rem;
+    text-align: right;
+    margin: 0;
+  }
+
+  /* 본문 밑 로고 이미지 관련 */
+  .responsive-image-container {
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .responsive-image-container img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* 섹션 좌측 여백 조정 */
+  .left-padding-section {
+    padding-left: 10%;
+  }
+
+  /* 모바일 및 작은 화면을 위한 반응형 처리 */
+  @media (max-width: 1024px) {
+    .left-padding-section {
+      padding-left: 5%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    main {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .footer-logo {
+      width: 200px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .left-padding-section {
+      padding-left: 2%;
+    }
+    header, footer {
       padding: 1rem;
     }
-    
-    /* Footer 내부 정렬 */
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    
-    .footer-logo {
-      max-width: 100%;
-      height: auto;
-      width: 300px;
-      object-fit: contain;
-      margin: 0 auto;
-    }
+  }
 
-    .footer-text {
-      font-size: 0.8rem;
-      text-align: right;
-      margin: 0;
-    }
-    
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+  h1, h2 {
+    color: #333;
+  }
 
-    /*본문 밑 로고 이미지 관련*/
-    .responsive-image-container {
-  text-align: center;
-  margin: 40px 0;
-}
+  /* 링크 스타일 */
+  a {
+    color: #007acc;
+    text-decoration: none;
+  }
 
-.responsive-image-container img {
-  width: 100%;
-  max-width: 250px; /* 원래 이미지 기준 또는 적절한 값 */
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-    
-    /* Main 콘텐츠 */
-    main {
-      padding-top: 2rem;
-      padding-bottom: 5rem;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      margin: auto;
-      text-align: left;
-      max-width: 100%;
+  a:hover {
+    text-decoration: underline;
+  }
 
-        position: relative;
-        z-index: 1;
-}
+  /* 리스트 스타일 */
+  ul {
+    padding-left: 1.2rem;
+  }
 
-main::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80vw; /* 원래 60vw였던 걸 80vw로 확대 */
-  height: auto;
-  aspect-ratio: 1 / 1;
-  background-image: url('https://i.imgur.com/fq1dJVn.jpeg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.05;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  pointer-events: none;
-}
+  /* 버튼 스타일 */
+  .button {
+    display: inline-block;
+    margin: 1rem 0;
+    padding: 0.8rem 1.5rem;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-    /* 섹션 좌측 여백 조정 */
-    .left-padding-section {
-      padding-left: 10%;
-    }
+  .button:hover {
+    background-color: #005f99;
+  }
 
-    /* 모바일 및 작은 화면을 위한 반응형 처리 */
-    @media (max-width: 1024px) {
-      .left-padding-section {
-        padding-left: 5%;
-      }
-    }
+  /* 기본 폰트 스타일 */
+  p {
+    font-size: 1rem;
+  }
+  
+  /* 제목 스타일 */
+  .section-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+  }
 
-    @media (max-width: 768px) {
-      main {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-      .footer-logo {
-        width: 200px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .left-padding-section {
-        padding-left: 2%;
-      }
-      header, footer {
-        padding: 1rem;
-      }
-    }
-
-    h1, h2 {
-      color: #333;
-    }
-
-    /* 링크 스타일 */
-    a {
-      color: #007acc;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* 리스트 스타일 */
-    ul {
-      padding-left: 1.2rem;
-    }
-
-    /* 버튼 스타일 */
-    .button {
-      display: inline-block;
-      margin: 1rem 0;
-      padding: 0.8rem 1.5rem;
-      background-color: #007acc;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .button:hover {
-      background-color: #005f99;
-    }
-
-    /* 기본 폰트 스타일 */
-    p {
-      font-size: 1rem;
-    }
-    
-    /* 제목 스타일 */
-    .section-title {
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .section-text {
-      text-align: center;
-      font-size: 18px;
-      font-weight: 600;
-    }
+  .section-text {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+  }
   </style>
 </head>
 <body>
@@ -321,16 +255,16 @@ main::before {
     <h1>동그라미</h1>
     <p>누구나 평등하고 많은 서비스를 누릴 수 있는 온라인 일등 휴대폰 판매매장 "동그라미”</p>
 
-       <div class="navbar">
-    <a href="/dong_ramy/" class="logo">동그라미</a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="/dong_ramy/">홈</a></li>
-        <li><a href="/dong_ramy/about/">회사 소개</a></li>
-        <li><a href="/dong_ramy/contact/">문의하기</a></li>
-      </ul>
-    </nav>
-  </div>
+    <div class="navbar">
+      <a href="/dong_ramy/" class="logo">동그라미</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="/dong_ramy/">홈</a></li>
+          <li><a href="/dong_ramy/about/">회사 소개</a></li>
+          <li><a href="/dong_ramy/contact/">문의하기</a></li>
+        </ul>
+      </nav>
+    </div>
     
   </header>
 
@@ -362,8 +296,7 @@ main::before {
       </ul>
       <a class="button" href="https://dongramystore.co.kr/" target="_blank">스토어 바로가기</a>
     </section>
-
-      </main>
+  </main>
 
   <footer class="footer">
     <div class="footer-inner">
