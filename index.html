@@ -91,6 +91,26 @@
       margin: auto;
       text-align: left;
       max-width: 100%;
+
+        position: relative;
+  z-index: 1;
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  background-image: url('https://i.imgur.com/fq1dJVn.jpeg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.05;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
     }
 
     /* 섹션 좌측 여백 조정 */
@@ -214,10 +234,7 @@
       <a class="button" href="https://dongramystore.co.kr/" target="_blank">스토어 바로가기</a>
     </section>
 
-    <div class="responsive-image-container">
-  <img src="https://i.imgur.com/fq1dJVn.jpeg" alt="dong_ramy 이미지">
-</div>
-  </main>
+      </main>
 
   <footer class="footer">
     <div class="footer-inner">
