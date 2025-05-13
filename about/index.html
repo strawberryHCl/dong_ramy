@@ -216,12 +216,11 @@ header p {
 
 .responsive-image-container img {
     content: "";
-    position: relative;
+    position: absolute;
     top: 50%;
     left: 50%;
-    width: 50vw; /* 뷰포트 너비의 50%로 조정 */
+    width: 60vw; /* 뷰포트 너비의 50%로 조정 */
     height: auto;
-    max-width: 250px; /* 원래 이미지 크기에 맞게 최대 크기 설정 */
     background-size: cover; /* 이미지가 영역을 채우도록 */
     background-repeat: no-repeat;
     background-position: center;
@@ -291,7 +290,7 @@ main::before {
   height: auto;
   aspect-ratio: 1 / 1;
   background-image: url('https://i.imgur.com/fq1dJVn.jpeg');
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   opacity: 0.05;
