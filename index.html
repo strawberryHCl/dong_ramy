@@ -231,6 +231,13 @@ main::before {
 @media (max-width: 1024px) {
   .left-padding-section {
     padding-left: 5%;
+    .navbar {
+        justify-content: flex-start;  /* 좌측 정렬 */
+    }
+
+    .menu-btn {
+        margin-left: 0.5rem;  /* 메뉴 버튼 왼쪽에 여백 추가 */
+    }
     /* 1024px 이하 화면에서는 nav-links 숨김 */
     .nav-links {
         display: none;
@@ -266,6 +273,13 @@ main::before {
   }
 
 @media (max-width: 768px) {
+  .navbar {
+        justify-content: flex-start;  /* 좌측 정렬 */
+    }
+
+    .menu-btn {
+        margin-left: 0.5rem;  /* 메뉴 버튼 왼쪽에 여백 추가 */
+    }
      /* 1024px 이하 화면에서는 nav-links 숨김 */
     .nav-links {
         display: none;
@@ -306,6 +320,13 @@ main::before {
 }
 
     @media (max-width: 480px) {
+      .navbar {
+        justify-content: flex-start;  /* 좌측 정렬 */
+    }
+
+    .menu-btn {
+        margin-left: 0.5rem;  /* 메뉴 버튼 왼쪽에 여백 추가 */
+    }
         /* 모바일 화면에서는 nav-links 숨김 */
    /* 1024px 이하 화면에서는 nav-links 숨김 */
     .nav-links {
@@ -405,9 +426,7 @@ p {
 
     <div class="navbar">
       <div class="navbar">
-        <div class="logo">Your Logo</div>
-
-        <!-- 메뉴 버튼 (모바일에서만 보임) -->
+                <!-- 메뉴 버튼 (모바일에서만 보임) -->
         <div class="menu-btn" id="menuBtn">&#9776;</div>
 
         <!-- 네비게이션 링크 -->
