@@ -4,253 +4,170 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>동그라미 스토어 - 공식 쇼핑몰 | 디자인 브랜드</title>
-  <meta name="description" content="동그라미 스토어는 공식 온라인 쇼핑몰입니다. 브랜드 정품을 빠르고 쉽게 구매하세요.
-    블로그와 함께 다양한 콘텐츠도 제공합니다.">
-  <meta name="keywords" content="동그라미, 핸드폰, 휴대폰, 스마트폰, 갤럭시, 아이폰, dong_ramy, Dong_ramy, Dong_Ramy, DONG_RAMY, Dongramy,
-    동그라미 스토어, 동그라미스토어, 동그라미 공식, 동그라미공식, 동그라미 정품, 동그라미정품, 홍대, 홍대동그라미, 홍대 동그라미, 아이폰x, 아이폰10,
-    아이폰11, 아이폰12, 아이폰13, 아이폰13미니, 아이폰 프로, 아이폰12미니, 아이폰15, 아이폰16, 아이폰16프로, 아이폰16e, 16e, 삼성, 애플, s22, s23, s24, s24울트라, s24 울트라,
-    dongramy">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://dongramystore.co.kr/">
+  <meta name="description" content="동그라미 스토어는 공식 온라인 쇼핑몰입니다. 브랜드 정품을 빠르고 쉽게 구매하세요. 블로그와 함께 다양한 콘텐츠도 제공합니다.">
   
   <style>
+    /* 기본 스타일 초기화 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      color: #222;
+    }
 
-  body {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Segoe UI', sans-serif;
-    line-height: 1.6;
-    background-color: #ffffff;
-    color: #222;
-  }
-
-  main {
-    flex-grow: 1;
-    padding: 2rem 2rem 5rem 2rem; /* top, left, right, bottom */
-    max-width: 100%;
-    margin: auto;
-    text-align: left;
-    position: relative;
-    z-index: 1;
-  }
-
-  footer {
-    background: #b5ddf6;
-    color: black;
-    padding: 1rem;
-    text-align: center;
-    position: relative; /* ensures footer stays below the content */
-  }
-
-  /* Background for the main section */
-  main::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 80vw; /* 원래 60vw였던 걸 80vw로 확대 */
-    height: auto;
-    aspect-ratio: 1 / 1;
-    background-image: url('https://i.imgur.com/fq1dJVn.jpeg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.05;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  /* Header 스타일 */
-  header {
-    background: #b5ddf6;
-    color: black;
-    padding: 1rem;
-    text-align: center;
-  }
-
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #b5ddf6;
-    padding: 1rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: black;
-    text-decoration: none;
-  }
-
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-    margin: 0;
-    padding: 0;
-  }
-
-  .nav-links li a {
-    text-decoration: none;
-    color: black;
-    font-weight: 600;
-    transition: color 0.3s ease;
-  }
-
-  .nav-links li a:hover {
-    color: #007acc;
-  }
-
-  /* 모바일 대응 */
-  @media (max-width: 768px) {
-    .navbar {
+    /* Flexbox로 레이아웃 설정 */
+    body {
+      display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      min-height: 100%;
+    }
+
+    /* main을 flex-grow로 설정하여 화면을 차지하도록 함 */
+    main {
+      flex-grow: 1;
+      padding: 2rem;
+      margin-bottom: 5rem; /* 본문 내용과 footer 사이 간격 */
+      position: relative;
+    }
+
+    /* 헤더 스타일 */
+    header {
+      background: #b5ddf6;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    /* 내비게이션 바 */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #b5ddf6;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: black;
+      text-decoration: none;
     }
 
     .nav-links {
-      flex-direction: column;
-      width: 100%;
-      gap: 0.5rem;
-      margin-top: 1rem;
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
     }
-  }
 
-  /* Footer 내부 정렬 */
-  .footer-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .footer-logo {
-    max-width: 100%;
-    height: auto;
-    width: 300px;
-    object-fit: contain;
-    margin: 0 auto;
-  }
-
-  .footer-text {
-    font-size: 0.8rem;
-    text-align: right;
-    margin: 0;
-  }
-
-  /* 본문 밑 로고 이미지 관련 */
-  .responsive-image-container {
-    text-align: center;
-    margin: 40px 0;
-  }
-
-  .responsive-image-container img {
-    width: 100%;
-    max-width: 250px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
-
-  /* 섹션 좌측 여백 조정 */
-  .left-padding-section {
-    padding-left: 10%;
-  }
-
-  /* 모바일 및 작은 화면을 위한 반응형 처리 */
-  @media (max-width: 1024px) {
-    .left-padding-section {
-      padding-left: 5%;
+    .nav-links li a {
+      text-decoration: none;
+      color: black;
+      font-weight: 600;
+      transition: color 0.3s ease;
     }
-  }
 
-  @media (max-width: 768px) {
-    main {
-      padding-left: 1rem;
-      padding-right: 1rem;
+    .nav-links li a:hover {
+      color: #007acc;
     }
-    .footer-logo {
-      width: 200px;
-    }
-  }
 
-  @media (max-width: 480px) {
-    .left-padding-section {
-      padding-left: 2%;
-    }
-    header, footer {
+    /* footer 스타일 */
+    footer {
+      background: #b5ddf6;
+      color: black;
       padding: 1rem;
+      text-align: center;
+      position: relative; /* 하단 고정 효과 */
     }
-  }
 
-  h1, h2 {
-    color: #333;
-  }
+    /* 본문 내용에 배경을 넣은 경우 */
+    main::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80vw; 
+      height: auto;
+      aspect-ratio: 1 / 1;
+      background-image: url('https://i.imgur.com/fq1dJVn.jpeg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.05;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+    }
 
-  /* 링크 스타일 */
-  a {
-    color: #007acc;
-    text-decoration: none;
-  }
+    /* 반응형 디자인 */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
-  a:hover {
-    text-decoration: underline;
-  }
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
 
-  /* 리스트 스타일 */
-  ul {
-    padding-left: 1.2rem;
-  }
+      main {
+        padding: 1rem;
+      }
+    }
 
-  /* 버튼 스타일 */
-  .button {
-    display: inline-block;
-    margin: 1rem 0;
-    padding: 0.8rem 1.5rem;
-    background-color: #007acc;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-  }
+    /* 버튼 스타일 */
+    .button {
+      display: inline-block;
+      margin: 1rem 0;
+      padding: 0.8rem 1.5rem;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-  .button:hover {
-    background-color: #005f99;
-  }
+    .button:hover {
+      background-color: #005f99;
+    }
 
-  /* 기본 폰트 스타일 */
-  p {
-    font-size: 1rem;
-  }
-  
-  /* 제목 스타일 */
-  .section-title {
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-  }
+    /* 기본 텍스트 스타일 */
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
 
-  .section-text {
-    text-align: center;
-    font-size: 18px;
-    font-weight: 600;
-  }
+    h1, h2 {
+      color: #333;
+    }
+
+    /* 섹션 스타일 */
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .section-text {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
-  
   <header>
     <h1>동그라미</h1>
     <p>누구나 평등하고 많은 서비스를 누릴 수 있는 온라인 일등 휴대폰 판매매장 "동그라미”</p>
@@ -265,34 +182,33 @@
         </ul>
       </nav>
     </div>
-    
   </header>
 
-  <main>     
+  <main>
     <section>
       <h2 class="section-title">
         DONG_RAMY <br>
         DREAM COME TRUE.
       </h2>
       <p class="section-text">
-        모든 대한민국 사람들이 통신하면 '동그라미'라는게 머리속에 자연스럽게 떠오르는 그날까지! 
+        모든 대한민국 사람들이 통신하면 '동그라미'라는게 머리속에 자연스럽게 떠오르는 그날까지!
       </p>
       <p class="section-text">
         동그라미를 통해 여러분들의 삶이 조금은 더 따듯했으면 합니다
       </p>
     </section>
-    
-    <section class="left-padding-section">
+
+    <section>
       <h2>동그라미</h2>
-      <p>따듯한 빛을 보내주는 태양, <br>어두운 밤을 비춰주는 달, <br>맛있게 먹을 수 있는 모든 과일 열매들, <br>빨리 나아갈 수 있게 해주는 바퀴, <br>추운 계절이 지나면 어김없이 돌아오는 봄을 비롯한  <br>사계절의 순환을 갖는 공통점은 바로 동그라미 입니다. <br><br><strong>공식 쇼핑몰</strong>인 동그라미 스토어에서는 인증된 정품을 빠르게 만나보실 수 있습니다.</p>
+      <p>따듯한 빛을 보내주는 태양, <br>어두운 밤을 비춰주는 달, <br>맛있게 먹을 수 있는 모든 과일 열매들, <br>빨리 나아갈 수 있게 해주는 바퀴, <br>추운 계절이 지나면 어김없이 돌아오는 봄을 비롯한 <br>사계절의 순환을 갖는 공통점은 바로 동그라미 입니다. <br><br><strong>공식 쇼핑몰</strong>인 동그라미 스토어에서는 인증된 정품을 빠르게 만나보실 수 있습니다.</p>
     </section>
 
-    <section class="left-padding-section">
+    <section>
       <h2>주요 링크</h2>
       <ul>
         <li><a href="http://www.dongramy.co.kr/" target="_blank">동그라미 <strong>무료 견적</strong> 공식 홈페이지</a></li>
         <li><a href="https://dongramystore.co.kr/" target="_blank">동그라미 스토어 상품 검색</a></li>
-        <li><a href="https://blog.naver.com/PostList.naver?blogId=young5677kv&tab=1" target="_blank">공식 블로그 보기</a></li>
+        <li><a href="https://m.blog.naver.com/PostList.naver?blogId=young5677kv&tab=1" target="_blank">공식 블로그 보기</a></li>
       </ul>
       <a class="button" href="https://dongramystore.co.kr/" target="_blank">스토어 바로가기</a>
     </section>
