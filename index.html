@@ -102,10 +102,16 @@ header p {
     list-style: none;
     display: flex;
     gap: 1.5rem;
+  justify-content: center;  /* 메뉴 항목들 가로로 중앙 정렬 */
+    align-items: center;  /* 메뉴 항목들 세로로 중앙 정렬 */
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links li {
-    position: relative;
+   display: flex;
+    align-items: center;  /* 세로 중앙 정렬 */
+    justify-content: center;  /* 가로 중앙 정렬 */
 }
 
 .nav-links li a {
