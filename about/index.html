@@ -685,6 +685,25 @@ main::before {
 </script>
 
 <section class="message-section">
+
+  <div className="flex justify-between items-center p-4">
+  {/* Share button */}
+  <Button
+    variant="outline"
+    size="icon"
+    className="mr-4"
+    onClick={() => onShare(quote)}
+  >
+    <Share2 className="h-4 w-4" />
+  </Button>
+
+  {/* Signature and Highlight - 오른쪽에 배치 */}
+  <div className="flex flex-col items-end space-y-2">
+    <div className="text-sm text-gray-500 italic">{signature}</div>
+    <div className="text-xs text-yellow-500 font-bold">{highlight}</div>
+  </div>
+</div>
+  
   <div class="content">
     <h2 class="message-title">대표님 인사말</h2>
     <p>작고 초라해보일 수 있지만 나름 <br><br>
