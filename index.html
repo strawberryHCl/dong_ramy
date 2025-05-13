@@ -15,6 +15,12 @@
   
   <style>
 /* 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+    
 html, body {
   height: 100%;
   margin: 0;
@@ -28,6 +34,18 @@ body {
   line-height: 1.6;
   background-color: #ffffff;
   color: #222;
+
+}
+
+    /* 예: 네비게이션 메뉴에만 Arial 폰트 적용 */
+.navbar, .menu-btn, .nav-links a {
+    font-family: 'Arial', sans-serif;
+}
+
+/* 네비게이션 메뉴 외에는 기존 스타일 유지 */
+body {
+    /* 기존 body 스타일을 그대로 유지 */
+    line-height: 1.6;
 }
 
 /* 뷰포트 설정 */
@@ -57,44 +75,60 @@ header p {
 
 /* Navbar 스타일 */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #007acc;
-  padding: 1rem 2rem;
-  border-bottom: 4px solid #005f99;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 1rem 2rem;
+    color: #fff;
+    position: relative;
 }
 
 .navbar .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
 }
 
-.navbar nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-  margin: 0;
-  padding: 0;
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
 }
 
-.navbar nav ul li {
-  display: inline;
+.nav-links li {
+    position: relative;
 }
 
-.navbar nav ul li a {
-  color: white;
-  font-weight: 500;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.2s ease;
+.nav-links li a {
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-.navbar nav ul li a:hover {
-  color: #ffda6b;
+.nav-links li a:hover {
+    background-color: #007acc;
 }
+
+/* 메뉴 버튼 (모바일에서만 보임) */
+.menu-btn {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* 드롭다운 메뉴 */
+.nav-links.active {
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
 
         /* Footer 스타일 */
     footer {
@@ -181,8 +215,38 @@ main::before {
   }
 }
 
-@media (max-width: 768px) {
-      main {
+@media (max-width: 768px) 
+        /* 모바일 화면에서는 nav-links 숨김 */
+    .nav-links {
+        display: none;
+        width: 100%;
+        background-color: #333;
+        flex-direction: column;
+        padding: 1rem 0;
+    }
+
+    /* 메뉴 버튼 보이게 설정 */
+    .menu-btn {
+        display: block;
+    }
+
+    /* 메뉴 항목이 클릭되면 드롭다운으로 보이게 */
+    .nav-links.active {
+        display: flex;
+    }
+
+    /* 메뉴 항목 스타일 */
+    .nav-links li {
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-links li a {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+          main {
         padding-left: 1rem;
         padding-right: 1rem;
       }
@@ -191,7 +255,37 @@ main::before {
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 480px)
+        /* 모바일 화면에서는 nav-links 숨김 */
+    .nav-links {
+        display: none;
+        width: 100%;
+        background-color: #333;
+        flex-direction: column;
+        padding: 1rem 0;
+    }
+
+    /* 메뉴 버튼 보이게 설정 */
+    .menu-btn {
+        display: block;
+    }
+
+    /* 메뉴 항목이 클릭되면 드롭다운으로 보이게 */
+    .nav-links.active {
+        display: flex;
+    }
+
+    /* 메뉴 항목 스타일 */
+    .nav-links li {
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-links li a {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+    }
       .left-padding-section {
         padding-left: 2%;
       }
@@ -258,14 +352,19 @@ p {
     <p>누구나 평등하고 많은 서비스를 누릴 수 있는 온라인 일등 휴대폰 판매매장 "동그라미”</p>
 
     <div class="navbar">
-      <a href="/dong_ramy/" class="logo">동그라미</a>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="/dong_ramy/">홈</a></li>
-          <li><a href="/dong_ramy/about/">회사 소개</a></li>
-          <li><a href="/dong_ramy/contact/">문의하기</a></li>
+      <a href="#" class="logo">My Website</a>
+        <!-- 메뉴 버튼 (모바일에서만 보임) -->
+        <div class="menu-btn" id="menuBtn">☰</div>
+        <!-- 메뉴 항목들 -->
+        <ul class="nav-links" id="navLinks">
+            <li><a href="https://home.example.com" target="_blank">홈</a></li>
+            <li><a href="https://about.example.com" target="_blank">회사소개</a></li>
+            <li><a href="https://services.example.com" target="_blank">서비스</a></li>
+            <li><a href="https://media.example.com" target="_blank">미디어</a></li>
+            <li><a href="https://story.example.com" target="_blank">스토리</a></li>
+            <li><a href="https://careers.example.com" target="_blank">채용</a></li>
         </ul>
-      </nav>
+    </nav>
     </div>
   </header>
 
@@ -300,6 +399,15 @@ p {
 
   </main>
 
+<!-- JavaScript 코드를 이곳에 삽입 -->
+<script>
+    // 메뉴 버튼을 클릭하면 드롭다운 메뉴를 토글하는 기능
+    document.getElementById('menuBtn').addEventListener('click', function() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('active');  // active 클래스를 토글하여 메뉴를 보이거나 숨김
+    });
+</script>
+  
   <footer class="footer">
     <div class="footer-inner">
       <a href="https://strawberryhcl.github.io/dong_ramy/">
