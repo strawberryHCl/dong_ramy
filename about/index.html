@@ -220,18 +220,20 @@ header p {
     border-radius: 12px;
     border: 10px solid #848484;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    display: flex; /* flexbox로 설정 */
-    flex-direction: column; /* 요소들이 수직으로 배치되도록 */
-    align-items: flex-start; /* 기본적으로 왼쪽 정렬 */
+    
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    align-items: flex-start; /* 기본 왼쪽 정렬 */
+    justify-content: flex-start; /* 상단 정렬 */
 }
 
 /* 제목 */
 .message-title {
-    text-align: center; /* 타이틀은 가운데 정렬 */
+    text-align: center; /* 제목은 가운데 정렬 */
     font-size: 1.6rem;
     font-weight: bold;
     margin-bottom: 2rem;
-    width: 100%; /* 전체 너비로 확장 */
+    width: 100%;
 }
 
 /* 하이라이트 */
