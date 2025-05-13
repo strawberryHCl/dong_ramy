@@ -106,46 +106,70 @@ header p {
   margin: 0.5rem 0 2rem;
 }
 
-/* 기본 nav-links 스타일 */
+/* Navbar 스타일 */
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    padding: 1rem 2rem;
+    color: #fff;
+    position: relative;
+}
+
+.navbar .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 1rem;
+}
+
+/* 메뉴 항목 스타일 */
 .nav-links {
     list-style: none;
-    display: flex;  /* 가로 배열로 설정 */
-    gap: 1.5rem;    /* 항목 간 간격 */
-}
-
-/* 메뉴 버튼 클릭 시 드롭다운 메뉴 활성화 */
-.nav-links.active {
     display: flex;
-    flex-direction: column; /* 드롭다운 메뉴 항목들을 세로로 배치 */
-    position: absolute;
-    top: 100%; /* 메뉴 바로 아래로 배치 */
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    z-index: 10;
-    max-height: 300px;  /* 최대 높이 */
-    overflow-y: auto;   /* 스크롤 가능하게 */
+    gap: 1.5rem;
+  justify-content: center;  /* 메뉴 항목들 가로로 중앙 정렬 */
+    align-items: center;  /* 메뉴 항목들 세로로 중앙 정렬 */
+    margin: 0;
+    padding: 0;
 }
 
-/* 드롭다운 메뉴 항목 스타일 */
 .nav-links li {
-    text-align: center;
-    width: 100%;
+   display: flex;
+    align-items: center;  /* 세로 중앙 정렬 */
+    justify-content: center;  /* 가로 중앙 정렬 */
 }
 
 .nav-links li a {
-    padding: 1rem;
-    width: 100%;
-    text-align: center;
-    border-bottom: 1px solid #444;
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-/* 메뉴버튼 숨기기 및 스타일 */
+.nav-links li a:hover {
+    background-color: #007acc;
+}
+
+/* 메뉴 버튼 (모바일에서만 보임) */
 .menu-btn {
-    display: none;
+    display: none;  /* 기본적으로 숨김 */
     font-size: 2rem;
     cursor: pointer;
 }
+
+/* 드롭다운 메뉴 */
+.nav-links.active {
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
 
       /* Footer 스타일 */
     footer {
@@ -592,6 +616,7 @@ main::before {
     </div>
   </header>
 
+
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/dong_ramy">홈</a></li>
@@ -600,12 +625,12 @@ main::before {
 </nav>
   
     <main>
-  <!-- 브레드크럼 -->
+    <!-- 브레드크럼 -->
   <div class="breadcrumb">
     <!-- 자바스크립트로 내용이 동적으로 추가됩니다. -->
   </div>
 
-  <script>
+<script>
     document.addEventListener("DOMContentLoaded", function() {
       var breadcrumb = document.querySelector(".breadcrumb");
       var path = window.location.pathname; // 현재 페이지 URL 경로
@@ -613,41 +638,23 @@ main::before {
       // 기본적으로 홈 링크
       var breadcrumbHTML = '<a href="/dong_ramy/">홈</a>';
 
-      // 경로에 맞춰 브레드크럼을 추가
-      var pageTitle = ''; // 페이지 제목을 위한 변수
-
-      // 경로가 '/dong_ramy/about/'일 경우
-      if (path === "/dong_ramy/about" || path === "/dong_ramy/about/") {
-        breadcrumbHTML += ' > <a href="/dong_ramy/about">회사소개</a>';
-        pageTitle = "회사소개";
-      } 
-      // 다른 페이지 경로에 대한 조건 추가 (예: 서비스, 미디어 등)
-      else if (path === "/dong_ramy/services" || path === "/dong_ramy/services/") {
-        breadcrumbHTML += ' > <a href="/dong_ramy/services">서비스</a>';
-        pageTitle = "서비스";
-      } else if (path === "/dong_ramy/media" || path === "/dong_ramy/media/") {
-        breadcrumbHTML += ' > <a href="/dong_ramy/media">미디어</a>';
-        pageTitle = "미디어";
-      } else if (path === "/dong_ramy/story" || path === "/dong_ramy/story/") {
-        breadcrumbHTML += ' > <a href="/dong_ramy/story">스토리</a>';
-        pageTitle = "스토리";
-      } else if (path === "/dong_ramy/recruit" || path === "/dong_ramy/recruit/") {
-        breadcrumbHTML += ' > <a href="/dong_ramy/recruit">채용</a>';
-        pageTitle = "채용";
-      } else {
-        pageTitle = "홈";
+      // URL 경로에 따라 브레드크럼 추가
+      if (path === "/about") {
+        breadcrumbHTML += ' > <a href="/dong_ramy/about/">회사소개</a>';
+      } else if (path === "/services") {
+        breadcrumbHTML += ' > <a href="/dong_ramy/service/">서비스</a>';
+      } else if (path === "/media") {
+        breadcrumbHTML += ' > <a href="/dong_ramy/media/">미디어</a>';
+      } else if (path === "/story") {
+        breadcrumbHTML += ' > <a href="/dong_ramy/story/">스토리</a>';
+      } else if (path === "/careers") {
+        breadcrumbHTML += ' > <a href="/dong_ramy/recruit/">채용</a>';
       }
 
-      // 브레드크럼 HTML 삽입
       breadcrumb.innerHTML = breadcrumbHTML;
-
-      // 페이지 제목 동적으로 변경
-      document.title = pageTitle + " 페이지";  // 브라우저 탭에 제목을 반영
     });
   </script>
-
-
-      
+   
   <section class="message-section">
     <h2 class="message-title">대표님의 말씀</h2>
     <p>
@@ -681,11 +688,11 @@ main::before {
 
 <!-- JavaScript 코드를 이곳에 삽입 -->
 <script>
-  // 메뉴 버튼을 클릭하면 드롭다운 메뉴를 토글하는 기능
-document.getElementById('menuBtn').addEventListener('click', function() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('active');  // active 클래스를 토글하여 메뉴를 보이거나 숨김
-});
+    // 메뉴 버튼을 클릭하면 드롭다운 메뉴를 토글하는 기능
+    document.getElementById('menuBtn').addEventListener('click', function() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('active');  // active 클래스를 토글하여 메뉴를 보이거나 숨김
+    });
 </script>
   
   <footer class="footer">
