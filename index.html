@@ -56,9 +56,11 @@
 }
 
   html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   body {
@@ -71,7 +73,7 @@
   }
 
   main {
-    flex-grow: 1;
+    flex: 1 0 auto
     padding-bottom: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -82,6 +84,7 @@
   }
 
   footer {
+    flex-shrink: 0;
     background: #b5ddf6;
     color: black;
     padding: 1rem;
@@ -156,14 +159,19 @@
     .left-padding-section {
       padding-left: 2%;
     }
-    header, footer {
+    
+    header {
+      background: #b5ddf6;
+      text-align: center;
+    padding: 2rem 1rem;  
+    }
+    
+    footer {
       padding: 1rem;
     }
   }
 
   h1, h2 {
-    text-align: center;
-    padding: 2rem 1rem;
     color: #333;
   }
 
