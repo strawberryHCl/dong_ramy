@@ -184,61 +184,61 @@ header p {
       margin: 0 auto;
     }
 
-    /*본문 밑 로고 이미지 관련*/
-    .responsive-image-container {
-  text-align: center;
-  margin: 40px 0;
+/* 본문 밑 로고 이미지 관련 */
+.responsive-image-container {
+    text-align: center;
+    margin: 20px 0;  /* 상하 여백을 적절하게 줄임 */
 }
 
 .responsive-image-container img {
-   content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80vw;
-  height: auto;
-  max-width: 250px; /* 원래 이미지 기준 또는 적절한 값 */
-    background-size: cover; /* 이미지 크기 유지하면서 영역을 채움 */
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.05;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  pointer-events: none;
+    content: "";
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 50vw; /* 뷰포트 너비의 50%로 조정 */
+    height: auto;
+    max-width: 250px; /* 원래 이미지 크기에 맞게 최대 크기 설정 */
+    background-size: cover; /* 이미지가 영역을 채우도록 */
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.05; /* 투명도 유지 */
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
 }
 
-    .message-section {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  font-size: 1.05rem;
-  line-height: 1.9;
-  color: #333;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+.message-section {
+    max-width: 800px; /* 최대 너비 설정 */
+    margin: 0 auto;  /* 가로로 가운데 정렬 */
+    padding: 1.5rem 1rem; /* 패딩을 좀 더 줄여서 공간 효율성 증가 */
+    font-size: 1rem; /* 글자 크기 조정 */
+    line-height: 1.8; /* 줄 간격 설정 */
+    color: #333;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
 .message-title {
-  text-align: center;
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.6rem; /* 타이틀 크기 줄이기 */
+    font-weight: bold;
+    margin-bottom: 1.5rem; /* 마진 줄이기 */
 }
 
 .highlight {
-  margin: 2rem 0;
-  padding: 1rem;
-  font-style: italic;
-  background-color: #e6f3fc;
-  border-left: 5px solid #007acc;
-  color: #444;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    font-style: italic;
+    background-color: #e6f3fc;
+    border-left: 5px solid #007acc;
+    color: #444;
 }
 
 .signature {
-  text-align: right;
-  font-weight: bold;
-  margin-top: 2rem;
+    text-align: right;
+    font-weight: bold;
+    margin-top: 1.5rem; /* 상단 여백 줄이기 */
 }
 
     /* Main 콘텐츠 스타일 */
@@ -306,6 +306,19 @@ main::before {
     
 @media (max-width: 1024px) {
   .left-padding-section {
+     .responsive-image-container img {
+        width: 70vw; /* 모바일에서 이미지 크기 줄이기 */
+    }
+
+    .message-section {
+        max-width: 100%; /* 모바일에서 섹션 너비를 100%로 설정 */
+        padding: 1rem;  /* 모바일에서 패딩 줄이기 */
+    }
+
+    .message-title {
+        font-size: 1.4rem; /* 모바일에서 제목 크기 줄이기 */
+    }
+
 
     .breadcrumb {
         font-size: 0.9rem;
@@ -359,6 +372,20 @@ main::before {
   }
 
 @media (max-width: 768px) {
+
+ .responsive-image-container img {
+        width: 70vw; /* 모바일에서 이미지 크기 줄이기 */
+    }
+
+    .message-section {
+        max-width: 100%; /* 모바일에서 섹션 너비를 100%로 설정 */
+        padding: 1rem;  /* 모바일에서 패딩 줄이기 */
+    }
+
+    .message-title {
+        font-size: 1.4rem; /* 모바일에서 제목 크기 줄이기 */
+    }
+
   
 .breadcrumb {
         font-size: 0.9rem;
@@ -418,6 +445,20 @@ main::before {
 
     @media (max-width: 480px) {
 
+ .responsive-image-container img {
+        width: 70vw; /* 모바일에서 이미지 크기 줄이기 */
+    }
+
+    .message-section {
+        max-width: 100%; /* 모바일에서 섹션 너비를 100%로 설정 */
+        padding: 1rem;  /* 모바일에서 패딩 줄이기 */
+    }
+
+    .message-title {
+        font-size: 1.4rem; /* 모바일에서 제목 크기 줄이기 */
+    }
+
+      
       .breadcrumb {
         font-size: 0.9rem;
         padding: 8px 0;
