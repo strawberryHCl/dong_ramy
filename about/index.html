@@ -208,11 +208,10 @@ header p {
       margin: 0 auto;
     }
 
-/* 전체 메시지 섹션 */
 .message-section {
     max-width: 1600px;
     margin: 0 auto;
-    padding: 3rem 10rem 3rem 3rem;
+    padding: 3rem 3rem 3rem 10rem;
     font-size: 1rem;
     line-height: 1.8;
     color: #333;
@@ -220,61 +219,74 @@ header p {
     border-radius: 12px;
     border: 10px solid #848484;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    
+
     display: flex;
-    flex-direction: column; /* 세로 정렬 */
-    align-items: flex-start; /* 기본 왼쪽 정렬 */
-    justify-content: flex-start; /* 상단 정렬 */
+    flex-direction: row-reverse; /* 이미지가 오른쪽에 배치 */
+    align-items: flex-start; /* 수직 정렬을 위로 맞춤 */
+    justify-content: flex-start; /* 왼쪽 정렬 */
+}
+
+/* 오른쪽 이미지 */
+.right-image {
+    flex: 0 0 30%; /* 이미지가 차지할 너비 설정 */
+    padding-left: 2rem; /* 이미지와 텍스트 간 여백 */
+}
+
+.right-image img {
+    width: 100%; /* 이미지가 전체 너비 차지 */
+    height: auto;
+    border-radius: 8px; /* 이미지에 둥근 테두리 */
+}
+
+/* 본문 콘텐츠 */
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 텍스트가 위에서부터 쌓이도록 */
+    align-items: flex-start; /* 왼쪽 정렬 */
 }
 
 /* 제목 */
 .message-title {
-    text-align: center; /* 제목은 가운데 정렬 */
     font-size: 1.6rem;
     font-weight: bold;
-    margin-bottom: 2rem;
-    width: 100%;
+    margin-bottom: 1.5rem;
+    text-align: left; /* 제목 왼쪽 정렬 */
 }
 
 /* 하이라이트 */
 .highlight {
-    margin: 2rem 0;
-    padding: 2rem 3rem;
     font-style: italic;
     background-color: #e6f3fc;
     border-left: 5px solid #007acc;
     color: #444;
-    text-align: right; /* 오른쪽 정렬 */
-    width: 100%; /* 전체 너비로 확장 */
+    margin: 1.5rem 0;
+    padding: 2rem;
+    text-align: left; /* 하이라이트 왼쪽 정렬 */
 }
 
-/* 시그니처 */
+/* 서명 */
 .signature {
-    text-align: right; /* 오른쪽 정렬 */
-    padding: 1rem 3rem;
     font-weight: bold;
-    margin-top: 2rem;
-    width: 100%; /* 전체 너비로 확장 */
+    text-align: right; /* 서명은 오른쪽 정렬 */
+    padding-top: 1.5rem;
+    margin-top: 1.5rem; /* 상단 여백 */
 }
 
 /* 모바일 대응 */
 @media (max-width: 768px) {
     .message-section {
-        padding: 2rem 3rem;
+        flex-direction: column; /* 모바일에서는 세로로 배치 */
     }
 
-    .message-title {
-        font-size: 1.4rem;
-        margin-bottom: 1.5rem;
+    .right-image {
+        flex: 0 0 100%; /* 모바일에서는 이미지가 전체 너비를 차지하도록 */
+        padding-left: 0;
     }
 
-    .highlight {
-        padding: 1.5rem 2rem;
-    }
-
-    .signature {
-        padding: 1rem 2rem;
-        font-size: 1rem;
+    .content {
+        padding-left: 0; /* 모바일에서는 왼쪽 여백 없앰 */
     }
 }
 
@@ -679,6 +691,18 @@ main::before {
 
    
   <section class="message-section">
+    <div class="message-section">
+  <div class="content">
+    <div class="message-title">제목</div>
+    <div class="highlight">하이라이트</div>
+    <div class="signature">서명</div>
+  </div>
+  <div class="right-image">
+    <img src="https://mblogthumb-phinf.pstatic.net/MjAyMjA5MDlfMTAy/MDAxNjYyNzA5NjYzNTAw.WxAy9RmFodnsEiFFQmDwGUaynGY9sV6S29db5vZlAIsg.dEXzXwXr21HCw92TvcGAewgeFE2lZCZi3biURdi2lPYg.JPEG.young5677kv/3.%EC%84%A0%EA%B8%80%EB%9D%BC%EC%8A%A4_%EB%B6%84.jpg?type=w800" alt="한동길 대표">
+  </div>
+</div>
+
+    
     <h2 class="message-title">대표님의 말씀</h2>
     <p>
       작고 초라해보일 수 있지만 나름 <br><br>
