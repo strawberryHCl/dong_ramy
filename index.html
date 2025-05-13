@@ -68,6 +68,20 @@
       margin: 0 auto;
     }
 
+    /*본문 밑 로고 이미지 관련*/
+    .responsive-image-container {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.responsive-image-container img {
+  width: 100%;
+  max-width: 250px; /* 원래 이미지 기준 또는 적절한 값 */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+    
     /* Main 콘텐츠 */
     main {
       padding-top: 2rem;
@@ -200,10 +214,9 @@
       <a class="button" href="https://dongramystore.co.kr/" target="_blank">스토어 바로가기</a>
     </section>
 
-    <div style="text-align: center; margin: 40px 0;">
-      <img src="https://i.imgur.com/fq1dJVn.jpeg" style="width: 250px;">
-      <p style="font-size: 20px; font-family: sans-serif; margin-top: 10px;"> </p>
-    </div>
+    <div class="responsive-image-container">
+  <img src="https://i.imgur.com/fq1dJVn.jpeg" alt="dong_ramy 이미지">
+</div>
   </main>
 
   <footer class="footer">
