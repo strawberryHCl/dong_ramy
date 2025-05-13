@@ -209,17 +209,18 @@ header p {
     }
 
 /* Main 콘텐츠 스타일 */
-main {
+  main {
   flex: 1 0 auto;
   padding-bottom: 1rem;
   padding-left: 2rem;
   padding-right: 2rem;
   text-align: left;
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0 auto; /* <-- 이게 중요 */
   position: relative;
-  overflow: hidden; /* 넘치는 부분 잘라내기 */
+  overflow: hidden;
 }
+
 
     main > * {
   text-align: left; /* main 내부 자식 요소들에만 적용 */
@@ -489,7 +490,7 @@ p {
 
 .section-text {
   text-align: left;
-  padding-left: 5rem
+  padding-left: 5rem;
   font-size: 18px;
   font-weight: 600;
 }
