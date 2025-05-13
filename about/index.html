@@ -208,28 +208,6 @@ header p {
       margin: 0 auto;
     }
 
-/* 본문 밑 로고 이미지 관련 */
-.responsive-image-container {
-    text-align: center;
-    margin: 20px 0;  /* 상하 여백을 적절하게 줄임 */
-}
-
-.responsive-image-container img {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60vw; /* 뷰포트 너비의 50%로 조정 */
-    height: auto;
-    background-size: cover; /* 이미지가 영역을 채우도록 */
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.05; /* 투명도 유지 */
-    transform: translate(-50%, -50%);
-    z-index: 0;
-    pointer-events: none;
-}
-
 .message-section {
     max-width: 800px; /* 최대 너비 설정 */
     margin: 0 auto;  /* 가로로 가운데 정렬 */
@@ -281,6 +259,24 @@ header p {
   text-align: left; /* main 내부 자식 요소들에만 적용 */
 }
 
+main::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80vw;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background-image: url('https://i.imgur.com/D1R3iYW.png');
+  background-size: cover; /* 이미지 크기 유지하면서 영역을 채움 */
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.05;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+    
   /* 섹션에 좌측 여백 */
 .left-padding-section {
   padding-left: 5%;
