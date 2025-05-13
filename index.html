@@ -48,6 +48,12 @@ body {
     line-height: 1.6;
 }
 
+    a {
+    text-decoration: none;
+    color: #333;
+}
+
+
 /* 뷰포트 설정 */
 meta[name="viewport"] {
   content: "width=device-width, initial-scale=1.0";
@@ -90,6 +96,7 @@ header p {
     color: #fff;
 }
 
+/* 메뉴 항목 스타일 */
 .nav-links {
     list-style: none;
     display: flex;
@@ -114,7 +121,7 @@ header p {
 
 /* 메뉴 버튼 (모바일에서만 보임) */
 .menu-btn {
-    display: none;
+    display: none;  /* 기본적으로 숨김 */
     font-size: 2rem;
     cursor: pointer;
 }
@@ -128,7 +135,6 @@ header p {
     display: flex;
     gap: 1.5rem;
 }
-
 
         /* Footer 스타일 */
     footer {
@@ -209,14 +215,22 @@ main::before {
 }
 
 /* 모바일 대응 미디어 쿼리 */
+/* 1024px 이상의 화면에서는 메뉴 버튼 숨기기 */
+@media (min-width: 1025px) {
+    .menu-btn {
+        display: none; /* 메뉴 버튼 숨기기 */
+    }
+
+    .nav-links {
+        display: flex; /* 메뉴 항목을 수평으로 표시 */
+        gap: 1.5rem;
+    }
+}
+    
 @media (max-width: 1024px) {
   .left-padding-section {
     padding-left: 5%;
-  }
-}
-
-@media (max-width: 768px) 
-        /* 모바일 화면에서는 nav-links 숨김 */
+    /* 1024px 이하 화면에서는 nav-links 숨김 */
     .nav-links {
         display: none;
         width: 100%;
@@ -225,7 +239,42 @@ main::before {
         padding: 1rem 0;
     }
 
-    /* 메뉴 버튼 보이게 설정 */
+    /* 메뉴 버튼 보이게 설정 (모바일) */
+    .menu-btn {
+        display: block;
+    }
+
+    /* 메뉴 항목이 클릭되면 드롭다운으로 보이게 */
+    .nav-links.active {
+        display: flex;
+    }
+
+    /* 메뉴 항목 스타일 */
+    .nav-links li {
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-links li a {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+  }
+
+@media (max-width: 768px) {
+     /* 1024px 이하 화면에서는 nav-links 숨김 */
+    .nav-links {
+        display: none;
+        width: 100%;
+        background-color: #333;
+        flex-direction: column;
+        padding: 1rem 0;
+    }
+
+    /* 메뉴 버튼 보이게 설정 (모바일) */
     .menu-btn {
         display: block;
     }
@@ -253,10 +302,11 @@ main::before {
       .footer-logo {
         width: 200px;
       }
-    }
+}
 
-    @media (max-width: 480px)
+    @media (max-width: 480px) {
         /* 모바일 화면에서는 nav-links 숨김 */
+   /* 1024px 이하 화면에서는 nav-links 숨김 */
     .nav-links {
         display: none;
         width: 100%;
@@ -265,7 +315,7 @@ main::before {
         padding: 1rem 0;
     }
 
-    /* 메뉴 버튼 보이게 설정 */
+    /* 메뉴 버튼 보이게 설정 (모바일) */
     .menu-btn {
         display: block;
     }
@@ -293,6 +343,7 @@ main::before {
         padding: 1rem;
       }
     }
+    
   
  /* 기본 텍스트 스타일 */
 h1, h2 {
@@ -352,19 +403,21 @@ p {
     <p>누구나 평등하고 많은 서비스를 누릴 수 있는 온라인 일등 휴대폰 판매매장 "동그라미”</p>
 
     <div class="navbar">
-      <a href="#" class="logo">My Website</a>
+      <div class="navbar">
+        <div class="logo">Your Logo</div>
+
         <!-- 메뉴 버튼 (모바일에서만 보임) -->
-        <div class="menu-btn" id="menuBtn">☰</div>
-        <!-- 메뉴 항목들 -->
+        <div class="menu-btn" id="menuBtn">&#9776;</div>
+
+        <!-- 네비게이션 링크 -->
         <ul class="nav-links" id="navLinks">
-            <li><a href="https://home.example.com" target="_blank">홈</a></li>
-            <li><a href="https://about.example.com" target="_blank">회사소개</a></li>
-            <li><a href="https://services.example.com" target="_blank">서비스</a></li>
-            <li><a href="https://media.example.com" target="_blank">미디어</a></li>
-            <li><a href="https://story.example.com" target="_blank">스토리</a></li>
-            <li><a href="https://careers.example.com" target="_blank">채용</a></li>
+            <li><a href="#home">홈</a></li>
+            <li><a href="#company">회사소개</a></li>
+            <li><a href="#service">서비스</a></li>
+            <li><a href="#media">미디어</a></li>
+            <li><a href="#story">스토리</a></li>
+            <li><a href="#recruit">채용</a></li>
         </ul>
-    </nav>
     </div>
   </header>
 
