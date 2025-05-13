@@ -19,6 +19,9 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+body {
   display: flex;
   flex-direction: column;
   font-family: 'Segoe UI', sans-serif;
@@ -111,7 +114,7 @@ footer {
   background: #b5ddf6;
   color: black;
   padding: 1rem;
-  margin-top: auto;
+  margin-top: 0;
 }
 
 /* Footer 내부 레이아웃 */
@@ -137,6 +140,16 @@ footer {
   text-align: right;
   margin: 0;
 }
+
+    body {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  background-color: #ffffff;
+  color: #222;
+}
+
 
 /* Main 콘텐츠 배경 */
 main::before {
@@ -170,9 +183,24 @@ main::before {
 }
 
 @media (max-width: 768px) {
-  header {
-    padding: 1.5rem 1rem;
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
+  .footer-logo {
+    width: 200px;
+  }
+}
+
+    @media (max-width: 480px) {
+  .left-padding-section {
+    padding-left: 2%;
+  }
+
+  footer {
+    padding: 1rem;
+  }
+}
   
   .navbar {
     padding: 1rem;
@@ -190,36 +218,6 @@ main::before {
   main {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .left-padding-section {
-    padding-left: 2%;
-  }
-
-  footer {
-    padding: 1rem;
-  }
-
-  header h1 {
-    font-size: 1.8rem;
-  }
-
-  header p {
-    font-size: 1rem;
-  }
-
-  .navbar .logo {
-    font-size: 1.2rem;
-  }
-
-  .navbar nav ul li a {
-    font-size: 0.9rem;
-  }
-
-  .footer-logo {
-    width: 150px;
   }
 }
 
