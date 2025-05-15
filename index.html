@@ -34,8 +34,8 @@
     .nav-links li a:hover { background-color: #5B6066; }
     .menu-btn { display: none; font-size: 2rem; cursor: pointer; }
     .nav-links.active { display: block; }
-    .image-links { display: flex; justify-content: center; gap: 20px; /* 이미지 간격 */ margin-top: 40px; /* 본문과의 간격 */ flex-wrap: wrap; /* 모바일 대응 */ }
-    .image-links a { display: block; transition: transform 0.3s ease; }
+    .image-links { display: flex; justify-content: center; /* 가운데 정렬 */ align-items: center; gap: 30px; /* 이미지 간 간격 */ margin-top: 40px; /* 본문과의 간격 */ flex-wrap: wrap; /* 모바일 대응 */ }
+    .image-links a { max-width: 100%; width: 300px; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; }
     .image-links a:hover { transform: scale(1.05); /* 살짝 확대되는 효과 */ }
     .image-links img { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
     footer { background: #555A60; color: black; padding: 1rem; }
