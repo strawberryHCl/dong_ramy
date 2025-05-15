@@ -22,23 +22,18 @@
 }
 
     .breadcrumb {
-      display: flex;
-      font-size: 1rem;
-      margin: 20px 0;
-      padding: 10px 0 10px 15px;
-      background-color: #f5f5f5;
-      border-radius: 5px;
-    }
-    
- .breadcrumb a {
-      text-decoration: none;
-      color: #007acc;
-      margin-right: 5px;
-    }
+  display: flex;
+  font-size: 1rem;
+  margin: 20px 0;
+  padding: 10px 15px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
 
-    .breadcrumb a:hover {
-      text-decoration: underline;
-    }
+.breadcrumb a {
+  text-decoration: none;
+  color: #007acc;
+}
 
 .breadcrumb a::after {
   content: ">";
@@ -546,8 +541,10 @@ p {
   <main>
     <!-- 브레드크럼 -->
   <div class="breadcrumb">
-    <!-- 자바스크립트로 내용이 동적으로 추가됩니다. -->
-  </div>
+  <a href="#">홈</a>
+  <a href="#">카테고리</a>
+  <a href="#">상품</a>
+</div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
