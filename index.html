@@ -1,78 +1,228 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>동그라미 스토어 - 공식 쇼핑몰 | 디자인 브랜드</title>
-  <meta name="description" content="동그라미 스토어는 공식 온라인 쇼핑몰입니다. 브랜드 정품을 빠르고 쉽게 구매하세요.
-    블로그와 함께 다양한 콘텐츠도 제공합니다.">
-  <meta name="keywords" content="동그라미, 핸드폰, 휴대폰, 스마트폰, 갤럭시, 아이폰, dong_ramy, Dong_ramy, Dong_Ramy, DONG_RAMY, Dongramy,
-    동그라미 스토어, 동그라미스토어, 동그라미 공식, 동그라미공식, 동그라미 정품, 동그라미정품, 홍대, 홍대동그라미, 홍대 동그라미, 아이폰x, 아이폰10,
-    아이폰11, 아이폰12, 아이폰13, 아이폰13미니, 아이폰 프로, 아이폰12미니, 아이폰15, 아이폰16, 아이폰16프로, 아이폰16e, 16e, 삼성, 애플, s22, s23, s24, s24울트라, s24 울트라,
-    dongramy">
+  <meta name="description" content="동그라미 스토어는 공식 온라인 쇼핑몰입니다. 브랜드 정품을 빠르고 쉽게 구매하세요. 블로그와 함께 다양한 콘텐츠도 제공합니다.">
+  <meta name="keywords" content="동그라미, 휴대폰, 스마트폰, 아이폰, 갤럭시, 동그라미 스토어, dongramy 등">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://dongramystore.co.kr/">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <style>
-    /* 기존 스타일 유지 */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {   user-select: none; outline: none; height: 100%; font-family: 'Roboto', sans-serif; background: #1D2023; color: #D0D4D7; }
-    h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; color: #D0D4D7 }
-    .breadcrumb { display: flex;  font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700; margin: 20px 0; padding: 10px 15px; background: #555A60; border-radius: 5px; }
-    .breadcrumb a { text-decoration: none; color: #D0D4D7 }
-    .breadcrumb a::after { content: ">"; margin: 0 5px; }
-    .breadcrumb a:last-child::after { content: ""; }
-    .navbar, .menu-btn, .nav-links a { font-family: 'Arial', sans-serif; }
-    header { text-align: center; background-color: #1D2023; padding: 1rem 1rem; }
-    header h1 { margin: 0; font-size: 2.5rem; color: #007acc; font-weight: 700; }
-    header p { font-size: 1.1rem; color: #F0F0F0; margin: 0.5rem 0 2rem; }
-    .navbar { display: flex; justify-content: center; align-items: center; background-color: #1D2023; padding: 1rem 2rem; color: #F0F0F0; }
-    .navbar .logo { font-size: 1.8rem; font-weight: bold; color: #fff; margin-right: 1rem; }
-    .nav-links { list-style: none; display: flex; gap: 1.5rem; justify-content: center; align-items: center; }
-    .nav-links li a { color: #fff; font-size: 1rem; padding: 0.5rem 1rem; border-radius: 5px; transition: background-color 0.3s ease; }
-    .nav-links li a:hover { background-color: #5B6066; }
-    .menu-btn { display: none; font-size: 2rem; cursor: pointer; }
-    .nav-links.active { display: block; }
-    .image-links { display: flex; justify-content: center; /* 가운데 정렬 */ align-items: center; gap: 30px; /* 이미지 간 간격 */ margin-top: 40px; /* 본문과의 간격 */ flex-wrap: wrap; /* 모바일 대응 */ position: relative; /* z-index 작동을 위한 설정 */ z-index: 10; /* 배경보다 앞에 나오게 */ }
-    .image-links a { max-width: 100%; width: 300px; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; }
-    .image-links a:hover { transform: scale(1.05); /* 살짝 확대되는 효과 */ }
-    .image-links img { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
-    footer { background: #555A60; color: black; padding: 1rem; }
-    .footer-inner { display: flex; justify-content: flex-start; align-items: center; padding: 0 1rem; filter: invert(1);}
-    .footer-logo { max-width: 100%; height: auto; width: 300px; object-fit: contain; margin: 0 auto; }
-    .footer-text { display: flex; align-items: center; font-size: 0.8rem; color: #F0F0F0; text-align: right; padding: 0 1rem; margin: 0; }
-    .footer-content { display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto; }
-    .footer-left { display: flex; align-items: center; gap: 0.8rem; }
-    .footer-icons { display: flex; gap: 10px; }
-    .footer-icons a img { width: 24px; height: 24px; opacity: 0.8; transition: opacity 0.3s ease; }
-    .footer-icons a img:hover { opacity: 1; }
-    main { flex: 1 0 auto; padding: 0 2rem 1rem; max-width: 100%; margin: 0 auto; position: relative; overflow: hidden; }
-    main h2 { margin-bottom: 1rem; }
-    main p { margin-bottom: 1.5rem; line-height: 1.6; }/* 줄 간격도 좀 늘려줌 */
-    main::before { z-index: 0; margin-top: 16rem; content: ""; position: absolute; top: 50%; left: 50%; width: 80vw; height: auto; aspect-ratio: 1 / 1; background-image: url('https://i.imgur.com/D1R3iYW.png'); background-size: cover; background-repeat: no-repeat; background-position: center; opacity: 0.2; transform: translate(-50%, -50%); z-index: 0; pointer-events: none; filter: brightness(3);}
-    .swiper { width: 100%; height: 600px; /* 원하시는 높이로 조절 가능 */ margin-top: 0;}
-    .swiper-slide img { width: 100%; height: 100%; object-fit: contain; background-color: #000; /* 여백이 생길 경우 배경색 */ }
-    .left-padding-section { padding-left: 20%; margin-bottom: 3rem;}
-    .section-title { margin-top: 5rem; margin-bottom: 2rem; text-align: center; font-size: 28px; font-weight: bold; }
-    .section-text { margin-bottom: 2rem; text-align: center; font-size: 18px; font-weight: 600; }
-    .button { display: inline-block; margin: 1rem 0; padding: 0.8rem 1.5rem; background-color: #7C8289; color: white; border: none; border-radius: 5px; text-decoration: none; font-weight: bold; }
-    .button:hover { background-color: #5B6066; }
+    html, body {
+      font-family: 'Poppins', sans-serif;
+      background: #1D2023;
+      color: #D0D4D7;
+      height: 100%;
+    }
+
+    header { text-align: center; padding: 1rem; background: #1D2023; }
+    header h1 { font-size: 2.5rem; color: #007acc; font-weight: 700; }
+    header p { color: #F0F0F0; margin: 1rem 0; }
+
+    .footer-inner img { width: 300px; object-fit: contain; }
+
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #1D2023;
+      padding: 1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      display: block;
+    }
+
+    .nav-links a:hover {
+      background-color: #5B6066;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #2b2e32;
+      border-radius: 5px;
+      flex-direction: column;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
+    .nav-links li:hover .dropdown {
+      display: flex;
+    }
+
+    .dropdown li a {
+      padding: 10px 15px;
+      color: #e0e0e0;
+      font-size: 0.9rem;
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: white;
+    }
+
+    .breadcrumb {
+      margin: 20px 0;
+      padding: 10px 15px;
+      background: #555A60;
+      border-radius: 5px;
+      font-weight: 700;
+    }
+
+    .breadcrumb a {
+      color: #D0D4D7;
+      text-decoration: none;
+    }
+
+    .breadcrumb a::after {
+      content: " > ";
+    }
+
+    .breadcrumb a:last-child::after {
+      content: "";
+    }
+
+    main {
+      padding: 0 2rem 2rem;
+      position: relative;
+    }
+
+    main::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80vw;
+      aspect-ratio: 1/1;
+      background-image: url('https://i.imgur.com/D1R3iYW.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0.2;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      filter: brightness(3);
+      z-index: 0;
+    }
+
+    .section-title {
+      margin-top: 5rem;
+      font-size: 28px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .section-text {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 1rem;
+    }
+
+    .left-padding-section {
+      padding-left: 20%;
+      margin-bottom: 3rem;
+    }
+
+    .image-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .image-links a img {
+      width: 300px;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .image-links a img:hover {
+      transform: scale(1.05);
+    }
+
+    .swiper {
+      width: 100%;
+      height: 600px;
+      margin-top: 2rem;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background-color: #000;
+    }
+
+    footer {
+      background: #555A60;
+      color: #F0F0F0;
+      padding: 1rem;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer-icons img {
+      width: 24px;
+      height: 24px;
+      opacity: 0.8;
+    }
+
+    .footer-icons img:hover {
+      opacity: 1;
+    }
+
     @media (max-width: 1024px) {
-      .menu-btn { display: block; margin-left: 0.5rem; }
-      .nav-links { display: none; flex-direction: column; background-color: #333; padding: 1rem 0; width: 100%; }
+      .menu-btn { display: block; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #333;
+      }
       .nav-links.active { display: flex; }
-      .nav-links li { text-align: center; width: 100%; }
-      .nav-links li a { padding: 1rem; width: 100%; text-align: center; }
-      .left-padding-section { padding-left: 5%; }
+      .nav-links li { text-align: center; }
+      .dropdown { display: none !important; }
     }
+
     @media (max-width: 768px) {
-      main { padding-left: 1rem; padding-right: 1rem; }
-      .footer-logo { width: 200px; }
-    }
-    @media (max-width: 480px) {
-      .left-padding-section { padding-left: 2%; }
-      header, footer { padding: 1rem; }
+      .left-padding-section { padding-left: 5%; }
+      .footer-inner img { width: 200px; }
     }
   </style>
 </head>
@@ -84,110 +234,76 @@
       </a>
     </div>
     <p>누구나 평등하고 많은 서비스를 누릴 수 있는 온라인 일등 휴대폰 판매매장 "동그라미”</p>
-    <div class="navbar">
+    <nav class="navbar">
       <div class="menu-btn" id="menuBtn">&#9776;</div>
       <ul class="nav-links" id="navLinks">
         <li><a href="/dong_ramy/">홈</a></li>
-        <li><a href="/dong_ramy/about/">회사소개</a></li>
-        <li><a href="/dong_ramy/service/">서비스</a></li>
-        <li><a href="/dong_ramy/media/">미디어</a></li>
+        <li>
+          <a href="#">회사소개</a>
+          <ul class="dropdown">
+            <li><a href="/dong_ramy/about/greeting">인사말</a></li>
+            <li><a href="/dong_ramy/about/status">회사현황</a></li>
+            <li><a href="/dong_ramy/about/history">연혁</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">서비스</a>
+          <ul class="dropdown">
+            <li><a href="/dong_ramy/service/telecom">통신</a></li>
+            <li><a href="/dong_ramy/service/entertainment">엔터테인먼트</a></li>
+            <li><a href="/dong_ramy/service/support">고객센터</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">미디어</a>
+          <ul class="dropdown">
+            <li><a href="/dong_ramy/media/event">이벤트</a></li>
+            <li><a href="/dong_ramy/media/channel">커뮤니케이션 채널</a></li>
+          </ul>
+        </li>
         <li><a href="/dong_ramy/story/">스토리</a></li>
         <li><a href="/dong_ramy/recruit/">채용</a></li>
       </ul>
-    </div>
+    </nav>
   </header>
 
   <main>
-    <!-- breadcrumb 삽입 위치 -->
     <div id="breadcrumb" class="breadcrumb"></div>
 
     <div class="swiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide"><img src="https://i.imgur.com/oa6ABq5.png" /></div>
-    <div class="swiper-slide"><img src="https://i.imgur.com/y5r6psd.jpeg" /></div>
-    <div class="swiper-slide"><img src="https://i.imgur.com/Ruy0DRS.jpeg" /></div>
-    <div class="swiper-slide"><img src="https://i.imgur.com/ki1lcd5.jpeg" /></div>
-  </div>
-  <!-- Optional pagination/navigation -->
-  <div class="swiper-pagination"></div>
-</div>
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="https://i.imgur.com/oa6ABq5.png" /></div>
+        <div class="swiper-slide"><img src="https://i.imgur.com/y5r6psd.jpeg" /></div>
+        <div class="swiper-slide"><img src="https://i.imgur.com/Ruy0DRS.jpeg" /></div>
+        <div class="swiper-slide"><img src="https://i.imgur.com/ki1lcd5.jpeg" /></div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
 
-<!-- Swiper JS/CSS CDN -->
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-<!-- 초기화 스크립트 -->
-<script>
-  const swiper = new Swiper('.swiper', {
-    loop: true,
-    autoplay: {
-      delay: 3000,
-    },
-    pagination: {
-      el: '.swiper-pagination',
-    },
-    effect: 'slide'
-  });
-</script>
-    
     <section>
       <h2 class="section-title">DONG_RAMY <br>DREAM COME TRUE.</h2>
       <p class="section-text">모든 대한민국 사람들이 통신하면 '동그라미'라는게 머리속에 자연스럽게 떠오르는 그날까지!</p>
       <p class="section-text">동그라미를 통해 여러분들의 삶이 조금은 더 따듯했으면 합니다</p>
     </section>
+
     <section class="left-padding-section">
       <h2>동그라미</h2>
-      <p>따듯한 빛을 보내주는 태양, <br>어두운 밤을 비춰주는 달, <br>맛있게 먹을 수 있는 모든 과일 열매들, <br>빨리 나아갈 수 있게 해주는 바퀴, <br>추운 계절이 지나면 어김없이 돌아오는 봄을 비롯한  <br>사계절의 순환을 갖는 공통점은 바로 동그라미 입니다. </p>
+      <p>
+        따듯한 빛을 보내주는 태양,<br>
+        어두운 밤을 비춰주는 달,<br>
+        맛있게 먹을 수 있는 모든 과일 열매들,<br>
+        빨리 나아갈 수 있게 해주는 바퀴,<br>
+        사계절의 순환을 갖는 공통점은 바로 동그라미입니다.
+      </p>
     </section>
 
     <section class="image-links">
-  <a href="https://www.dongramy.co.kr/" target="_blank">
-    <img src="https://i.imgur.com/a4sGcz4.png" alt="링크 1 이미지">
-  </a>
-  <a href="https://dongramystore.co.kr/" target="_blank">
-    <img src="https://i.imgur.com/ao1UydP.jpeg" alt="링크 2 이미지">
-  </a>
-</section>
+      <a href="https://www.dongramy.co.kr/" target="_blank"><img src="https://i.imgur.com/a4sGcz4.png" alt="링크 1 이미지"></a>
+      <a href="https://dongramystore.co.kr/" target="_blank"><img src="https://i.imgur.com/ao1UydP.jpeg" alt="링크 2 이미지"></a>
+    </section>
   </main>
 
-  <!-- 메뉴 버튼 토글 스크립트 -->
-  <script>
-    document.getElementById('menuBtn').addEventListener('click', function () {
-      document.getElementById('navLinks').classList.toggle('active');
-    });
-  </script>
-
-  <!-- breadcrumb 동작 스크립트 -->
-  <script>
-    const pathMap = {
-      "": "홈",
-      "about": "회사소개",
-      "service": "서비스",
-      "media": "미디어",
-      "story": "스토리",
-      "recruit": "채용"
-    };
-
-    function createBreadcrumb() {
-      const breadcrumb = document.getElementById("breadcrumb");
-      if (!breadcrumb) return;
-
-      const path = window.location.pathname
-        .replace("/dong_ramy/", "")  // GitHub Pages 경로 제거
-        .replace(/\/$/, "")          // 마지막 슬래시 제거
-        .split("/");
-
-      let html = `<a href="/dong_ramy/">홈</a>`;
-      if (path[0] && pathMap[path[0]]) {
-        html += ` <span>&gt;</span> <span>${pathMap[path[0]]}</span>`;
-      }
-      breadcrumb.innerHTML = html;
-    }
-
-    createBreadcrumb();
-  </script>
-
- <footer>
+  <footer>
     <div class="footer-content">
       <div class="footer-left">
         <a href="https://strawberryhcl.github.io/dong_ramy/">
@@ -195,16 +311,48 @@
         </a>
         <div class="footer-icons">
           <a href="https://blog.naver.com/young5677kv" target="_blank" title="네이버 블로그">
-            <img src="https://i.imgur.com/129mPRs.png" alt="Naver Blog" style="width:27px; height:27px;">
+            <img src="https://i.imgur.com/129mPRs.png" alt="Naver Blog">
           </a>
           <a href="https://www.instagram.com/dong_ramy_official/" target="_blank" title="인스타그램">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" style="width:24px; height:24px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
           </a>
         </div>
       </div>
-      <p class="footer-text"> Copyright © 2021 Dongramy Co. All rights reserved. <br> | 서울특별시 마포구 와우산로19길 6-11, 4층 (서교동) <br> | 사업자번호 : 689-39-00711   동그라미 대표 : 한동길 <br>
+      <p class="footer-text">
+        Copyright © 2021 Dongramy Co. All rights reserved. <br>
+        서울특별시 마포구 와우산로19길 6-11, 4층 (서교동) <br>
+        사업자번호 : 689-39-00711 | 대표 : 한동길
       </p>
     </div>
   </footer>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    new Swiper('.swiper', {
+      loop: true,
+      autoplay: { delay: 3000 },
+      pagination: { el: '.swiper-pagination' },
+      effect: 'slide'
+    });
+
+    document.getElementById('menuBtn').addEventListener('click', function () {
+      document.getElementById('navLinks').classList.toggle('active');
+    });
+
+    // Breadcrumb 생성
+    const pathMap = {
+      "": "홈", "about": "회사소개", "service": "서비스",
+      "media": "미디어", "story": "스토리", "recruit": "채용"
+    };
+    function createBreadcrumb() {
+      const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
+      let html = `<a href="/dong_ramy/">홈</a>`;
+      if (path[0] && pathMap[path[0]]) {
+        html += ` <span>${pathMap[path[0]]}</span>`;
+      }
+      document.getElementById("breadcrumb").innerHTML = html;
+    }
+    createBreadcrumb();
+  </script>
 </body>
 </html>
