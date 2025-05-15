@@ -95,6 +95,34 @@
     <!-- breadcrumb 삽입 위치 -->
     <div id="breadcrumb" class="breadcrumb"></div>
 
+    <div class="swiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide"><img src="https://postfiles.pstatic.net/MjAyMjA5MTVfNzYg/MDAxNjYzMjMzODMxNjAw.GQCQadetJE6iPRDfEM8zTm6s9GAgBussSGSZrhVV2qIg.EEaBrsV8Fi4zOherq0o57HuT9kUYRP8nOs1sV_kcV-wg.JPEG.young5677kv/KakaoTalk_20220512_170014346.jpg?type=w773" /></div>
+    <div class="swiper-slide"><img src="https://postfiles.pstatic.net/MjAyMjA5MTVfMTI1/MDAxNjYzMjMzMzc1MjY4.BfMTZQYoQvhzZcmPQ6MCZK6mXPl5GhqoYqnlfuEB8rgg.oXdwhzIvrd2JFtw2OriaA81VyL2afpAul3f_uo_Ea3Ag.JPEG.young5677kv/KakaoTalk_20220915_181517852.jpg?type=w773" /></div>
+    <div class="swiper-slide"><img src="https://postfiles.pstatic.net/MjAyMjA5MTVfNzEg/MDAxNjYzMjM2MDM0NDk4.5uTphh-oKEKc49PxqPNzNk-5a6kYWBmwTG5U3zS5_Q8g._DteNaJ_1yEt0PARHZJ8TLrZQcVCoIEDEYHfNKwgXnwg.JPEG.young5677kv/KakaoTalk_20220915_181517852_05.jpg?type=w773" /></div>
+  </div>
+  <!-- Optional pagination/navigation -->
+  <div class="swiper-pagination"></div>
+</div>
+
+<!-- Swiper JS/CSS CDN -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- 초기화 스크립트 -->
+<script>
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    effect: 'slide'
+  });
+</script>
+    
     <section>
       <h2 class="section-title">DONG_RAMY <br>DREAM COME TRUE.</h2>
       <p class="section-text">모든 대한민국 사람들이 통신하면 '동그라미'라는게 머리속에 자연스럽게 떠오르는 그날까지!</p>
