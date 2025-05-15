@@ -87,11 +87,9 @@
   </header>
 
   <main>
-    <div class="breadcrumb">
-      <a href="#">홈</a>
-      <a href="#">카테고리</a>
-      <a href="#">상품</a>
-    </div>
+    <!-- breadcrumb 삽입 위치 -->
+    <div id="breadcrumb" class="breadcrumb"></div>
+
     <section>
       <h2 class="section-title">DONG_RAMY <br>DREAM COME TRUE.</h2>
       <p class="section-text">모든 대한민국 사람들이 통신하면 '동그라미'라는게 머리속에 자연스럽게 떠오르는 그날까지!</p>
@@ -112,15 +110,43 @@
     </section>
   </main>
 
-<!-- JavaScript 코드를 이곳에 삽입 -->
-<script>
-    // 메뉴 버튼을 클릭하면 드롭다운 메뉴를 토글하는 기능
-    document.getElementById('menuBtn').addEventListener('click', function() {
-        const navLinks = document.getElementById('navLinks');
-        navLinks.classList.toggle('active');  // active 클래스를 토글하여 메뉴를 보이거나 숨김
+  <!-- 메뉴 버튼 토글 스크립트 -->
+  <script>
+    document.getElementById('menuBtn').addEventListener('click', function () {
+      document.getElementById('navLinks').classList.toggle('active');
     });
-</script>
-  
+  </script>
+
+  <!-- breadcrumb 동작 스크립트 -->
+  <script>
+    const pathMap = {
+      "": "홈",
+      "about": "회사소개",
+      "service": "서비스",
+      "media": "미디어",
+      "story": "스토리",
+      "recruit": "채용"
+    };
+
+    function createBreadcrumb() {
+      const breadcrumb = document.getElementById("breadcrumb");
+      if (!breadcrumb) return;
+
+      const path = window.location.pathname
+        .replace("/dong_ramy/", "")  // GitHub Pages 경로 제거
+        .replace(/\/$/, "")          // 마지막 슬래시 제거
+        .split("/");
+
+      let html = `<a href="/dong_ramy/">홈</a>`;
+      if (path[0] && pathMap[path[0]]) {
+        html += ` <span>&gt;</span> <span>${pathMap[path[0]]}</span>`;
+      }
+      breadcrumb.innerHTML = html;
+    }
+
+    createBreadcrumb();
+  </script>
+
  <footer>
     <div class="footer-content">
       <div class="footer-left">
@@ -132,10 +158,5 @@
       </p>
     </div>
   </footer>
-  <script>
-    document.getElementById('menuBtn').addEventListener('click', function () {
-      document.getElementById('navLinks').classList.toggle('active');
-    });
-  </script>
 </body>
 </html>
