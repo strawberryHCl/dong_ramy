@@ -13,6 +13,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
+      overflow-x: hidden;
       font-family: 'Poppins', sans-serif;
       background: #1D2023;
       color: #D0D4D7;
@@ -145,18 +146,20 @@
       margin-bottom: 3rem;
     }
 
-   .image-links {
+  .image-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  flex-wrap: wrap; /* 화면 좁아지면 밑으로 내려가도록 */
   justify-content: center;
-  margin-top: 1rem;
+  gap: 1rem;
   padding: 0 1rem;
+  max-width: 1200px; /* 최대 너비 제한 (원하는 값으로 조절) */
+  margin: 0 auto; /* 가로 가운데 정렬 */
+  box-sizing: border-box;
 }
 
 .image-links a {
-  flex: 1 1 45%; /* 최소 45% 너비, 필요하면 줄바꿈 */
-  max-width: 300px; /* 최대 크기 제한 */
+  flex: 1 1 300px; /* 기본 너비 300px, 화면 좁으면 줄어듬 */
+  max-width: 45%; /* 2개까지 한 줄에 들어오도록 최대 크기 제한 */
   box-sizing: border-box;
 }
 
@@ -169,10 +172,10 @@
   display: block;
 }
 
-    @media (max-width: 480px) {
+@media (max-width: 768px) {
   .image-links a {
-    flex: 1 1 100%; /* 모바일에서는 한 줄에 한 개씩 꽉 채움 */
-    max-width: 100%;
+    max-width: 100%; /* 모바일에서 한 줄에 하나씩 꽉 채움 */
+    flex-basis: 100%;
   }
 }
 
