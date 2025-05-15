@@ -34,6 +34,10 @@
     .nav-links li a:hover { background-color: #5B6066; }
     .menu-btn { display: none; font-size: 2rem; cursor: pointer; }
     .nav-links.active { display: block; }
+    .image-links { display: flex; justify-content: center; gap: 20px; /* 이미지 간격 */ margin-top: 40px; /* 본문과의 간격 */ flex-wrap: wrap; /* 모바일 대응 */ }
+    .image-links a { display: block; transition: transform 0.3s ease; }
+    .image-links a:hover { transform: scale(1.05); /* 살짝 확대되는 효과 */ }
+    .image-links img { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
     footer { background: #555A60; color: black; padding: 1rem; }
     .footer-inner { display: flex; justify-content: flex-start; align-items: center; padding: 0 1rem; filter: invert(1);}
     .footer-logo { max-width: 100%; height: auto; width: 300px; object-fit: contain; margin: 0 auto; }
@@ -49,7 +53,7 @@
     main::before { margin-top: 16rem; content: ""; position: absolute; top: 50%; left: 50%; width: 80vw; height: auto; aspect-ratio: 1 / 1; background-image: url('https://i.imgur.com/D1R3iYW.png'); background-size: cover; background-repeat: no-repeat; background-position: center; opacity: 0.2; transform: translate(-50%, -50%); z-index: 0; pointer-events: none; filter: brightness(3);}
     .swiper { width: 100%; height: 600px; /* 원하시는 높이로 조절 가능 */ margin-top: 0;}
     .swiper-slide img { width: 100%; height: 100%; object-fit: contain; background-color: #000; /* 여백이 생길 경우 배경색 */ }
-    .left-padding-section { padding-left: 20%; margin-bottom: 5rem;}
+    .left-padding-section { padding-left: 20%; margin-bottom: 3rem;}
     .section-title { margin-top: 5rem; margin-bottom: 2rem; text-align: center; font-size: 28px; font-weight: bold; }
     .section-text { margin-bottom: 2rem; text-align: center; font-size: 18px; font-weight: 600; }
     .button { display: inline-block; margin: 1rem 0; padding: 0.8rem 1.5rem; background-color: #7C8289; color: white; border: none; border-radius: 5px; text-decoration: none; font-weight: bold; }
@@ -135,6 +139,15 @@
       <h2>동그라미</h2>
       <p>따듯한 빛을 보내주는 태양, <br>어두운 밤을 비춰주는 달, <br>맛있게 먹을 수 있는 모든 과일 열매들, <br>빨리 나아갈 수 있게 해주는 바퀴, <br>추운 계절이 지나면 어김없이 돌아오는 봄을 비롯한  <br>사계절의 순환을 갖는 공통점은 바로 동그라미 입니다. </p>
     </section>
+
+    <section class="image-links">
+  <a href="https://www.dongramy.co.kr/" target="_blank">
+    <img src="https://i.imgur.com/a4sGcz4.png" alt="링크 1 이미지">
+  </a>
+  <a href="https://dongramystore.co.kr/" target="_blank">
+    <img src="https://i.imgur.com/ao1UydP.jpeg" alt="링크 2 이미지">
+  </a>
+</section>
   </main>
 
   <!-- 메뉴 버튼 토글 스크립트 -->
