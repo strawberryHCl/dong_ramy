@@ -19,7 +19,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { height: 100%; font-family: 'Roboto', sans-serif; background: #1D2023; color: #D0D4D7; }
     h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; color: #D0D4D7 }
-    .breadcrumb { display: flex;  font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700; margin: 20px 0; padding: 10px 15px; background-color: #1D2023; border-radius: 5px; }
+    .breadcrumb { display: flex;  font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700; margin: 20px 0; padding: 10px 15px; background: #555A60; border-radius: 5px; }
     .breadcrumb a { text-decoration: none; color: #D0D4D7 }
     .breadcrumb a::after { content: ">"; margin: 0 5px; }
     .breadcrumb a:last-child::after { content: ""; }
@@ -35,7 +35,7 @@
     .menu-btn { display: none; font-size: 2rem; cursor: pointer; }
     .nav-links.active { display: block; }
     footer { background: #555A60; color: black; padding: 1rem; }
-    .footer-inner { display: flex; justify-content: flex-start; align-items: center; padding: 0 1rem; }
+    .footer-inner { display: flex; justify-content: flex-start; align-items: center; padding: 0 1rem; filter: brightness(5);}
     .footer-logo { max-width: 100%; height: auto; width: 300px; object-fit: contain; margin: 0 auto; }
     .footer-text { display: flex; align-items: center; font-size: 0.8rem; color: #F0F0F0; text-align: right; padding: 0 1rem; margin: 0; }
     .footer-content { display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto; }
@@ -46,7 +46,7 @@
     main { flex: 1 0 auto; padding: 0 2rem 1rem; max-width: 100%; margin: 0 auto; position: relative; overflow: hidden; }
     main h2 { margin-bottom: 1rem; }
     main p { margin-bottom: 1.5rem; line-height: 1.6; }/* 줄 간격도 좀 늘려줌 */
-    main::before { content: ""; position: absolute; top: 50%; left: 50%; width: 80vw; height: auto; aspect-ratio: 1 / 1; background-image: url('https://i.imgur.com/D1R3iYW.png'); background-size: cover; background-repeat: no-repeat; background-position: center; opacity: 0.05; transform: translate(-50%, -50%); z-index: 0; pointer-events: none; filter: brightness(1.3); }
+    main::before { content: ""; position: absolute; top: 50%; left: 50%; width: 80vw; height: auto; aspect-ratio: 1 / 1; background-image: url('https://i.imgur.com/D1R3iYW.png'); background-size: cover; background-repeat: no-repeat; background-position: center; opacity: 0.05; transform: translate(-50%, -50%); z-index: 0; pointer-events: none; filter: brightness(2); }
     .left-padding-section { padding-left: 5rem; }
     .section-title { text-align: center; font-size: 28px; font-weight: bold; }
     .section-text { text-align: center; font-size: 18px; font-weight: 600; }
