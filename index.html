@@ -146,19 +146,22 @@
     }
 
     .image-links {
-      display: block;
-  margin: 0 auto;
-  width: 300px; /* 기존 너비 유지 */
-  border-radius: 12px;
-  transition: transform 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: nowrap; /* 한 줄로 고정 */
+  align-items: center;
+  margin-top: 40px;
+  overflow-x: auto; /* 화면 좁을 때 가로 스크롤 */
     }
 
     .image-links a img {
-      width: 300px;
-      border-radius: 12px;
-      transition: transform 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 300px; /* 모두 동일 너비 */
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .image-links a img:hover {
