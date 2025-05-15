@@ -11,155 +11,192 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      overflow-x: hidden;
-      font-family: 'Poppins', sans-serif;
-      background: #1D2023;
-      color: #D0D4D7;
-      height: 100%;
-    }
+   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    header { text-align: center; padding: 1rem; background: #1D2023; }
-    header h1 { font-size: 2.5rem; color: #007acc; font-weight: 700; }
-    header p { color: #F0F0F0; margin: 1rem 0; }
+html, body {
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: #1D2023;
+  color: #D0D4D7;
+  min-height: 100%;
+  line-height: 1.5;
+}
 
-    .footer-inner img { display: flex; justify-content: flex-start; padding: 1rem 2rem; width: 250px; object-fit: contain; filter: invert(1); }
-
-    .navbar {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #1D2023;
-      padding: 1rem;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 1.5rem;
-    }
-
-    .nav-links li {
-      position: relative;
-    }
-
-    .nav-links a {
-      color: #fff;
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      display: block;
-    }
-
-    .nav-links a:hover {
-      background-color: #5B6066;
-    }
-
-    .dropdown {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: #2b2e32;
-      border-radius: 5px;
-      flex-direction: column;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      z-index: 1000;
-    }
-
-    .nav-links li:hover .dropdown {
-      display: flex;
-    }
-
-    .dropdown li a {
-      padding: 10px 15px;
-      color: #e0e0e0;
-      font-size: 0.9rem;
-    }
-
-    .menu-btn {
-      display: none;
-      font-size: 2rem;
-      cursor: pointer;
-      color: white;
-    }
-
-    .breadcrumb {
-      margin: 20px 0;
-      padding: 10px 15px;
-      background: #555A60;
-      border-radius: 5px;
-      font-weight: 700;
-    }
-
-    .breadcrumb a {
-      color: #D0D4D7;
-      text-decoration: none;
-    }
-
-    .breadcrumb a::after {
-      content: " > ";
-    }
-
-    .breadcrumb a:last-child::after {
-      content: "";
-    }
-
-    main {
-      padding: 0 2rem 2rem;
-      position: relative;
-    }
-
-    main::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 80vw;
-      aspect-ratio: 1/1;
-      background-image: url('https://i.imgur.com/D1R3iYW.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      opacity: 0.2;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      filter: brightness(3);
-      z-index: 0;
-    }
-
-    .section-title {
-      margin-top: 5rem;
-      font-size: 28px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .section-text {
-      text-align: center;
-      font-size: 18px;
-      margin-bottom: 1rem;
-    }
-
-    .left-padding-section {
-      padding-left: 20%;
-      margin-bottom: 3rem;
-    }
-
-  .image-links {
+header {
+  text-align: left; /* 좌측 정렬로 변경 */
+  padding: 1rem 2rem;
+  background: #1D2023;
   display: flex;
-  flex-wrap: wrap; /* 화면 좁아지면 밑으로 내려가도록 */
+  align-items: center;
+  gap: 1rem;
+}
+
+header .footer-inner {
+  margin: 0; /* 기존 padding 제거 */
+}
+
+header .footer-inner img {
+  width: 150px; /* 로고 사이즈 키움 */
+  filter: invert(1);
+}
+
+header p {
+  flex: 1; /* 남는 공간 차지 */
+  color: #F0F0F0;
+  font-size: 1.1rem;
+  margin-left: 1rem;
+}
+
+/* 네비게이션 */
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1D2023;
+  padding: 0.5rem 2rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  display: block;
+  white-space: nowrap; /* 메뉴 텍스트 줄바꿈 방지 */
+}
+
+.nav-links a:hover {
+  background-color: #5B6066;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #2b2e32;
+  border-radius: 5px;
+  flex-direction: column;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 1000;
+  min-width: 160px;
+}
+
+.nav-links li:hover .dropdown {
+  display: flex;
+}
+
+.dropdown li a {
+  padding: 10px 15px;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+}
+
+.menu-btn {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  margin: 20px 0;
+  padding: 10px 15px;
+  background: #555A60;
+  border-radius: 5px;
+  font-weight: 700;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.breadcrumb a {
+  color: #D0D4D7;
+  text-decoration: none;
+}
+
+.breadcrumb a::after {
+  content: " > ";
+}
+
+.breadcrumb a:last-child::after {
+  content: "";
+}
+
+/* Main */
+main {
+  padding: 0 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80vw;
+  aspect-ratio: 1 / 1;
+  background-image: url('https://i.imgur.com/D1R3iYW.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  filter: brightness(3);
+  z-index: 0;
+}
+
+.section-title {
+  margin-top: 5rem;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.section-text {
+  text-align: center;
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+}
+
+.left-padding-section {
+  padding-left: 5%;
+  margin-bottom: 3rem;
+  max-width: 100%;
+}
+
+/* 이미지 링크 섹션 */
+
+.image-links {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
   padding: 0 1rem;
-  max-width: 1200px; /* 최대 너비 제한 (원하는 값으로 조절) */
-  margin: 0 auto; /* 가로 가운데 정렬 */
+  max-width: 1200px;
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
 .image-links a {
-  flex: 1 1 300px; /* 기본 너비 300px, 화면 좁으면 줄어듬 */
-  max-width: 45%; /* 2개까지 한 줄에 들어오도록 최대 크기 제한 */
+  flex: 1 1 300px;
+  max-width: 45%;
   box-sizing: border-box;
 }
 
@@ -172,97 +209,169 @@
   display: block;
 }
 
-@media (max-width: 768px) {
-  .image-links a {
-    max-width: 100%; /* 모바일에서 한 줄에 하나씩 꽉 채움 */
-    flex-basis: 100%;
-  }
+.image-links a img:hover {
+  transform: scale(1.05);
 }
 
-    .image-links a img:hover {
-      transform: scale(1.05);
-    }
+/* Swiper */
 
-    .swiper {
-      width: 100%;
-      height: 600px;
-      margin-top: 2rem;
-    }
+.swiper {
+  width: 100%;
+  max-width: 1200px;
+  height: 400px;
+  margin: 2rem auto 0;
+}
 
-    .swiper-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      background-color: #000;
-    }
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: #000;
+}
 
-    footer {
-      background: #555A60;
-      color: #F0F0F0;
-      padding: 1rem;
-    }
+/* Footer */
 
-   .footer-content {
+footer {
+  background: #555A60;
+  color: #F0F0F0;
+  padding: 1rem 2rem;
+}
+
+.footer-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
   flex-wrap: wrap;
   gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-    .footer-icons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .footer-icons img {
-      width: 24px;
-      height: 24px;
-      opacity: 0.8;
-    }
-
-    .footer-icons img:hover {
-      opacity: 1;
-    }
-
-    .footer-left {
+.footer-left {
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
-    .footer-text {
+.footer-left img.footer-logo {
+  width: 150px;
+  filter: invert(1);
+}
+
+.footer-icons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-icons img {
+  width: 24px;
+  height: 24px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.footer-icons img:hover {
+  opacity: 1;
+}
+
+.footer-text {
   text-align: right;
   max-width: 500px;
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 
-    @media (max-width: 1024px) {
-      .menu-btn { display: block; }
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #333;
-      }
-      .nav-links.active { display: flex; }
-      .nav-links li { text-align: center; }
-      .dropdown { display: none !important; }
-    }
+/* 반응형: 모바일 & 태블릿 */
 
-    @media (max-width: 768px) {
-      .left-padding-section { padding-left: 5%; }
-      .footer-inner img { width: 200px; }
-    }
+@media (max-width: 1024px) {
+  .menu-btn {
+    display: block;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #333;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .nav-links li {
+    text-align: center;
+  }
+  .dropdown {
+    display: none !important;
+  }
+}
 
-    @media (max-width: 768px) {
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header .footer-inner img {
+    width: 120px;
+  }
+
+  header p {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+  }
+
+  main {
+    padding: 0 1rem 2rem;
+  }
+
+  .left-padding-section {
+    padding-left: 5%;
+  }
+
+  .image-links a {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+
+  .swiper {
+    height: 250px;
+  }
+
   .footer-content {
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
   }
+
   .footer-text {
     text-align: left;
+    max-width: 100%;
+  }
+
+  .footer-left {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-text {
+    font-size: 1rem;
+  }
+
+  .footer-icons img {
+    width: 20px;
+    height: 20px;
   }
 }
   </style>
