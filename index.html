@@ -13,13 +13,14 @@
   <style>
    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html, body {
-  overflow-x: hidden;
-  font-family: 'Poppins', sans-serif;
+header {
+  text-align: center; /* 가운데 정렬 */
+  padding: 1rem 2rem;
   background: #1D2023;
-  color: #D0D4D7;
-  min-height: 100%;
-  line-height: 1.5;
+  display: flex;
+  flex-direction: column; /* ✅ 세로 정렬로 변경 */
+  align-items: center; /* ✅ 가운데 정렬 */
+  gap: 1rem;
 }
 
 header {
@@ -36,15 +37,14 @@ header .footer-inner {
 }
 
 header .footer-inner img {
-  width: 150px; /* 로고 사이즈 키움 */
+  width: 150px;
   filter: invert(1);
 }
 
 header p {
-  flex: 1; /* 남는 공간 차지 */
   color: #F0F0F0;
   font-size: 1.1rem;
-  margin-left: 1rem;
+  max-width: 800px;
 }
 
 /* 네비게이션 */
@@ -54,9 +54,8 @@ header p {
   justify-content: center;
   align-items: center;
   background: #1D2023;
-  padding: 1rem;
-  position: relative;
-  z-index: 10; /* 추가: 레이아웃 위로 올림 */
+  padding: 1rem 0;
+  width: 100%;
 }
 
 .nav-links {
