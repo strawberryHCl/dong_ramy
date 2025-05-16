@@ -48,32 +48,40 @@ header p {
   max-width: 800px;
 }
 
-/* 네비게이션 */
-
+/* 기본 레이아웃 */
 .navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 1rem;
   background: #1D2023;
-  padding: 1rem 0;
-  width: 100%;
+  color: white;
+  position: relative;
 }
 
+/* 기본적으로 네비게이션은 항상 보이게 */
+/* 네비게이션 링크 전체 */
 .nav-links {
-  position: fixed;
-  top: 0;
-  right: -260px; /* 화면 밖 (오른쪽) */
-  width: 220px;
-  height: 100vh;
-  background: #1D2023;
-  flex-direction: column;
-  padding-top: 5rem;
-  transition: right 0.3s ease;
-  z-index: 999;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.3);
-  text-align: right;
-  padding-right: 1rem;
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
 }
+
+    /* 드롭다운 숨김 */
+.nav-links li ul.dropdown {
+  display: none;
+  position: absolute;
+  background-color: #2C2F33;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  z-index: 999;
+}
+
+    .nav-links li:hover ul.dropdown {
+  display: block;
+}
+
 
 
 /* 메뉴 열렸을 때 (햄버거 클릭 시) */
@@ -120,22 +128,58 @@ header p {
   font-size: 0.9rem;
 }
 
-.menu-btn {  
-  display: none;
+/* 햄버거 버튼 (모바일에서만 보임) */
+.menu-btn {
   font-size: 2rem;
   cursor: pointer;
+  display: none;
   color: #F0F0F0;
+  z-index: 1001;
 }
 
+
+/* 모바일 화면 대응 */
 @media (max-width: 1024px) {
   .menu-btn {
-    display: block; /* ✅ 보이게 함 */
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -300px; /* 오른쪽에서 들어오게 */
+    width: 260px;
+    height: 100vh;
+    background-color: #1D2023;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 5rem 1rem;
+    gap: 1rem;
+    transition: right 0.3s ease;
     z-index: 1000;
   }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: right;
+  }
+
+  .nav-links li ul.dropdown {
+    position: static;
+    background: none;
+    padding: 0;
+    margin-top: 0;
+  }
+
+  .nav-links li:hover ul.dropdown {
+    display: block;
+  }
 }
+
 
 
 /* Breadcrumb */
