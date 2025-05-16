@@ -187,33 +187,40 @@ main::before {
 
 .image-links {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: center; /* ✅ 가운데 정렬 */
   gap: 1rem;
-  padding: 0 1rem;
-  max-width: 1200px;
-  margin: 2rem auto; /* 상단 여백 추가 */
+  margin: 2rem auto;
+  max-width: 600px; /* ✅ 전체 폭 제한 */
+  flex-wrap: wrap;
 }
 
 .image-links a {
-  flex: 1 1 300px;
-  max-width: 400px; /* 💡 너무 커지지 않도록 제한 */
-  box-sizing: border-box;
+  flex: 0 0 45%; /* ✅ 두 개가 나란히 */
+  max-width: 260px; /* ✅ 이미지 최대 너비 제한 */
 }
 
 .image-links a img {
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
   width: 100%;
   height: auto;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
-  display: block;
 }
 
 .image-links a img:hover {
   transform: scale(1.05);
+}
+
+    @media (max-width: 768px) {
+  .image-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-links a {
+    flex: 1 1 100%;
+    max-width: 90%;
+  }
 }
 
 /* Swiper */
