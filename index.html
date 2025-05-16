@@ -193,17 +193,18 @@ main::before {
   gap: 1rem;
   padding: 0 1rem;
   max-width: 1200px;
-  margin: 0 auto;
-  box-sizing: border-box;
+  margin: 2rem auto; /* 상단 여백 추가 */
 }
 
 .image-links a {
   flex: 1 1 300px;
-  max-width: 45%;
+  max-width: 400px; /* 💡 너무 커지지 않도록 제한 */
   box-sizing: border-box;
 }
 
 .image-links a img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
   width: 100%;
   height: auto;
   border-radius: 12px;
