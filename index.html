@@ -54,14 +54,17 @@ header p {
   justify-content: center;
   align-items: center;
   background: #1D2023;
-  padding: 0.5rem 2rem;
+  padding: 1rem;
+  position: relative;
+  z-index: 10; /* 추가: 레이아웃 위로 올림 */
 }
 
 .nav-links {
   display: flex;
   list-style: none;
   gap: 1.5rem;
-  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 10;
 }
 
 .nav-links li {
@@ -248,15 +251,33 @@ footer {
   box-sizing: border-box;
 }
 
-.footer-left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+.footer-left img.footer-logo {
+  width: 280px; /* 원하는 크기로 키우기 */
+  height: auto;
 }
 
+@media (max-width: 768px) {
+  .footer-left img.footer-logo {
+    width: 220px;
+  }
+}
+    
+/* Footer 배너 아이콘 하단 정렬 및 수평 정렬 */
+.footer-left {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center;
+  flex-direction: column; /* 아래로 정렬되도록 변경 */
+  gap: 10px;
+  position: relative;
+  z-index: 20; /* 배너 레이아웃을 앞으로 */
+}
+
+/* Footer 로고 크기 조정 */
 .footer-left img.footer-logo {
-  width: 150px;
+  width: 200px; /* 기존보다 더 크게 */
+  height: auto;
   filter: invert(1);
 }
 
@@ -287,31 +308,27 @@ footer {
 /* 반응형: 모바일 & 태블릿 */
 
 @media (max-width: 1024px) {
-  .menu-btn {
-    display: block;
-  }
   .nav-links {
     display: none;
     flex-direction: column;
     width: 100%;
     background: #333;
+    align-items: center; /* 추가: 세로 메뉴 중앙 정렬 */
   }
   .nav-links.active {
     display: flex;
   }
   .nav-links li {
     text-align: center;
-  }
-  .dropdown {
-    display: none !important;
+    width: 100%; /* 모바일에선 클릭 편하게 */
   }
 }
 
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
+  .footer-content {
+    flex-direction: column; /* 세로 배치 */
   }
+}
 
   header .footer-inner img {
     width: 120px;
@@ -346,14 +363,18 @@ footer {
     text-align: left;
   }
 
-  .footer-text {
-    text-align: left;
-    max-width: 100%;
+   .footer-left {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* 배너들 수평 가운데 */
+    gap: 20px;
   }
 
-  .footer-left {
-    justify-content: flex-start;
+  .footer-text {
+    text-align: center;
+    max-width: 100%;
   }
+}
 }
 
 @media (max-width: 480px) {
