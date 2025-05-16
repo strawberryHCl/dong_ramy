@@ -109,10 +109,18 @@ header p {
 
 .menu-btn {
   display: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: white;
 }
+
+@media (max-width: 1024px) {
+  .menu-btn {
+    display: block; /* ✅ 보이게 함 */
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    z-index: 1000;
+  }
+}
+
 
 /* Breadcrumb */
 .breadcrumb {
@@ -403,6 +411,30 @@ footer {
     height: 20px;
   }
 }
+
+    @media (max-width: 1024px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #1D2023;
+  }
+
+  .nav-links.active {
+    display: flex; /* ✅ 메뉴 버튼 클릭 시 보여짐 */
+  }
+
+  .nav-links li {
+    text-align: center;
+    width: 100%;
+  }
+}
+
   </style>
 </head>
 
