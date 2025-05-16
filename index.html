@@ -11,540 +11,220 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <style>
-   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-header {
-  text-align: center; /* 가운데 정렬 */
-  padding: 1rem 2rem;
-  background: #1D2023;
-  color: #F0F0F0
-  display: flex;
-  flex-direction: column; /* ✅ 세로 정렬로 변경 */
-  align-items: center; /* ✅ 가운데 정렬 */
-  gap: 1rem;
-}
-
-header {
-  text-align: left; /* 좌측 정렬로 변경 */
-  padding: 1rem 2rem;
-  background: #1D2023;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-header .footer-inner {
-  margin: 0; /* 기존 padding 제거 */
-}
-
-header .footer-inner img {
-  width: 150px;
-  filter: invert(1);
-}
-
-header p {
-  color: #F0F0F0;
-  font-size: 1.1rem;
-  max-width: 800px;
-}
-
-/* 기본 레이아웃 */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background: #1D2023;
-  color: white;
-  position: relative;
-}
-
-/* 기본적으로 네비게이션은 항상 보이게 */
-/* 네비게이션 링크 전체 */
-.nav-links {
-  position: fixed;
-  top: 0;
-  right: -260px; /* 우측에서 나옴 */
-  width: 250px;
-  height: 100vh;
-  background: #1D2023;
-  flex-direction: column;
-  padding-top: 5rem;
-  transition: right 0.3s ease;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.3);
-  text-align: right;
-  padding-right: 1rem;
-  z-index: 1000;
-  display: flex;
-}
-
-    /* 드롭다운 숨김 */
-.nav-links li ul.dropdown {
-  display: none;
-  position: absolute;
-  background-color: #2C2F33;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  margin-top: 0.5rem;
-  z-index: 999;
-}
-
-    .nav-links li:hover ul.dropdown {
-  display: block;
-}
-
-
-
-/* 메뉴 열렸을 때 (햄버거 클릭 시) */
-.nav-links.active {
-  right: 0;
-}
-
-.nav-links li {
-  margin: 1rem 0;
-}
-
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  display: block;
-  white-space: nowrap; /* 메뉴 텍스트 줄바꿈 방지 */
-}
-
-.nav-links a:hover {
-  background-color: #5B6066;
-}
-
-/* 드롭다운 메뉴 (회사소개 등) */
-.dropdown {
-  display: none;
-  flex-direction: column;
-  background: #2b2e32;
-  border-radius: 5px;
-  margin-top: 0.5rem;
-}
-
-
-.nav-links li:hover .dropdown,
-.nav-links li:focus-within .dropdown {
-  display: flex;
-}
-
-.dropdown li a {
-  padding: 10px 15px;
-  color: #e0e0e0;
-  font-size: 0.9rem;
-}
-
-/* 햄버거 버튼 (모바일에서만 보임) */
-.menu-btn {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  font-size: 2rem;
-  cursor: pointer;
-  display: none;
-  color: #F0F0F0;
-  z-index: 1001;
-}
-
-
-/* 모바일 화면 대응 */
-@media (max-width: 1024px) {
-  .menu-btn {
-    display: block;
-  }
-
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -300px; /* 오른쪽에서 들어오게 */
-    width: 260px;
-    height: 100vh;
-    background-color: #1D2023;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: 5rem 1rem;
-    gap: 1rem;
-    transition: right 0.3s ease;
-    z-index: 1000;
-  }
-
-  .nav-links.active {
-    right: 0;
-  }
-
-  .nav-links li {
-    width: 100%;
-    text-align: right;
-  }
-
-  .nav-links li ul.dropdown {
-    position: static;
-    background: none;
-    padding: 0;
-    margin-top: 0;
-  }
-
-  .nav-links li:hover ul.dropdown {
-    display: block;
-  }
-}
-
-
-
-/* Breadcrumb */
-.breadcrumb {
-  margin: 20px 0;
-  padding: 10px 15px;
-  background: #555A60;
-  border-radius: 5px;
-  font-weight: 700;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.breadcrumb a {
-  color: #D0D4D7;
-  text-decoration: none;
-}
-
-.breadcrumb a::after {
-  content: " > ";
-}
-
-.breadcrumb a:last-child::after {
-  content: "";
-}
-
-/* Main */
-main {
-  padding: 0 1rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  box-sizing: border-box;
-}
-
-main::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80vw;
-  aspect-ratio: 1 / 1;
-  background-image: url('https://i.imgur.com/D1R3iYW.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0.2;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  filter: brightness(3);
-  z-index: 0;
-}
-
-.section-title {
-  margin-top: 5rem;
-  font-size: 2rem;
-  text-align: center;
-  font-weight: bold;
-}
-
-.section-text {
-  text-align: center;
-  font-size: 1.125rem;
-  margin-bottom: 1rem;
-}
-
-.left-padding-section {
-  padding-left: 5%;
-  margin-bottom: 3rem;
-  max-width: 100%;
-}
-
-/* 이미지 링크 섹션 */
-
-.image-links {
-  display: flex;
-  justify-content: center; /* ✅ 가운데 정렬 */
-  gap: 1rem;
-  margin: 2rem auto;
-  max-width: 600px; /* ✅ 전체 폭 제한 */
-  flex-wrap: wrap;
-}
-
-.image-links a {
-  flex: 0 0 45%; /* ✅ 두 개가 나란히 */
-  max-width: 260px; /* ✅ 이미지 최대 너비 제한 */
-}
-
-.image-links a img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-
-.image-links a img:hover {
-  transform: scale(1.05);
-}
-
-    @media (max-width: 768px) {
-  .image-links {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .image-links a {
-    flex: 1 1 100%;
-    max-width: 90%;
-  }
-}
-
-/* Swiper */
-
-.swiper {
-  width: 100%;
-  max-width: 1200px;
-  height: 400px;
-  margin: 2rem auto 0;
-}
-
-.swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background-color: #000;
-}
-
-/* Footer */
-
-footer {
-  background: #555A60;
-  color: #F0F0F0;
-  padding: 1rem 2rem;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
-.footer-left img.footer-logo {
-  width: 280px; /* 원하는 크기로 키우기 */
-  height: auto;
-}
-
-@media (max-width: 768px) {
-  .footer-left img.footer-logo {
-    width: 220px;
-  }
-}
-    
-/* Footer 배너 아이콘 하단 정렬 및 수평 정렬 */
-.footer-left {
-  width: 100%;
-  display: flex;
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center;
-  flex-direction: column; /* 아래로 정렬되도록 변경 */
-  gap: 10px;
-  position: relative;
-  z-index: 20; /* 배너 레이아웃을 앞으로 */
-}
-
-/* Footer 로고 크기 조정 */
-.footer-left img.footer-logo {
-  width: 200px; /* 기존보다 더 크게 */
-  height: auto;
-  filter: invert(1);
-}
-
-.footer-icons {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.footer-icons img {
-  width: 24px;
-  height: 24px;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-}
-
-.footer-icons img:hover {
-  opacity: 1;
-}
-
-.footer-text {
-  text-align: right;
-  max-width: 500px;
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-/* 반응형: 모바일 & 태블릿 */
-
-@media (max-width: 1024px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: #333;
-    align-items: center; /* 추가: 세로 메뉴 중앙 정렬 */
-  }
-  .nav-links.active {
-    display: flex;
-  }
-  .nav-links li {
-    text-align: center;
-    width: 100%; /* 모바일에선 클릭 편하게 */
-  }
-}
-
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column; /* 세로 배치 */
-  }
-}
-
-  header .footer-inner img {
-    width: 120px;
-  }
-
-  header p {
-    margin-left: 0;
-    margin-top: 0.5rem;
-    font-size: 1rem;
-  }
-
-  main {
-    padding: 0 1rem 2rem;
-  }
-
-  .left-padding-section {
-    padding-left: 5%;
-  }
-
-  .image-links a {
-    max-width: 100%;
-    flex-basis: 100%;
-  }
-
-  .swiper {
-    height: 250px;
-  }
-
-  .footer-content {
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-  }
-
-   .footer-left {
-    width: 100%;
-    display: flex;
-    justify-content: center; /* 배너들 수평 가운데 */
-    gap: 20px;
-  }
-
-  .footer-text {
-    text-align: center;
-    max-width: 100%;
-  }
-}
-}
-
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 1.8rem;
-  }
-
-  .section-title {
-    font-size: 1.5rem;
-  }
-
-  .section-text {
-    font-size: 1rem;
-  }
-
-  .footer-icons img {
-    width: 20px;
-    height: 20px;
-  }
-}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    header {
+      padding: 1rem 2rem;
+      background: #1D2023;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: #F0F0F0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .menu-btn {
+      font-size: 2rem;
+      color: #F0F0F0;
+      cursor: pointer;
+      display: none;
+      z-index: 1001;
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    .nav-links a:hover {
+      background: #5B6066;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links li:hover .dropdown {
+      display: block;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: #2b2e32;
+      border-radius: 5px;
+      flex-direction: column;
+      z-index: 999;
+    }
+
+    .dropdown li a {
+      padding: 0.5rem 1rem;
+      color: #e0e0e0;
+    }
 
     @media (max-width: 1024px) {
-    .menu-btn {
-    display: block; /* ✅ 햄버거 버튼 보이게 */
-  }
-      
-  .navbar {
-    flex-direction: column;
-    align-items: center;
-  }
+      .menu-btn {
+        display: block;
+      }
 
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: #1D2023;
-  }
+      .nav-links {
+        position: fixed;
+        flex-direction: column;
+        align-items: flex-end;
+        top: 0;
+        right: -300px;
+        width: 260px;
+        height: 100vh;
+        background: #1D2023;
+        padding: 5rem 1rem;
+        transition: right 0.3s ease;
+        z-index: 1000;
+      }
 
-  .nav-links.active {
-    display: flex; /* ✅ 메뉴 버튼 클릭 시 보여짐 */
-  }
+      .nav-links.active {
+        right: 0;
+      }
 
-  .nav-links li {
-    text-align: center;
-    width: 100%;
-  }
-}
+      .nav-links li {
+        width: 100%;
+        text-align: right;
+      }
 
+      .nav-links li .dropdown {
+        position: static;
+        background: none;
+        margin: 0;
+      }
+
+      .nav-links li:hover .dropdown {
+        display: block;
+      }
+    }
+
+    /* Swiper */
+    .swiper {
+      width: 100%;
+      max-width: 1200px;
+      height: 400px;
+      margin: 2rem auto 0;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+    }
+
+    /* Footer */
+    footer {
+      background: #555A60;
+      color: #F0F0F0;
+      padding: 1rem 2rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo {
+      width: 200px;
+      filter: invert(1);
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer-icons img {
+      width: 24px;
+      height: 24px;
+      opacity: 0.8;
+    }
+
+    .footer-icons img:hover {
+      opacity: 1;
+    }
+
+    .footer-text {
+      text-align: right;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-text {
+        text-align: center;
+        width: 100%;
+      }
+    }
   </style>
 </head>
-
 <body>
   <header>
     <div class="footer-inner">
-      <a href="https://strawberryhcl.github.io/dong_ramy/">
-        <img src="https://i.imgur.com/tpRkEqi.png" class="footer-logo" alt="DONGRAMY 로고">
-      </a>
+      <a href="/dong_ramy/"><img src="https://i.imgur.com/tpRkEqi.png" class="footer-logo" alt="DONGRAMY 로고"></a>
     </div>
     <p>누구나 평등하고 많은 서비스를 누릴 수 있는 온라인 일등 휴대폰 판매매장 "동그라미”</p>
     <nav class="navbar">
       <div class="menu-btn" id="menuBtn">&#9776;</div>
       <ul class="nav-links" id="navLinks">
         <li><a href="/dong_ramy/">홈</a></li>
-        <li>
-          <a href="dong_ramy/about/">회사소개</a>
+        <li><a href="/dong_ramy/about/">회사소개</a>
           <ul class="dropdown">
             <li><a href="/dong_ramy/about/greeting">인사말</a></li>
             <li><a href="/dong_ramy/about/status">회사현황</a></li>
             <li><a href="/dong_ramy/about/history">연혁</a></li>
           </ul>
         </li>
-        <li>
-          <a href="dong_ramy/service/">서비스</a>
+        <li><a href="/dong_ramy/service/">서비스</a>
           <ul class="dropdown">
             <li><a href="/dong_ramy/service/telecom">통신</a></li>
             <li><a href="/dong_ramy/service/entertainment">엔터테인먼트</a></li>
             <li><a href="/dong_ramy/service/support">고객센터</a></li>
           </ul>
         </li>
-        <li>
-          <a href="dong_ramy/media/">미디어</a>
+        <li><a href="/dong_ramy/media/">미디어</a>
           <ul class="dropdown">
             <li><a href="/dong_ramy/media/event">이벤트</a></li>
             <li><a href="/dong_ramy/media/channel">커뮤니케이션 채널</a></li>
@@ -569,44 +249,28 @@ footer {
       <div class="swiper-pagination"></div>
     </div>
 
-    <section>
-      <h2 class="section-title">DONG_RAMY <br>DREAM COME TRUE.</h2>
-      <p class="section-text">모든 대한민국 사람들이 통신하면 '동그라미'라는게 머리속에 자연스럽게 떠오르는 그날까지!</p>
-      <p class="section-text">동그라미를 통해 여러분들의 삶이 조금은 더 따듯했으면 합니다</p>
-    </section>
-
-    <section class="left-padding-section">
-      <h2>동그라미</h2>
-      <p>
-        따듯한 빛을 보내주는 태양,<br>
-        어두운 밤을 비춰주는 달,<br>
-        맛있게 먹을 수 있는 모든 과일 열매들,<br>
-        빨리 나아갈 수 있게 해주는 바퀴,<br>
-        사계절의 순환을 갖는 공통점은 바로 동그라미입니다.
-      </p>
-    </section>
-
-    <section class="image-links">
-      <a href="https://www.dongramy.co.kr/" target="_blank"><img src="https://i.imgur.com/a4sGcz4.png" alt="링크 1 이미지"></a>
-      <a href="https://dongramystore.co.kr/" target="_blank"><img src="https://i.imgur.com/ao1UydP.jpeg" alt="링크 2 이미지"></a>
+    <section style="text-align:center; margin: 4rem auto;">
+      <h2 style="font-size:2rem;">DONG_RAMY <br>DREAM COME TRUE.</h2>
+      <p>모든 대한민국 사람들이 통신하면 '동그라미'라는게 머리속에 자연스럽게 떠오르는 그날까지!</p>
+      <p>동그라미를 통해 여러분들의 삶이 조금은 더 따듯했으면 합니다</p>
     </section>
   </main>
 
   <footer>
     <div class="footer-content">
       <div class="footer-left">
-         <a href="https://strawberryhcl.github.io/dong_ramy/">
-    <img src="https://i.imgur.com/tpRkEqi.png" class="footer-logo" alt="DONGRAMY 로고">
-  </a>
-  <div class="footer-icons">
-    <a href="https://blog.naver.com/young5677kv" target="_blank" title="네이버 블로그">
-      <img src="https://i.imgur.com/129mPRs.png" alt="Naver Blog">
-    </a>
-    <a href="https://www.instagram.com/dong_ramy_official/" target="_blank" title="인스타그램">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
-    </a>
-  </div>
-</div>
+        <a href="/dong_ramy/">
+          <img src="https://i.imgur.com/tpRkEqi.png" class="footer-logo" alt="DONGRAMY 로고">
+        </a>
+        <div class="footer-icons">
+          <a href="https://blog.naver.com/young5677kv" target="_blank" title="네이버 블로그">
+            <img src="https://i.imgur.com/129mPRs.png" alt="Naver Blog">
+          </a>
+          <a href="https://www.instagram.com/dong_ramy_official/" target="_blank" title="인스타그램">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+          </a>
+        </div>
+      </div>
       <p class="footer-text">
         Copyright © 2021 Dongramy Co. All rights reserved. <br>
         서울특별시 마포구 와우산로19길 6-11, 4층 (서교동) <br>
@@ -628,7 +292,6 @@ footer {
       document.getElementById('navLinks').classList.toggle('active');
     });
 
-    // Breadcrumb 생성
     const pathMap = {
       "": "홈", "about": "회사소개", "service": "서비스",
       "media": "미디어", "story": "스토리", "recruit": "채용"
@@ -643,15 +306,5 @@ footer {
     }
     createBreadcrumb();
   </script>
-
-  <script>
-  const menuBtn = document.getElementById("menuBtn");
-  const navLinks = document.getElementById("navLinks");
-
-  menuBtn.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-  });
-</script>
-
 </body>
 </html>
