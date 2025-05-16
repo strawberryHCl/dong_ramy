@@ -62,9 +62,20 @@ header p {
 /* 기본적으로 네비게이션은 항상 보이게 */
 /* 네비게이션 링크 전체 */
 .nav-links {
+  position: fixed;
+  top: 0;
+  right: -260px; /* 우측에서 나옴 */
+  width: 250px;
+  height: 100vh;
+  background: #1D2023;
+  flex-direction: column;
+  padding-top: 5rem;
+  transition: right 0.3s ease;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.3);
+  text-align: right;
+  padding-right: 1rem;
+  z-index: 1000;
   display: flex;
-  gap: 1.5rem;
-  list-style: none;
 }
 
     /* 드롭다운 숨김 */
@@ -90,7 +101,6 @@ header p {
 }
 
 .nav-links li {
-  width: 100%;
   margin: 1rem 0;
 }
 
@@ -130,6 +140,9 @@ header p {
 
 /* 햄버거 버튼 (모바일에서만 보임) */
 .menu-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
   font-size: 2rem;
   cursor: pointer;
   display: none;
