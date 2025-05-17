@@ -138,48 +138,55 @@
       color: #e0e0e0;
     }
 
-    @media (max-width: 1024px) {
-      .menu-btn { display: block; }
+   @media (max-width: 1024px) {
+  .menu-btn {
+    display: block;
+  }
 
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        align-items: flex-end;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 80px;
-        height: 100vh;
-        background: #1D2023;
-        padding-top: 60px;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        z-index: 1000;
-        overflow-y: auto;      }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 140px; /* 폭 줄임 - 수정 */
+    height: 100vh;
+    background: #1D2023;
+    padding-top: 60px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+  }
 
+  .nav-links.active {
+    display: flex;
+    transform: translateX(0);
+  }
 
-      .nav-links.active {
-        display: flex;
-        transform: translateX(0);
-      }
+  .nav-links li {
+    width: 100%;
+    text-align: right;
+    padding: 0.2rem 0.5rem; /* 글자 간 위아래 간격 줄임 - 수정 */
+  }
 
-      .nav-links li {
-        width: 100%;
-        text-align: right;
-        padding: 0.2rem 0.8rem;
-      }
+  .nav-links li a {
+    font-size: 0.85rem; /* 글자 크기 줄임 - 선택사항 */
+    line-height: 1.2;   /* 줄 간격 압축 - 수정 */
+  }
 
-      .nav-links li .dropdown {
-        display: none;
-        position: static;
-        background: none;
-        padding-left: 0.5rem;
-      }
+  .nav-links li .dropdown {
+    display: none;
+    position: static;
+    background: none;
+    padding-left: 0.5rem;
+  }
 
-      .nav-links li .dropdown.active {
-        display: block;
-      }
-    }
+  .nav-links li .dropdown.active {
+    display: block;
+  }
+}
 
     .swiper {
       width: 100%;
