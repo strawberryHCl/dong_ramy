@@ -205,7 +205,7 @@
 
  }
 
- /* ---------- 모바일 전용 ---------- */
+/* ---------- 모바일 전용 ---------- */
 @media (max-width: 1024px) {
   .dropdown-container {
     display: none !important;
@@ -285,15 +285,18 @@
     border-radius: 5px;
   }
 
-  /* 기존: 전체 .dropdown 숨김 — 수정 필요 */
-  /* .nav-links li .dropdown {
+  /* 기존 .dropdown 숨김 부분 주석 처리 (수정된 부분으로 대체) */
+  /*
+  .nav-links li .dropdown {
     display: none;
     position: static;
     background-color: #323538;
     padding-left: 0.4rem;
-  } */
+  }
+  */
 
   /* 수정된 부분 시작 */
+  /* li.dropdown가 있을 때, 그 안의 ul을 숨기고 활성화시 노출 */
   .nav-links li.dropdown > ul {
     display: none;
     position: static;
