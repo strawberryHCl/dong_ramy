@@ -8,8 +8,29 @@
   <meta name="keywords" content="동그라미, 휴대폰, 스마트폰, 아이폰, 갤럭시, 동그라미 스토어, dongramy 등">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://dongramystore.co.kr/">
+
+  <!-- Open Graph (Facebook, Kakao, LinkedIn 등에서 사용) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:site_name" content="동그라미 스토어" />
+  <meta property="og:title" content="동그라미 스토어 - 공식 쇼핑몰 | 디자인 브랜드" />
+  <meta property="og:description" content="공식 온라인 쇼핑몰 동그라미 스토어. 브랜드 정품을 빠르고 쉽게 구매하세요." />
+  <meta property="og:image" content="https://i.imgur.com/tpRkEqi.png" />
+  <meta property="og:image:alt" content="동그라미 스토어 로고" />
+  <meta property="og:url" content="https://dongramystore.co.kr/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="동그라미 스토어 - 공식 쇼핑몰 | 디자인 브랜드" />
+  <meta name="twitter:description" content="공식 온라인 쇼핑몰 동그라미 스토어. 브랜드 정품을 빠르고 쉽게 구매하세요." />
+  <meta name="twitter:image" content="https://i.imgur.com/tpRkEqi.png" />
+  <!-- <meta name="twitter:site" content="@dong_ramy_official" /> --> <!-- 계정 있으면 주석 해제 -->
+
+  <!-- Fonts & Styles -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+</head>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -300,7 +321,6 @@ body {
       }
     }
   </style>
-</head>
   <body>
   
   <header>
@@ -386,31 +406,44 @@ body {
   </footer>
 
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script>
-    new Swiper('.swiper', {
-      loop: true,
-      autoplay: { delay: 3000 },
-      pagination: { el: '.swiper-pagination' },
-      effect: 'slide'
-    });
+<script>
+  new Swiper('.swiper', {
+    loop: true,
+    autoplay: { delay: 3000 },
+    pagination: { el: '.swiper-pagination' },
+    effect: 'slide'
+  });
 
-    document.getElementById('menuBtn').addEventListener('click', function () {
-      document.getElementById('navLinks').classList.toggle('active');
-    });
+  document.getElementById('menuBtn').addEventListener('click', function () {
+    document.getElementById('navLinks').classList.toggle('active');
+  });
 
-    const pathMap = {
-      "": "홈", "about": "회사소개", "service": "서비스",
-      "media": "미디어", "story": "스토리", "recruit": "채용"
-    };
-    function createBreadcrumb() {
-      const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
-      let html = <a href="/dong_ramy/">홈</a>;
-      if (path[0] && pathMap[path[0]]) {
-        html +=  <span>${pathMap[path[0]]}</span>;
+  // 모바일 드롭다운 클릭 토글
+  document.querySelectorAll('.nav-links > li > a').forEach(link => {
+    link.addEventListener('click', e => {
+      const next = link.nextElementSibling;
+      if (next && next.classList.contains('dropdown')) {
+        e.preventDefault();
+        next.style.display = next.style.display === 'block' ? 'none' : 'block';
       }
-      document.getElementById("breadcrumb").innerHTML = html;
+    });
+  });
+
+  const pathMap = {
+    "": "홈", "about": "회사소개", "service": "서비스",
+    "media": "미디어", "story": "스토리", "recruit": "채용"
+  };
+
+  function createBreadcrumb() {
+    const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
+    let html = '<a href="/dong_ramy/">홈</a>';
+    if (path[0] && pathMap[path[0]]) {
+      html += ` <span> &gt; ${pathMap[path[0]]}</span>`;
     }
-    createBreadcrumb();
-  </script>
+    document.getElementById("breadcrumb").innerHTML = html;
+  }
+
+  createBreadcrumb();
+</script>
 </body>
 </html>
