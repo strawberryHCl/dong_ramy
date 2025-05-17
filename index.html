@@ -85,15 +85,15 @@
       display: block;
     }
     .menu-btn {
-      font-size: 2rem;
-      color: #F0F0F0;
-      cursor: pointer;
-      display: none;
-      z-index: 1001;
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-    }
+  font-size: 2rem;
+  color: #F0F0F0;
+  cursor: pointer;
+  display: none;
+  position: fixed; /* 항상 화면 우측 상단 고정 */
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1100;
+}
     .nav-links {
       display: flex;
       gap: 1rem;
@@ -372,6 +372,15 @@
       document.getElementById("breadcrumb").innerHTML = html;
     }
     createBreadcrumb();
+
+    window.addEventListener('resize', () => {
+  if (window.innerWidth > 1024) {
+    navLinks.classList.remove('active');
+    navLinks.style.display = 'flex';
+  } else {
+    navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+  }
+});
   </script>
 </body>
 </html>
