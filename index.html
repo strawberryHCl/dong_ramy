@@ -385,6 +385,12 @@
       if (navOverlay) navOverlay.style.display = 'none'; // 오버레이 숨김
       setTimeout(() => navLinks.style.display = 'none', 300);
     }
+
+    // 드롭다운 초기화
+    document.querySelectorAll('.dropdown').forEach(dropdown => {
+      dropdown.classList.remove('active');
+      dropdown.style.display = 'none';
+    });
   });
 
   document.querySelectorAll('.nav-links > li > a').forEach(link => {
