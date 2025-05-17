@@ -13,11 +13,11 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      background: #1D2023;
-      color: #F0F0F0;
-      font-family: 'Poppins', sans-serif;
-    }
+body {
+  background: #1D2023;
+  color: #F0F0F0;
+  font-family: 'Poppins', sans-serif;
+}
 
     header {
       padding: 1rem 2rem;
@@ -29,19 +29,24 @@
       color: #F0F0F0;
     }
 
-    .breadcrumb {
-      background-color: #444950;  
-      color: #fff !important;     
-      font-family: 'Poppins', sans-serif; 
-      padding-left: 10px;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      border-radius: 4px;       
-      display: block;            
-      width: 100%;              
-      box-sizing: border-box;   
-    }
-        
+.breadcrumb {
+  background-color: #444950;  
+  color: #fff !important;     
+  font-family: 'Poppins', sans-serif; 
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 4px;       
+  display: block;            /* 블록으로 너비 전체 차지 */
+  width: 100%;               /* 부모 너비 딱 맞춤 */
+  box-sizing: border-box;    /* 패딩 포함해서 너비 계산 */
+}
+    
+.navbar .dropdown {
+  top: calc(100% + 8px); /* 네비바 바로 아래에서 8px 띄움 */
+  /* 기타 스타일 */
+}
+    
     .navbar {
       position: relative;
       display: flex;
@@ -53,70 +58,51 @@
     }
 
     .navbar ul {
-      display: flex;
-      gap: 70px;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      position: relative;
-      width: 100%;
-    }
+  display: flex;
+  gap: 70px; /* 각 메뉴 아이템 사이 간격 30px */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: relative;
+  width: 100%;
+}
+    
+.nav-item {
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+}
+    
+    /* 메뉴 아이템 기본 스타일 */
+.navbar ul li {
+  /* 필요시 padding이나 margin 조절 가능 */
+   list-style: none;
+  padding: 20px 0 0; /* ← 상단 여백 */
+  margin: 0;
+}
 
-    .nav-item {
-      position: relative;
-      cursor: pointer;
-      white-space: nowrap;
-    }
+/* 메뉴 링크 */
+.navbar ul li a {
+  display: block;
+  padding: 10px 15px; /* 클릭 영역 넓히기 */
+  text-decoration: none;
+}
+/* 드롭다운 메뉴 기본적으로 숨김 */
+.navbar ul li ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #1D2023;
+  padding: 10px 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 999;
+}
 
-    .navbar ul li {
-      position: relative;
-      list-style: none;
-      padding: 20px 0 0;
-      margin: 0;
-      white-space: nowrap;
-    }
-
-    .navbar ul li a {
-      display: block;
-      padding: 10px 15px;
-      text-decoration: none;
-    }
-
-    /* PC용 드롭다운 */
-    .navbar ul li ul.dropdown {
-      display: none;
-      position: absolute;
-      top: calc(100% + 8px);
-      left: 0;
-      width: 100vw;
-      background-color: #1D2023;
-      padding: 20px 40px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      border-radius: 5px;
-      z-index: 999;
-      flex-direction: row;
-    }
-
-    .navbar ul li:hover > ul.dropdown {
-      display: flex;
-      gap: 30px;
-    }
-
-    .dropdown ul {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-
-    .dropdown ul li a {
-      padding: 0.5rem 1rem;
-      color: #e0e0e0;
-      white-space: nowrap;
-    }
-
+/* 부모 항목에 마우스 올렸을 때 드롭다운 표시 */
+.navbar ul li:hover > ul {
+  display: block;
+}
     .menu-btn {
       font-size: 2rem;
       color: #F0F0F0;
@@ -153,7 +139,49 @@
       display: block;
     }
 
-    /* 모바일 메뉴 */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 100vw;
+      background: #2b2e32;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      flex-direction: column;
+      z-index: 999;
+    }
+
+    /* 드롭다운 내부 리스트 스타일 */
+.dropdown ul {
+  display: flex;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+    /* 드롭다운 항목 스타일 */
+.dropdown ul li {
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* 호버시 드롭다운 보이기 */
+.nav-item:hover .dropdown {
+  display: block;
+}
+    
+    .dropdown li {
+  margin-bottom: 10px; /* 아래 간격을 10px로 넉넉하게 */
+}
+
+    .dropdown li a {
+      padding: 0.5rem 1rem;
+      color: #e0e0e0;
+    }
+
     @media (max-width: 1024px) {
       .menu-btn {
         display: block;
@@ -180,31 +208,16 @@
       .nav-links li {
         width: 100%;
         text-align: right;
-        padding: 10px 20px;
       }
 
-      .nav-links li ul.dropdown {
+      .nav-links li .dropdown {
         position: static;
         background: none;
-        box-shadow: none;
-        width: 100%;
-        padding: 0;
         margin: 0;
-        display: none;
-        flex-direction: column;
       }
 
-      .nav-links li:hover > ul.dropdown {
+      .nav-links li:hover .dropdown {
         display: block;
-      }
-
-      .dropdown ul {
-        flex-direction: column;
-        gap: 5px;
-      }
-
-      .dropdown ul li a {
-        padding-left: 1rem;
       }
     }
 
@@ -224,7 +237,7 @@
     }
 
     .left-padding-section { padding-left: 20%; margin-bottom: 3rem;}
-        
+    
     /* Footer */
     footer {
       background: #555A60;
@@ -289,7 +302,6 @@
   </style>
 </head>
 
-<body>
   <header>
     <div class="footer-inner">
       <a href="/dong_ramy/"><img src="https://i.imgur.com/tpRkEqi.png" class="footer-logo" alt="DONGRAMY 로고"></a>
@@ -310,12 +322,94 @@
           <ul class="dropdown">
             <li><a href="/dong_ramy/service/telecom">통신</a></li>
             <li><a href="/dong_ramy/service/entertainment">엔터테인먼트</a></li>
-            <li><a href="/dong_ramy/service/support">고객지원</a></li>
-</ul>
-</li>
-<li><a href="/dong_ramy/shop/">쇼핑몰</a></li>
-<li><a href="/dong_ramy/board/">게시판</a></li>
-</ul>
-</nav>
+            <li><a href="/dong_ramy/service/support">고객센터</a></li>
+          </ul>
+        </li>
+        <li><a href="/dong_ramy/media/">미디어</a>
+          <ul class="dropdown">
+            <li><a href="/dong_ramy/media/event">이벤트</a></li>
+            <li><a href="/dong_ramy/media/channel">커뮤니케이션 채널</a></li>
+          </ul>
+        </li>
+        <li><a href="/dong_ramy/story/">스토리</a></li>
+        <li><a href="/dong_ramy/recruit/">채용</a></li>
+      </ul>
+    </nav>
+  </header>
 
-</header> <!-- Swiper (슬라이더) --> <section> <div class="swiper mySwiper"> <div class="swiper-wrapper"> <div class="swiper-slide"><img src="https://i.imgur.com/RGkwBlP.png" alt="배너1" /></div> <div class="swiper-slide"><img src="https://i.imgur.com/9YIUIJv.png" alt="배너2" /></div> <div class="swiper-slide"><img src="https://i.imgur.com/I5w6jWt.png" alt="배너3" /></div> </div> <div class="swiper-pagination"></div> </div> </section> <footer> <div class="footer-content"> <div class="footer-left"> <a href="/dong_ramy/"><img src="https://i.imgur.com/tpRkEqi.png" class="footer-logo" alt="DONGRAMY 로고"></a> <div class="footer-icons"> <a href="https://www.instagram.com/dongramy_store/" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/rDL5A9K.png" alt="인스타그램"></a> <a href="https://blog.naver.com/dongramystore" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/ZCkqJNe.png" alt="네이버블로그"></a> <a href="https://pf.kakao.com/_xwxdSxl" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/OA3nxVq.png" alt="카카오톡채널"></a> </div> </div> <div class="footer-text"> &copy; 2025 동그라미스토어. All rights reserved.<br> 서울시 강남구 역삼동 123-45<br> 고객센터: 02-123-4567<br> 사업자등록번호: 123-45-67890 </div> </div> </footer> <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> <script> // 모바일 메뉴 열기/닫기 const menuBtn = document.getElementById('menuBtn'); const navLinks = document.getElementById('navLinks'); menuBtn.addEventListener('click', () => { navLinks.classList.toggle('active'); }); // 모바일 드롭다운 메뉴 토글 (클릭시 열림/닫힘) document.querySelectorAll('.nav-links > li').forEach(item => { item.addEventListener('click', e => { // 모바일 전용, 자식에 드롭다운이 있으면 열고 닫기 if (window.innerWidth <= 1024) { const dropdown = item.querySelector('.dropdown'); if (dropdown) { e.preventDefault(); dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block'; } } }); }); // Swiper 초기화 const swiper = new Swiper('.mySwiper', { loop: true, autoplay: { delay: 3500, disableOnInteraction: false }, pagination: { el: '.swiper-pagination', clickable: true }, }); </script> </body> </html> ```
+  <main>
+    <div id="breadcrumb" class="breadcrumb"></div>
+
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="https://i.imgur.com/oa6ABq5.png" /></div>
+        <div class="swiper-slide"><img src="https://i.imgur.com/y5r6psd.jpeg" /></div>
+        <div class="swiper-slide"><img src="https://i.imgur.com/Ruy0DRS.jpeg" /></div>
+        <div class="swiper-slide"><img src="https://i.imgur.com/ki1lcd5.jpeg" /></div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <section style="text-align:center; margin: 4rem auto;">
+      <h2 style="font-size:2rem;">DONG_RAMY <br>DREAM COME TRUE.</h2>
+      <p>모든 대한민국 사람들이 통신하면 '동그라미'라는게 머리속에 자연스럽게 떠오르는 그날까지!</p>
+      <p>동그라미를 통해 여러분들의 삶이 조금은 더 따듯했으면 합니다</p>
+    </section>
+    <section class="left-padding-section">
+      <h2>동그라미</h2>
+      <p>따듯한 빛을 보내주는 태양, <br>어두운 밤을 비춰주는 달, <br>맛있게 먹을 수 있는 모든 과일 열매들, <br>빨리 나아갈 수 있게 해주는 바퀴, <br>추운 계절이 지나면 어김없이 돌아오는 봄을 비롯한  <br>사계절의 순환을 갖는 공통점은 바로 동그라미 입니다. </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <a href="/dong_ramy/">
+          <img src="https://i.imgur.com/tpRkEqi.png" class="footer-logo" alt="DONGRAMY 로고">
+        </a>
+        <div class="footer-icons">
+          <a href="https://blog.naver.com/young5677kv" target="_blank" title="네이버 블로그">
+            <img src="https://i.imgur.com/129mPRs.png" alt="Naver Blog">
+          </a>
+          <a href="https://www.instagram.com/dong_ramy_official/" target="_blank" title="인스타그램">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+          </a>
+        </div>
+      </div>
+      <p class="footer-text">
+        Copyright © 2021 Dongramy Co. All rights reserved. <br>
+        서울특별시 마포구 와우산로19길 6-11, 4층 (서교동) <br>
+        사업자번호 : 689-39-00711 | 대표 : 한동길
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    new Swiper('.swiper', {
+      loop: true,
+      autoplay: { delay: 3000 },
+      pagination: { el: '.swiper-pagination' },
+      effect: 'slide'
+    });
+
+    document.getElementById('menuBtn').addEventListener('click', function () {
+      document.getElementById('navLinks').classList.toggle('active');
+    });
+
+    const pathMap = {
+      "": "홈", "about": "회사소개", "service": "서비스",
+      "media": "미디어", "story": "스토리", "recruit": "채용"
+    };
+    function createBreadcrumb() {
+      const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
+      let html = <a href="/dong_ramy/">홈</a>;
+      if (path[0] && pathMap[path[0]]) {
+        html +=  <span>${pathMap[path[0]]}</span>;
+      }
+      document.getElementById("breadcrumb").innerHTML = html;
+    }
+    createBreadcrumb();
+  </script>
+</>
+</html>
