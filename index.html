@@ -194,9 +194,8 @@
     }
 
     /* 데스크탑 전용 - 1025px 이상일 때만 */
-/* PC 이상에서 전체 nav에 hover 시 한꺼번에 드롭다운 전체 노출 */
 @media (min-width: 1025px) {
-  /* 기본 하위 메뉴 숨김 */
+  /* 하위 메뉴 기본 숨김, 전체 너비 차지 */
   .navbar ul li ul {
     display: none;
     position: absolute;
@@ -207,10 +206,19 @@
     padding: 15px 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     z-index: 999;
+    /* 가로 정렬 */
+    display: flex; /* flex로 가로 정렬 */
+    gap: 30px; /* 아이템 사이 간격 */
   }
-  /* nav 전체에 hover 시, 모든 하위 메뉴 표시 */
+
+  /* 네비 전체에 마우스 올리면 하위 메뉴 한번에 노출 */
   .navbar ul:hover > li > ul {
-    display: block;
+    display: flex;
+  }
+
+  /* 하위 메뉴 아이템 스타일 */
+  .navbar ul li ul li {
+    white-space: nowrap; /* 줄바꿈 방지 */
   }
 }
 
