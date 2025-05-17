@@ -152,13 +152,14 @@
     top: 0;
     right: 0;
     width: 90px; /* 폭 줄임 - 수정 */
-    height: 100vh;
+    height: auto;
+    max-height: 100vh;
     background: #1D2023;
     padding-top: 60px;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     z-index: 1000;
-    overflow-y: scroll !imporant; /*스크롤 강제 활성화 */
+    overflow-y: scroll !important; /*스크롤 강제 활성화 */
     overscroll-behavior: contain; /*스크롱 튕김 방지*/
   }
 
