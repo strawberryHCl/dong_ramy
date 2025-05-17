@@ -205,120 +205,130 @@
 
  }
 
-  /* ---------- 모바일 전용 ---------- */
-  @media (max-width: 1024px) {
-    .dropdown-container {
-      display: none !important;
-    }
-    
-    .menu-btn {
-      display: block;
-    }
-
-    .nav-links {
-      display: none;
-      flex-direction: column;
-      align-items: flex-end;
-      position: fixed;
-      gap: 0.5rem !important;
-      top: 0;
-      right: 0;
-      width: 180px !important;
-      height: 80% !important;
-      max-height: 100vh !important;
-      background: #1D2023;
-      padding-top: 60px !important;
-      padding-right: 0.5rem !important;
-      margin-bottom: 0 !important;
-      padding-bottom: 1rem !important;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      z-index: 1000;
-      overflow-y: auto;
-      overscroll-behavior: contain;
-    }
-
-    .nav-links.active {
-      display: flex;
-      transform: translateX(0);
-    }
-
-    .nav-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 160px;
-      height: 120px;
-      background: linear-gradient(to bottom, #1D2023, rgba(29,32,35,0));
-      z-index: 1001;
-      pointer-events: none;
-    }
-
-    .nav-backdrop {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.3);
-      z-index: 999;
-      pointer-events: auto;
-    }
-
-    .nav-links li {
-      width: 100%;
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
-      text-align: right;
-    }
-
-    .nav-links li a {
-      display: block;
-      padding: 0.7rem 1rem !important;
-      font-size: 0.9rem;
-      line-height: 1.4 !important;
-      text-align: right;
-      color: #F0F0F0;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-
-    .nav-links li .dropdown {
-      display: none;
-      position: static;
-      background-color: #323538;
-      padding-left: 0.4rem;
-    }
-
-    .nav-links li .dropdown a::before {
-      content: "◻";
-      display: inline-block;
-      margin-right: 0.4rem;
-      font-size: 0.8rem;
-      vertical-align: middle;
-      color: #F0F0F0;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-
-    .nav-links li .dropdown.active {
-      display: block;
-    }
-
-    .left-padding-section {
-      padding-left: 5% !important;
-      margin-left: 0;
-      text-align: left;
-    }
-
-    section[style*="text-align:center"] {
-      padding-left: 1rem;
-      padding-right: 1rem;
-      box-sizing: border-box;
-    }
+ /* ---------- 모바일 전용 ---------- */
+@media (max-width: 1024px) {
+  .dropdown-container {
+    display: none !important;
   }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    position: fixed;
+    gap: 0.5rem !important;
+    top: 0;
+    right: 0;
+    width: 180px !important;
+    height: 80% !important;
+    max-height: 100vh !important;
+    background: #1D2023;
+    padding-top: 60px !important;
+    padding-right: 0.5rem !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 1rem !important;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .nav-links.active {
+    display: flex;
+    transform: translateX(0);
+  }
+
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 160px;
+    height: 120px;
+    background: linear-gradient(to bottom, #1D2023, rgba(29,32,35,0));
+    z-index: 1001;
+    pointer-events: none;
+  }
+
+  .nav-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    pointer-events: auto;
+  }
+
+  .nav-links li {
+    width: 100%;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    text-align: right;
+  }
+
+  .nav-links li a {
+    display: block;
+    padding: 0.7rem 1rem !important;
+    font-size: 0.9rem;
+    line-height: 1.4 !important;
+    text-align: right;
+    color: #F0F0F0;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  /* 기존: 전체 .dropdown 숨김 — 수정 필요 */
+  /* .nav-links li .dropdown {
+    display: none;
+    position: static;
+    background-color: #323538;
+    padding-left: 0.4rem;
+  } */
+
+  /* 수정된 부분 시작 */
+  .nav-links li.dropdown > ul {
+    display: none;
+    position: static;
+    background-color: #323538;
+    padding-left: 0.4rem;
+  }
+
+  .nav-links li.dropdown.active > ul {
+    display: block;
+  }
+  /* 수정된 부분 끝 */
+
+  .nav-links li .dropdown a::before {
+    content: "◻";
+    display: inline-block;
+    margin-right: 0.4rem;
+    font-size: 0.8rem;
+    vertical-align: middle;
+    color: #F0F0F0;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  .left-padding-section {
+    padding-left: 5% !important;
+    margin-left: 0;
+    text-align: left;
+  }
+
+  section[style*="text-align:center"] {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
+  }
+}
 </style>
 </head>
 <body>
