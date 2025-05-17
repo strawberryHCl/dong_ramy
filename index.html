@@ -455,12 +455,13 @@
     });
   }
 
+  // 드롭다운 토글 기능 수정 (기존 next.classList.toggle → 부모 li에 active 클래스 토글)
   document.querySelectorAll('.nav-links > li > a').forEach(link => {
     link.addEventListener('click', e => {
       const next = link.nextElementSibling;
       if (next && next.classList.contains('dropdown')) {
         e.preventDefault();
-        next.classList.toggle('active');
+        link.parentElement.classList.toggle('active'); // 수정된 부분
       }
     });
   });
@@ -500,7 +501,6 @@
       }
     }
   });
-</script>
 </script>
 </body>
 </html>
