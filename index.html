@@ -223,16 +223,22 @@
     overscroll-behavior: contain; /*스크롱 튕김 방지*/
   }
 
-    /* 여기 mask-image 적용 */
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0px, transparent 60px, black 60px, black 100%);
-    mask-image: linear-gradient(to bottom, transparent 0px, transparent 60px, black 60px, black 100%);
-  }
-
-
-
   .nav-links.active {
     display: flex;
     transform: translateX(0);
+  }
+
+  /* 오버레이 영역 */
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 160px;
+    height: 60px;
+    background: linear-gradient(to bottom, #1D2023, rgba(29,32,35,0)); /* 부드럽게 사라지게 */
+    z-index: 1001;
+    pointer-events: none;
   }
 
 .nav-links li {
@@ -315,6 +321,7 @@
         <li><a href="/dong_ramy/story/">스토리</a></li>
         <li><a href="/dong_ramy/recruit/">채용</a></li>
       </ul>
+      <div class="nav-overlay"></div>
     </nav>
   </header>
 
@@ -355,65 +362,72 @@
     </div>
   </footer>
 
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script>
-    new Swiper('.swiper', {
-      loop: true,
-      autoplay: { delay: 3000 },
-      pagination: { el: '.swiper-pagination' },
-      effect: 'slide'
-    });
+ <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  new Swiper('.swiper', {
+    loop: true,
+    autoplay: { delay: 3000 },
+    pagination: { el: '.swiper-pagination' },
+    effect: 'slide'
+  });
 
-    const menuBtn = document.getElementById('menuBtn');
-    const navLinks = document.getElementById('navLinks');
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  const navOverlay = document.querySelector('.nav-overlay'); // 오버레이 요소 가져오기
 
-    menuBtn.addEventListener('click', function () {
-      if (!navLinks.classList.contains('active')) {
-        navLinks.style.display = 'flex';
-        setTimeout(() => navLinks.classList.add('active'), 10);
-      } else {
-        navLinks.classList.remove('active');
-        setTimeout(() => navLinks.style.display = 'none', 300);
-      }
-    });
-
-    document.querySelectorAll('.nav-links > li > a').forEach(link => {
-      link.addEventListener('click', e => {
-        const next = link.nextElementSibling;
-        if (next && next.classList.contains('dropdown')) {
-          e.preventDefault();
-          next.classList.toggle('active');
-          next.style.display = next.style.display === 'block' ? 'none' : 'block';
-        }
-      });
-    });
-
-    const pathMap = {
-      "": "홈",
-      "about": "회사소개",
-      "service": "서비스",
-      "media": "미디어",
-      "story": "스토리",
-      "recruit": "채용"
-    };
-    function createBreadcrumb() {
-      const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
-      let html = '<a href="/dong_ramy/">홈</a>';
-      if (path[0] && pathMap[path[0]]) {
-        html += ` <span> &gt; ${pathMap[path[0]]}</span>`;
-      }
-      document.getElementById("breadcrumb").innerHTML = html;
+  menuBtn.addEventListener('click', function () {
+    if (!navLinks.classList.contains('active')) {
+      navLinks.style.display = 'flex';
+      if (navOverlay) navOverlay.style.display = 'block'; // 오버레이 표시
+      setTimeout(() => navLinks.classList.add('active'), 10);
+    } else {
+      navLinks.classList.remove('active');
+      if (navOverlay) navOverlay.style.display = 'none'; // 오버레이 숨김
+      setTimeout(() => navLinks.style.display = 'none', 300);
     }
-    createBreadcrumb();
+  });
 
-    window.addEventListener('resize', () => {
-  if (window.innerWidth > 1024) {
-    navLinks.classList.remove('active');
-    navLinks.style.display = 'flex';
-  } else {
-    navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+  document.querySelectorAll('.nav-links > li > a').forEach(link => {
+    link.addEventListener('click', e => {
+      const next = link.nextElementSibling;
+      if (next && next.classList.contains('dropdown')) {
+        e.preventDefault();
+        next.classList.toggle('active');
+        next.style.display = next.style.display === 'block' ? 'none' : 'block';
+      }
+    });
+  });
+
+  const pathMap = {
+    "": "홈",
+    "about": "회사소개",
+    "service": "서비스",
+    "media": "미디어",
+    "story": "스토리",
+    "recruit": "채용"
+  };
+  function createBreadcrumb() {
+    const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
+    let html = '<a href="/dong_ramy/">홈</a>';
+    if (path[0] && pathMap[path[0]]) {
+      html += ` <span> &gt; ${pathMap[path[0]]}</span>`;
+    }
+    document.getElementById("breadcrumb").innerHTML = html;
   }
-});
-  </script>
+  createBreadcrumb();
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1024) {
+      navLinks.classList.remove('active');
+      navLinks.style.display = 'flex';
+      if (navOverlay) navOverlay.style.display = 'none';
+    } else {
+      navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+      if (navOverlay) {
+        navOverlay.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
+      }
+    }
+  });
+</script>
 </body>
 </html>
