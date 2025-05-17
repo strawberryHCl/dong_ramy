@@ -25,14 +25,11 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-
     body {
       background: #1D2023;
       color: #F0F0F0;
       font-family: 'Poppins', sans-serif;
     }
-
     header {
       padding: 1rem 2rem;
       background: #1D2023;
@@ -40,35 +37,17 @@
       flex-direction: column;
       align-items: center;
       gap: 1rem;
-      color: #F0F0F0;
     }
-
-      .breadcrumb {
+    .breadcrumb {
       background-color: #444950;
       color: #fff !important;
-      font-family: 'Poppins', sans-serif;
-      padding-left: 10px;
-      padding-top: 5px;
-      padding-bottom: 5px;
+      padding: 5px 10px;
       border-radius: 4px;
-      display: block;
       width: 100%;
       box-sizing: border-box;
     }
-
-     .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .footer-logo {
-      max-width: 150px;
-      height: auto;
-    }
-    
     .navbar {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -76,88 +55,130 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-
-
+    .navbar ul {
+      display: flex;
+      gap: 70px;
+      list-style: none;
+      width: 100%;
+      padding: 0;
+    }
+    .nav-item { position: relative; cursor: pointer; white-space: nowrap; }
+    .navbar ul li {
+      padding: 20px 0 0;
+    }
+    .navbar ul li a {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+    }
+    .navbar ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #1D2023;
+      padding: 10px 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 999;
+    }
+    .navbar ul li:hover > ul {
+      display: block;
+    }
+    .menu-btn {
+      font-size: 2rem;
+      color: #F0F0F0;
+      cursor: pointer;
+      display: none;
+      z-index: 1001;
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+    }
     .nav-links {
       display: flex;
       gap: 1rem;
       list-style: none;
     }
-
     .nav-links a {
       color: white;
       text-decoration: none;
       padding: 0.5rem 1rem;
       border-radius: 5px;
     }
-
     .nav-links a:hover {
       background: #5B6066;
     }
-
-    /* ✅ 햄버거 버튼: header 밖, 화면 우측 상단에 고정 */
-    .menu-btn {
-      position: fixed;
-      top: 1.5rem;
-      right: 1.5rem;
-      font-size: 2rem;
-      color: #F0F0F0;
-      cursor: pointer;
-      z-index: 1100;
-      display: none;
+    .nav-links li {
+      position: relative;
     }
-
-    /* ✅ 오버레이 메뉴 (슬라이드 형식) */
-    .nav-overlay {
+    .nav-links li:hover .dropdown {
+      display: block;
+    }
+    .dropdown {
       display: none;
-      position: fixed;
-      top: 0;
+      position: absolute;
+      top: 100%;
       right: 0;
-      width: 260px;
-      height: 100vh;
-      background: #1D2023;
-      color: #F0F0F0;
+      width: 100vw;
+      background: #2b2e32;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       flex-direction: column;
-      align-items: flex-end;
-      padding-top: 80px;
-      z-index: 1050;
-      transition: transform 0.3s ease;
-      transform: translateX(100%);
-      overflow-y: auto;
+      z-index: 999;
     }
-
-    .nav-overlay.active {
+    .dropdown ul {
       display: flex;
-      transform: translateX(0);
+      gap: 30px;
+      padding: 0;
+      list-style: none;
     }
-
-    .nav-overlay li {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      text-align: right;
-    }
-
-    .nav-overlay li .dropdown {
-      display: none;
-      padding-left: 1rem;
-    }
-
-    .nav-overlay li .dropdown.active {
-      display: block;
-    }
-
-    .dropdown a {
-      color: #e0e0e0;
-      text-decoration: none;
-      display: block;
+    .dropdown li a {
       padding: 0.5rem 1rem;
+      color: #e0e0e0;
     }
 
     @media (max-width: 1024px) {
       .menu-btn { display: block; }
-      .navbar .nav-links { display: none; }
-      .footer-content { flex-direction: column; align-items: flex-start; }
-      .footer-text { text-align: center; width: 100%; }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: flex-end;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 260px;
+        height: 100vh;
+        background: #1D2023;
+        padding-top: 60px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+        overflow-y: auto;
+      }
+
+      .nav-links.active {
+        display: flex;
+        transform: translateX(0);
+      }
+
+      .nav-links li {
+        width: 100%;
+        text-align: right;
+        padding: 0.8rem 1rem;
+      }
+
+      .nav-links li .dropdown {
+        display: none;
+        position: static;
+        background: none;
+        padding-left: 1rem;
+      }
+
+      .nav-links li .dropdown.active {
+        display: block;
+      }
     }
 
     .swiper {
@@ -166,77 +187,70 @@
       height: 400px;
       margin: 2rem auto 0;
     }
-
     .swiper-slide img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       background: #000;
     }
-
-    .breadcrumb {
-      padding: 1rem;
-      color: #ccc;
+    .left-padding-section {
+      padding-left: 20%;
+      margin-bottom: 3rem;
     }
-
-     footer {
+    footer {
       background: #555A60;
       color: #F0F0F0;
       padding: 1rem 2rem;
     }
-
     .footer-content {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
       max-width: 1200px;
       margin: 0 auto;
     }
-
     .footer-left {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 10px;
     }
-
     .footer-logo {
       width: 200px;
       filter: invert(1);
     }
-
     .footer-icons {
       display: flex;
       gap: 10px;
     }
-
     .footer-icons img {
       width: 24px;
       height: 24px;
       opacity: 0.8;
     }
-
     .footer-icons img:hover {
       opacity: 1;
     }
-
     .footer-text {
       text-align: right;
       font-size: 0.9rem;
       line-height: 1.4;
     }
-
+    @media (max-width: 768px) {
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .footer-text {
+        text-align: center;
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
-
-<!-- ✅ 햄버거 버튼 -->
-<div class="menu-btn" id="menuBtn">&#9776;</div>
-
-<!-- ✅ Header 영역 -->
- <header>
+  <header>
     <div class="footer-inner">
       <a href="/dong_ramy/"><img src="https://i.imgur.com/tpRkEqi.png" class="footer-logo" alt="DONGRAMY 로고"></a>
     </div>
@@ -271,40 +285,9 @@
     </nav>
   </header>
 
-
-<!-- ✅ 오버레이 네비게이션 -->
-<ul class="nav-overlay" id="navOverlay">
-  <li><a href="/dong_ramy/">홈</a></li>
-  <li><a href="/dong_ramy/about/">회사소개</a>
-    <ul class="dropdown">
-      <li><a href="/dong_ramy/about/greeting">인사말</a></li>
-      <li><a href="/dong_ramy/about/status">회사현황</a></li>
-      <li><a href="/dong_ramy/about/history">연혁</a></li>
-    </ul>
-  </li>
-  <li><a href="/dong_ramy/service/">서비스</a>
-    <ul class="dropdown">
-      <li><a href="/dong_ramy/service/telecom">통신</a></li>
-      <li><a href="/dong_ramy/service/entertainment">엔터테인먼트</a></li>
-      <li><a href="/dong_ramy/service/support">고객센터</a></li>
-    </ul>
-  </li>
-  <li><a href="/dong_ramy/media/">미디어</a>
-    <ul class="dropdown">
-      <li><a href="/dong_ramy/media/event">이벤트</a></li>
-      <li><a href="/dong_ramy/media/channel">커뮤니케이션 채널</a></li>
-    </ul>
-  </li>
-  <li><a href="/dong_ramy/story/">스토리</a></li>
-  <li><a href="/dong_ramy/recruit/">채용</a></li>
-</ul>
-
-<!-- ✅ 메인 콘텐츠 -->
-<main>
-  <div id="breadcrumb" class="breadcrumb"></div>
-
-  <!-- ✅ Swiper 슬라이드 -->
-  <div class="swiper">
+  <main style="position: relative; z-index: 0;">
+    <div id="breadcrumb" class="breadcrumb"></div>
+    <div class="swiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide"><img src="https://i.imgur.com/oa6ABq5.png" /></div>
         <div class="swiper-slide"><img src="https://i.imgur.com/y5r6psd.jpeg" /></div>
@@ -313,7 +296,6 @@
       </div>
       <div class="swiper-pagination"></div>
     </div>
-  
     <section style="text-align:center; margin: 4rem auto;">
       <h2 style="font-size:2rem;">DONG_RAMY <br>DREAM COME TRUE.</h2>
       <p>모든 대한민국 사람들이 통신하면 '동그라미'라는게 머리속에 자연스럽게 떠오르는 그날까지!</p>
@@ -323,10 +305,8 @@
       <h2>동그라미</h2>
       <p>따듯한 빛을 보내주는 태양, <br>어두운 밤을 비춰주는 달, <br>맛있게 먹을 수 있는 모든 과일 열매들, <br>빨리 나아갈 수 있게 해주는 바퀴, <br>추운 계절이 지나면 어김없이 돌아오는 봄을 비롯한  <br>사계절의 순환을 갖는 공통점은 바로 동그라미 입니다. </p>
     </section>
+  </main>
 
-</main>
-
-<!-- ✅ Footer -->
   <footer>
     <div class="footer-content">
       <div class="footer-left">
@@ -334,74 +314,64 @@
           <img src="https://i.imgur.com/tpRkEqi.png" class="footer-logo" alt="DONGRAMY 로고">
         </a>
         <div class="footer-icons">
-          <a href="https://blog.naver.com/young5677kv" target="_blank" title="네이버 블로그">
-            <img src="https://i.imgur.com/129mPRs.png" alt="Naver Blog">
-          </a>
-          <a href="https://www.instagram.com/dong_ramy_official/" target="_blank" title="인스타그램">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
-          </a>
+          <a href="https://blog.naver.com/young5677kv" target="_blank"><img src="https://i.imgur.com/129mPRs.png" alt="Naver Blog"></a>
+          <a href="https://www.instagram.com/dong_ramy_official/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"></a>
         </div>
       </div>
-      <p class="footer-text">
-        Copyright © 2021 Dongramy Co. All rights reserved. <br>
-        서울특별시 마포구 와우산로19길 6-11, 4층 (서교동) <br>
-        사업자번호 : 689-39-00711 | 대표 : 한동길
-      </p>
+      <p class="footer-text">Copyright © 2021 Dongramy Co. All rights reserved. <br>서울특별시 마포구 와우산로19길 6-11, 4층 (서교동) <br>사업자번호 : 689-39-00711 | 대표 : 한동길</p>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    new Swiper('.swiper', {
+      loop: true,
+      autoplay: { delay: 3000 },
+      pagination: { el: '.swiper-pagination' },
+      effect: 'slide'
+    });
 
-<!-- ✅ 스크립트 -->
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script>
-  // Swiper 초기화
-  new Swiper('.swiper', {
-    loop: true,
-    autoplay: { delay: 3000 },
-    pagination: { el: '.swiper-pagination' },
-    effect: 'slide'
-  });
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
 
-  // 햄버거 메뉴 버튼
-  const menuBtn = document.getElementById('menuBtn');
-  const navOverlay = document.getElementById('navOverlay');
-
-  menuBtn.addEventListener('click', () => {
-    navOverlay.classList.toggle('active');
-  });
-
-  // 드롭다운 열기/닫기
-  navOverlay.querySelectorAll('li > a').forEach(link => {
-    link.addEventListener('click', e => {
-      const next = link.nextElementSibling;
-      if (next && next.classList.contains('dropdown')) {
-        e.preventDefault();
-        next.classList.toggle('active');
+    menuBtn.addEventListener('click', function () {
+      if (!navLinks.classList.contains('active')) {
+        navLinks.style.display = 'flex';
+        setTimeout(() => navLinks.classList.add('active'), 10);
+      } else {
+        navLinks.classList.remove('active');
+        setTimeout(() => navLinks.style.display = 'none', 300);
       }
     });
-  });
 
-  // Breadcrumb 생성
-  const pathMap = {
-    "": "홈",
-    "about": "회사소개",
-    "service": "서비스",
-    "media": "미디어",
-    "story": "스토리",
-    "recruit": "채용"
-  };
+    document.querySelectorAll('.nav-links > li > a').forEach(link => {
+      link.addEventListener('click', e => {
+        const next = link.nextElementSibling;
+        if (next && next.classList.contains('dropdown')) {
+          e.preventDefault();
+          next.classList.toggle('active');
+          next.style.display = next.style.display === 'block' ? 'none' : 'block';
+        }
+      });
+    });
 
-  function createBreadcrumb() {
-    const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
-    let html = '<a href="/dong_ramy/">홈</a>';
-    if (path[0] && pathMap[path[0]]) {
-      html += ` &gt; ${pathMap[path[0]]}`;
+    const pathMap = {
+      "": "홈",
+      "about": "회사소개",
+      "service": "서비스",
+      "media": "미디어",
+      "story": "스토리",
+      "recruit": "채용"
+    };
+    function createBreadcrumb() {
+      const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
+      let html = '<a href="/dong_ramy/">홈</a>';
+      if (path[0] && pathMap[path[0]]) {
+        html += ` <span> &gt; ${pathMap[path[0]]}</span>`;
+      }
+      document.getElementById("breadcrumb").innerHTML = html;
     }
-    document.getElementById("breadcrumb").innerHTML = html;
-  }
-
-  createBreadcrumb();
-</script>
-
+    createBreadcrumb();
+  </script>
 </body>
 </html>
