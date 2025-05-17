@@ -241,6 +241,21 @@
     pointer-events: none;
   }
 
+/* 기존 .nav-overlay는 그대로 유지 */
+
+/* 새로 추가할 전체 화면 오버레이 */
+.nav-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3); /* 반투명 어두움 */
+  z-index: 999; /* nav-links(1000) 바로 아래 */
+  pointer-events: auto; /* 클릭 가능 */
+}
+
 .nav-links li {
   width: 100%;
   margin-bottom: 0 !important; /* 마진 제거 */
@@ -374,15 +389,18 @@
   const menuBtn = document.getElementById('menuBtn');
   const navLinks = document.getElementById('navLinks');
   const navOverlay = document.querySelector('.nav-overlay'); // 오버레이 요소 가져오기
+  const navBackdrop = document.querySelector('.nav-backdrop'); // 새 오버레이 요소
 
   menuBtn.addEventListener('click', function () {
     if (!navLinks.classList.contains('active')) {
       navLinks.style.display = 'flex';
       if (navOverlay) navOverlay.style.display = 'block'; // 오버레이 표시
+      if (navBackdrop) navBackdrop.style.display = 'block'; // 새 오버레이 표시
       setTimeout(() => navLinks.classList.add('active'), 10);
     } else {
       navLinks.classList.remove('active');
       if (navOverlay) navOverlay.style.display = 'none'; // 오버레이 숨김
+      if (navBackdrop) navBackdrop.style.display = 'none'; // 새 오버레이 숨김
       setTimeout(() => navLinks.style.display = 'none', 300);
     }
 
@@ -392,6 +410,22 @@
       dropdown.style.display = 'none';
     });
   });
+
+  // 새 오버레이 클릭 시 메뉴 닫기
+  if (navBackdrop) {
+    navBackdrop.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      if (navOverlay) navOverlay.style.display = 'none';
+      navBackdrop.style.display = 'none';
+      setTimeout(() => navLinks.style.display = 'none', 300);
+      
+      // 드롭다운 초기화
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
+        dropdown.classList.remove('active');
+        dropdown.style.display = 'none';
+      });
+    });
+  }
 
   document.querySelectorAll('.nav-links > li > a').forEach(link => {
     link.addEventListener('click', e => {
@@ -427,13 +461,18 @@
       navLinks.classList.remove('active');
       navLinks.style.display = 'flex';
       if (navOverlay) navOverlay.style.display = 'none';
+      if (navBackdrop) navBackdrop.style.display = 'none';
     } else {
       navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
       if (navOverlay) {
         navOverlay.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
       }
+      if (navBackdrop) {
+        navBackdrop.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
+      }
     }
   });
 </script>
+  <div class="nav-backdrop"></div>
 </body>
 </html>
