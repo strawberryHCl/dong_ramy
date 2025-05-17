@@ -150,7 +150,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 140px; /* 폭 줄임 - 수정 */
+    width: 90px; /* 폭 줄임 - 수정 */
     height: 100vh;
     background: #1D2023;
     padding-top: 60px;
@@ -172,8 +172,13 @@
   }
 
   .nav-links li a {
-    font-size: 0.85rem; /* 글자 크기 줄임 - 선택사항 */
-    line-height: 1.2;   /* 줄 간격 압축 - 수정 */
+    font-size: 0.75rem; /* 글자 크기 줄임 - 선택사항 */
+    line-height: 1.1;   /* 줄 간격 압축 - 수정 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block; 
+    max-width: 80px; 
   }
 
   .nav-links li .dropdown {
