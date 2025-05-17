@@ -483,12 +483,12 @@
   }
 
   // 드롭다운 토글 기능 수정 (기존 next.classList.toggle → 부모 li에 active 클래스 토글)
-  document.querySelectorAll('.nav-links > li > a').forEach(link => {
-    link.addEventListener('click', e => {
-      const next = link.nextElementSibling;
-      if (next && next.classList.contains('dropdown')) {
-        e.preventDefault();
-        link.parentElement.classList.toggle('active'); // 수정된 부분
+document.querySelectorAll('.nav-links > li > a').forEach(link => {
+  link.addEventListener('click', e => {
+    const submenu = link.nextElementSibling;
+    if (submenu && submenu.classList.contains('dropdown')) {
+      e.preventDefault();      // 현재 클릭한 메뉴 열고 닫기
+      link.parentElement.classList.toggle('active');
       }
     });
   });
