@@ -193,36 +193,61 @@
       line-height: 1.4;
     }
 
-    /* 데스크탑 전용 - 1025px 이상일 때만 */
 @media (min-width: 1025px) {
-  /* 하위 메뉴 기본 숨김, 전체 너비 차지 */
- /* 기본 하위 메뉴 숨김 및 가로 배치 */
-.navbar ul li ul {
-  display: flex;
-  gap: 30px;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: #1D2023;
-  padding: 15px 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  z-index: 999;
-  visibility: hidden;       /* 기본은 안 보이게 */
-  opacity: 0;               /* 투명하게 */
-  transform: translateY(-10px); /* 살짝 위에 위치 */
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
-}
+  /* 네비게이션 바 */
+  .navbar {
+    position: relative;
+  }
+  /* 메인 메뉴 - 가로 배열 유지 */
+  .navbar ul {
+    display: flex;
+    gap: 70px;
+    list-style: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  /* 각 메뉴 아이템 */
+  .navbar ul li {
+    position: relative;
+    padding: 20px 0 0;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .navbar ul li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #F0F0F0;
+  }
 
-/* 네비게이션 전체에 마우스 올리면 드롭다운 한번에 보임 */
-.navbar ul:hover > li > ul {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0s;
-}
-}
+  /* 하위 메뉴 전체를 감싸는 드롭다운 레이어 - 기본 숨김 */
+  .navbar ul li ul {
+    /* 드롭다운 서브메뉴는 숨김 상태 */
+    display: flex;
+    gap: 30px;
+    position: absolute;
+    top: 100%;   /* 네비게이션 바로 아래 */
+    left: 0;
+    width: 100%; /* 전체 너비 */
+    background-color: #1D2023;
+    padding: 15px 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+    z-index: 999;
+  }
 
+  /* 네비게이션 바에 마우스 올리면 드롭다운 전체 보임 */
+  .navbar:hover ul li ul {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+}
        @media (max-width: 1024px) {
   .menu-btn {
     display: block;
