@@ -206,43 +206,53 @@ body {
     }
 
     @media (max-width: 1024px) {
-      .menu-btn {
-        display: block;
-      }
+  .menu-btn {
+    display: block;
+  }
 
-      .nav-links {
-        position: fixed;
-        flex-direction: column;
-        align-items: flex-end;
-        top: 60px;
-        right: -300px;
-        width: 260px;
-        height: 100vh;
-        background: #1D2023;
-        padding-top: 60px;
-        transition: right 0.3s ease;
-        z-index: 1000;
-      }
+  .nav-links {
+    position: fixed;
+    flex-direction: column;
+    align-items: flex-end;
+    top: 60px;
+    right: -300px;
+    width: 260px;
+    height: 100vh;
+    background: #1D2023;
+    padding-top: 60px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+  }
 
-      .nav-links.active {
-        right: 0;
-      }
+  .nav-links.active {
+    right: 0;
+  }
 
-      .nav-links li {
-        width: 100%;
-        text-align: right;
-      }
+  .nav-links li {
+    width: 100%;
+    text-align: right;
+    position: relative; /* 드롭다운 위치 조정 위해 추가 */
+  }
 
-      .nav-links li .dropdown {
-        position: static;
-        background: none;
-        margin: 0;
-      }
+  /* 드롭다운 기본 숨김 */
+  .nav-links li .dropdown {
+    display: none;
+    position: static;
+    background: none;
+    margin: 0;
+    padding-left: 1rem; /* 안쪽 들여쓰기 (선택사항) */
+  }
 
-      .nav-links li:hover .dropdown {
-        display: block;
-      }
-    }
+      .nav-links li .dropdown.active {
+  display: block;
+}
+
+  /* 호버로 열지 않음 (삭제 또는 주석 처리) */
+  /* .nav-links li:hover .dropdown {
+    display: block;
+  } */
+}
 
     /* Swiper */
     .swiper {
@@ -426,6 +436,7 @@ body {
       const next = link.nextElementSibling;
       if (next && next.classList.contains('dropdown')) {
         e.preventDefault();
+        next.classList.toggle('active');
         next.style.display = next.style.display === 'block' ? 'none' : 'block';
       }
     });
