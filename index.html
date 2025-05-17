@@ -166,6 +166,10 @@
       display: flex;
     }
 
+     .nav-links .dropdown {
+       display: none !important;
+     }
+
      /* 통합 드롭다운 박스 */
   .dropdown-container {
     display: none;
@@ -399,7 +403,7 @@
     </div>
   </footer>
 
- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
   new Swiper('.swiper', {
     loop: true,
@@ -410,41 +414,33 @@
 
   const menuBtn = document.getElementById('menuBtn');
   const navLinks = document.getElementById('navLinks');
-  const navOverlay = document.querySelector('.nav-overlay'); // 오버레이 요소 가져오기
-  const navBackdrop = document.querySelector('.nav-backdrop'); // 새 오버레이 요소
+  const navOverlay = document.querySelector('.nav-overlay');
+  const navBackdrop = document.querySelector('.nav-backdrop');
 
   menuBtn.addEventListener('click', function () {
     if (!navLinks.classList.contains('active')) {
-      navLinks.style.display = 'flex';
-      if (navOverlay) navOverlay.style.display = 'block'; // 오버레이 표시
-      if (navBackdrop) navBackdrop.style.display = 'block'; // 새 오버레이 표시
-      setTimeout(() => navLinks.classList.add('active'), 10);
+      navLinks.classList.add('active');
+      if (navOverlay) navOverlay.style.display = 'block';
+      if (navBackdrop) navBackdrop.style.display = 'block';
     } else {
       navLinks.classList.remove('active');
-      if (navOverlay) navOverlay.style.display = 'none'; // 오버레이 숨김
-      if (navBackdrop) navBackdrop.style.display = 'none'; // 새 오버레이 숨김
-      setTimeout(() => navLinks.style.display = 'none', 300);
+      if (navOverlay) navOverlay.style.display = 'none';
+      if (navBackdrop) navBackdrop.style.display = 'none';
+      // 드롭다운 초기화
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
+        dropdown.classList.remove('active');
+      });
     }
-
-    // 드롭다운 초기화
-    document.querySelectorAll('.dropdown').forEach(dropdown => {
-      dropdown.classList.remove('active');
-      dropdown.style.display = 'none';
-    });
   });
 
-  // 새 오버레이 클릭 시 메뉴 닫기
   if (navBackdrop) {
     navBackdrop.addEventListener('click', () => {
       navLinks.classList.remove('active');
       if (navOverlay) navOverlay.style.display = 'none';
       navBackdrop.style.display = 'none';
-      setTimeout(() => navLinks.style.display = 'none', 300);
-      
       // 드롭다운 초기화
       document.querySelectorAll('.dropdown').forEach(dropdown => {
         dropdown.classList.remove('active');
-        dropdown.style.display = 'none';
       });
     });
   }
@@ -455,7 +451,6 @@
       if (next && next.classList.contains('dropdown')) {
         e.preventDefault();
         next.classList.toggle('active');
-        next.style.display = next.style.display === 'block' ? 'none' : 'block';
       }
     });
   });
@@ -468,6 +463,7 @@
     "story": "스토리",
     "recruit": "채용"
   };
+
   function createBreadcrumb() {
     const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
     let html = '<a href="/dong_ramy/">홈</a>';
@@ -494,6 +490,7 @@
       }
     }
   });
+</script>
 </script>
 </body>
 </html>
