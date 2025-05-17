@@ -211,6 +211,7 @@ body {
   }
 
   .nav-links {
+    display: none; /* 🆕 기본은 숨김 */
     position: fixed; /* 이미 고정된 위치이므로 OK */
     top: 0;
     right: 0;
@@ -218,7 +219,6 @@ body {
     width: 260px;
     background: #1D2023;
     padding-top: 60px;
-    display: flex;
     flex-direction: column;
     align-items: flex-end;
     transform: translateX(100%); /* 오른쪽 밖으로 숨김 */
@@ -229,6 +229,7 @@ body {
   }
 
   .nav-links.active {
+    display: flex;
     transform: translateX(0); /* 슬라이드 인 효과 */
     pointer-events: auto;
   }
