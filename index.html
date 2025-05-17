@@ -177,8 +177,14 @@
 .nav-links li a {
   display: block;
   padding: 0.2rem 1rem; /* 위아래 패딩 조정해서 클릭 영역 유지 */
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.1; /* 이걸로도 간격 줄어듦 */
+  /* 수정된 내용 */
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%
+  /* 수정사항 끝 */
 }
 
   .nav-links li .dropdown {
