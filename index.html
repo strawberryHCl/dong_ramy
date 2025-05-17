@@ -162,7 +162,11 @@
     color: #F0F0F0;
   }
 
-  /* 통합 드롭다운 박스 */
+    .navbar:hover .dropdown-container {
+      display: flex;
+    }
+
+     /* 통합 드롭다운 박스 */
   .dropdown-container {
     display: none;
     position: absolute;
@@ -176,10 +180,6 @@
     justify-content: space-around;
     gap: 60px;
   }
-
-    .navbar:hover .dropdown-container {
-      display: flex;
-    }
    
   /* 각 항목별 드롭다운 컬럼 */
   .dropdown-column {
@@ -334,29 +334,30 @@
       <li><a href="/dong_ramy/story/">스토리</a></li>
       <li><a href="/dong_ramy/recruit/">채용</a></li>
     </ul>
+
+    <!-- 이 위치로 이동해야 hover 작동 -->
+    <div class="dropdown-container" id="pcDropdown">
+      <div class="dropdown-column">
+        <strong>회사소개</strong>
+        <a href="/dong_ramy/about/greeting">인사말</a>
+        <a href="/dong_ramy/about/status">회사현황</a>
+        <a href="/dong_ramy/about/history">연혁</a>
+      </div>
+      <div class="dropdown-column">
+        <strong>서비스</strong>
+        <a href="/dong_ramy/service/telecom">통신</a>
+        <a href="/dong_ramy/service/entertainment">엔터테인먼트</a>
+        <a href="/dong_ramy/service/support">고객센터</a>
+      </div>
+      <div class="dropdown-column">
+        <strong>미디어</strong>
+        <a href="/dong_ramy/media/event">이벤트</a>
+        <a href="/dong_ramy/media/channel">커뮤니케이션 채널</a>
+      </div>
+    </div>
+
     <div class="nav-overlay"></div>
   </nav>
-
-  <!-- PC 전용 드롭다운: 네비게이션 바 전체에 마우스를 올렸을 때 표시 -->
-  <div class="dropdown-container" id="pcDropdown">
-    <div class="dropdown-column">
-      <strong>회사소개</strong>
-      <a href="/dong_ramy/about/greeting">인사말</a>
-      <a href="/dong_ramy/about/status">회사현황</a>
-      <a href="/dong_ramy/about/history">연혁</a>
-    </div>
-    <div class="dropdown-column">
-      <strong>서비스</strong>
-      <a href="/dong_ramy/service/telecom">통신</a>
-      <a href="/dong_ramy/service/entertainment">엔터테인먼트</a>
-      <a href="/dong_ramy/service/support">고객센터</a>
-    </div>
-    <div class="dropdown-column">
-      <strong>미디어</strong>
-      <a href="/dong_ramy/media/event">이벤트</a>
-      <a href="/dong_ramy/media/channel">커뮤니케이션 채널</a>
-    </div>
-  </div>
 
   <div class="nav-backdrop"></div>
 </header>
