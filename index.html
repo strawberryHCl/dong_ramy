@@ -206,6 +206,7 @@
  }
 
 /* ---------- 모바일 전용 ---------- */
+/* ---------- 모바일 전용 ---------- */
 @media (max-width: 1024px) {
   .dropdown-container {
     display: none !important;
@@ -272,6 +273,7 @@
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
     text-align: right;
+    position: relative;
   }
 
   .nav-links li a {
@@ -283,55 +285,57 @@
     color: #F0F0F0;
     text-decoration: none;
     border-radius: 5px;
+    cursor: pointer;
   }
 
-  /* 기존 .dropdown 숨김 부분 주석 처리 (수정된 부분으로 대체) */
-  /*
-  .nav-links li .dropdown {
+  /* 하위 메뉴 숨김 (기본) */
+  .nav-links li ul.dropdown {
     display: none;
     position: static;
     background-color: #323538;
     padding-left: 0.4rem;
-  }
-  */
-
-  /* 수정된 부분 시작 */
-  /* li.dropdown가 있을 때, 그 안의 ul을 숨기고 활성화시 노출 */
-  .nav-links li.dropdown > ul {
-    display: none;
-    position: static;
-    background-color: #323538;
-    padding-left: 0.4rem;
+    margin-top: 0.3rem;
+    border-radius: 4px;
   }
 
-  .nav-links li.dropdown.active > ul {
+  /* 하위 메뉴 활성화 시 보임 */
+  .nav-links li ul.dropdown.active {
     display: block;
   }
-  /* 수정된 부분 끝 */
 
-  .nav-links li .dropdown a::before {
+  .nav-links li ul.dropdown li a {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    text-align: right;
+  }
+
+  /* 하위 메뉴 앞에 아이콘 추가 */
+  .nav-links li ul.dropdown li a::before {
     content: "◻";
     display: inline-block;
     margin-right: 0.4rem;
     font-size: 0.8rem;
     vertical-align: middle;
     color: #F0F0F0;
-    text-decoration: none;
     border-radius: 5px;
   }
 
-  .left-padding-section {
-    padding-left: 5% !important;
-    margin-left: 0;
-    text-align: left;
+  /* 화살표 아이콘 (선택사항) */
+  .nav-links li > a::after {
+    content: '▼';
+    display: inline-block;
+    margin-left: 0.3rem;
+    font-size: 0.7rem;
+    color: #ccc;
+    vertical-align: middle;
   }
 
-  section[style*="text-align:center"] {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    box-sizing: border-box;
+  /* 하위 메뉴 없는 항목에서는 화살표 숨기기 */
+  .nav-links li:not(:has(ul.dropdown)) > a::after {
+    content: '';
   }
 }
+  
 </style>
 </head>
 <body>
