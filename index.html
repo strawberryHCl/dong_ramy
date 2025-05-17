@@ -212,43 +212,44 @@ body {
 
   .nav-links {
     position: fixed;
-    flex-direction: column;
-    align-items: flex-end;
-    top: 60px;
+    top: 0;
     right: 0;
-    width: 260px;
     height: 100vh;
+    width: 260px;
     background: #1D2023;
     padding-top: 60px;
-    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    transform: translateX(100%); /* 오른쪽 바깥으로 숨김 */
+    transition: transform 0.3s ease;
     z-index: 1000;
     overflow-y: auto;
-
-    transform: translateX(100%); /* 화면 밖으로 완전히 밀기 */
+    pointer-events: none; /* 숨겨진 상태에서는 클릭 안 되게 */
   }
 
   .nav-links.active {
-    transform: translateX(0);    /* 활성화 시 화면 안으로 */
+    transform: translateX(0); /* 오른쪽에서 슬라이드 인 */
+    pointer-events: auto;
   }
 
   .nav-links li {
     width: 100%;
     text-align: right;
-    position: relative; /* 드롭다운 위치 조정 위해 추가 */
+    padding: 0.8rem 1rem;
+    position: relative;
   }
 
-  /* 드롭다운 기본 숨김 */
   .nav-links li .dropdown {
     display: none;
     position: static;
     background: none;
-    margin: 0;
-    padding-left: 1rem; /* 안쪽 들여쓰기 (선택사항) */
+    padding-left: 1rem;
   }
 
-      .nav-links li .dropdown.active {
-  display: block;
-}
+  .nav-links li .dropdown.active {
+    display: block;
+  }
 
   /* 호버로 열지 않음 (삭제 또는 주석 처리) */
   /* .nav-links li:hover .dropdown {
