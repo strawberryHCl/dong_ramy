@@ -196,30 +196,31 @@
     /* 데스크탑 전용 - 1025px 이상일 때만 */
 @media (min-width: 1025px) {
   /* 하위 메뉴 기본 숨김, 전체 너비 차지 */
-  .navbar ul li ul {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #1D2023;
-    padding: 15px 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 999;
-    /* 가로 정렬 */
-    display: flex; /* flex로 가로 정렬 */
-    gap: 30px; /* 아이템 사이 간격 */
-  }
+ /* 기본 하위 메뉴 숨김 및 가로 배치 */
+.navbar ul li ul {
+  display: flex;
+  gap: 30px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #1D2023;
+  padding: 15px 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 999;
+  visibility: hidden;       /* 기본은 안 보이게 */
+  opacity: 0;               /* 투명하게 */
+  transform: translateY(-10px); /* 살짝 위에 위치 */
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+}
 
-  /* 네비 전체에 마우스 올리면 하위 메뉴 한번에 노출 */
-  .navbar ul:hover > li > ul {
-    display: flex;
-  }
-
-  /* 하위 메뉴 아이템 스타일 */
-  .navbar ul li ul li {
-    white-space: nowrap; /* 줄바꿈 방지 */
-  }
+/* 네비게이션 전체에 마우스 올리면 드롭다운 한번에 보임 */
+.navbar ul:hover > li > ul {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
 }
 
        @media (max-width: 1024px) {
