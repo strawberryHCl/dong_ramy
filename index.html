@@ -195,25 +195,22 @@
 
     /* 데스크탑 전용 - 1025px 이상일 때만 */
 @media (min-width: 1025px) {
+  /* 전체 메뉴에 마우스 올렸을 때만 하위 메뉴 전체 노출 */
   .navbar ul:hover > li > ul {
-    display: block !important;
+    display: block;
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%; /* 전체 메뉴 폭 */
+    width: 100%;
     background-color: #1D2023;
     padding: 15px 0;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     z-index: 999;
-    /* 드롭다운 내부 ul을 가로 배열로 */
   }
-
-  /* 각 li 안 서브메뉴 ul 스타일 조정 */
+  /* 기본 상태는 하위 메뉴 숨김 */
   .navbar ul li ul {
+    display: none;
     position: static;
-    display: inline-block;
-    vertical-align: top;
-    width: auto;
     padding: 0 20px;
     box-shadow: none;
   }
