@@ -8,10 +8,7 @@
   <meta name="keywords" content="동그라미, 휴대폰, 스마트폰, 아이폰, 갤럭시, 동그라미 스토어, dongramy 등">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://dongramystore.co.kr/">
-    <!-- favicon ) -->
   <link rel="icon" href="/dong_ramy/favicon.ico" type="image/x-icon">
-
-  <!-- Open Graph (Facebook, Kakao, LinkedIn 등에서 사용) -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="ko_KR" />
   <meta property="og:site_name" content="동그라미 스토어" />
@@ -20,27 +17,20 @@
   <meta property="og:image" content="https://i.imgur.com/tpRkEqi.png" />
   <meta property="og:image:alt" content="동그라미 스토어 로고" />
   <meta property="og:url" content="https://dongramystore.co.kr/" />
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="동그라미 스토어 - 공식 쇼핑몰 | 디자인 브랜드" />
   <meta name="twitter:description" content="공식 온라인 쇼핑몰 동그라미 스토어. 브랜드 정품을 빠르고 쉽게 구매하세요." />
   <meta name="twitter:image" content="https://i.imgur.com/tpRkEqi.png" />
-  <!-- <meta name="twitter:site" content="@dong_ramy_official" /> --> <!-- 계정 있으면 주석 해제 -->
-
-  <!-- Fonts & Styles -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-</head>
-
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-  background: #1D2023;
-  color: #F0F0F0;
-  font-family: 'Poppins', sans-serif;
-}
+    body {
+      background: #1D2023;
+      color: #F0F0F0;
+      font-family: 'Poppins', sans-serif;
+    }
 
     header {
       padding: 1rem 2rem;
@@ -52,26 +42,21 @@ body {
       color: #F0F0F0;
     }
 
-.breadcrumb {
-  background-color: #444950;  
-  color: #fff !important;     
-  font-family: 'Poppins', sans-serif; 
-  padding-left: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-radius: 4px;       
-  display: block;            /* 블록으로 너비 전체 차지 */
-  width: 100%;               /* 부모 너비 딱 맞춤 */
-  box-sizing: border-box;    /* 패딩 포함해서 너비 계산 */
-}
-    
-.navbar .dropdown {
-  top: calc(100% + 8px); /* 네비바 바로 아래에서 8px 띄움 */
-  /* 기타 스타일 */
-}
-    
+    .breadcrumb {
+      background-color: #444950;
+      color: #fff !important;
+      font-family: 'Poppins', sans-serif;
+      padding-left: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border-radius: 4px;
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
     .navbar {
-      position: relative;
+      position: relative; /* ✅ 메뉴버튼 absolute 기준 */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -81,56 +66,53 @@ body {
     }
 
     .navbar ul {
-  display: flex;
-  gap: 70px; /* 각 메뉴 아이템 사이 간격 30px */
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  position: relative;
-  width: 100%;
-}
-    
-.nav-item {
-  position: relative;
-  cursor: pointer;
-  white-space: nowrap;
-}
-    
-    /* 메뉴 아이템 기본 스타일 */
-.navbar ul li {
-  /* 필요시 padding이나 margin 조절 가능 */
-   list-style: none;
-  padding: 20px 0 0; /* ← 상단 여백 */
-  margin: 0;
-}
+      display: flex;
+      gap: 70px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      position: relative;
+      width: 100%;
+    }
 
-/* 메뉴 링크 */
-.navbar ul li a {
-  display: block;
-  padding: 10px 15px; /* 클릭 영역 넓히기 */
-  text-decoration: none;
-}
-/* 드롭다운 메뉴 기본적으로 숨김 */
-.navbar ul li ul {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #1D2023;
-  padding: 10px 0;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  z-index: 999;
-}
+    .nav-item {
+      position: relative;
+      cursor: pointer;
+      white-space: nowrap;
+    }
 
-/* 부모 항목에 마우스 올렸을 때 드롭다운 표시 */
-.navbar ul li:hover > ul {
-  display: block;
-}
+    .navbar ul li {
+      list-style: none;
+      padding: 20px 0 0;
+      margin: 0;
+    }
+
+    .navbar ul li a {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+    }
+
+    .navbar ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #1D2023;
+      padding: 10px 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 999;
+    }
+
+    .navbar ul li:hover > ul {
+      display: block;
+    }
+
     .menu-btn {
       font-size: 2rem;
       color: #F0F0F0;
       cursor: pointer;
-      display: none;
+      display: none; /* ✅ 기본은 안보이게 */
       z-index: 1001;
       position: absolute;
       top: 1.5rem;
@@ -176,84 +158,77 @@ body {
       z-index: 999;
     }
 
-    /* 드롭다운 내부 리스트 스타일 */
-.dropdown ul {
-  display: flex;
-  gap: 30px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
+    .dropdown ul {
+      display: flex;
+      gap: 30px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
 
-    /* 드롭다운 항목 스타일 */
-.dropdown ul li {
-  cursor: pointer;
-  white-space: nowrap;
-}
+    .dropdown ul li {
+      cursor: pointer;
+      white-space: nowrap;
+    }
 
-/* 호버시 드롭다운 보이기 */
-.nav-item:hover .dropdown {
-  display: block;
-}
-    
     .dropdown li {
-  margin-bottom: 10px; /* 아래 간격을 10px로 넉넉하게 */
-}
+      margin-bottom: 10px;
+    }
 
     .dropdown li a {
       padding: 0.5rem 1rem;
       color: #e0e0e0;
     }
 
-  @media (max-width: 1024px) {
-  .nav-links {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 260px;
-    background: #1D2023;
-    padding-top: 60px;
-    flex-direction: column;
-    align-items: flex-end;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    z-index: 1000;
-    overflow-y: auto;
-  }
+    @media (max-width: 1024px) {
+      .menu-btn { display: block; } /* ✅ 모바일에서 햄버거 보이게 */
 
-  .nav-links.active {
-    display: flex;
-    transform: translateX(0);
-  }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 260px;
+        background: #1D2023;
+        padding-top: 60px;
+        flex-direction: column;
+        align-items: flex-end;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+        overflow-y: auto;
+      }
 
-  .nav-links li {
-    width: 100%;
-    text-align: right;
-    padding: 0.8rem 1rem;
-    position: relative;
-  }
+      .nav-links.active {
+        display: flex;
+        transform: translateX(0);
+      }
 
-  .nav-links li .dropdown {
-    display: none;
-    position: static;
-    background: none;
-    padding-left: 1rem;
-  }
+      .nav-links li {
+        width: 100%;
+        text-align: right;
+        padding: 0.8rem 1rem;
+        position: relative;
+      }
 
-  .nav-links li .dropdown.active {
-    display: block;
-  }
+      .nav-links li .dropdown {
+        display: none;
+        position: static;
+        background: none;
+        padding-left: 1rem;
+      }
 
-  main {
-    /* 💡 추가: 네비게이션 메뉴와 겹치지 않도록 z-index 낮춤 */
-    position: relative;
-    z-index: 0; /* 슬라이딩 메뉴가 위에 오도록 */
-  }
-}
+      .nav-links li .dropdown.active {
+        display: block;
+      }
 
-    /* Swiper */
+      main {
+        position: relative;
+        z-index: 0;
+      }
+    }
+
     .swiper {
       width: 100%;
       max-width: 1200px;
@@ -268,9 +243,11 @@ body {
       background: #000;
     }
 
-    .left-padding-section { padding-left: 20%; margin-bottom: 3rem;}
-    
-    /* Footer */
+    .left-padding-section {
+      padding-left: 20%;
+      margin-bottom: 3rem;
+    }
+
     footer {
       background: #555A60;
       color: #F0F0F0;
@@ -332,6 +309,8 @@ body {
       }
     }
   </style>
+</head>
+
   <body>
   
   <header>
