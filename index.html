@@ -194,45 +194,51 @@
     }
 
 @media (min-width: 1025px) {
-  /* 네비게이션 바 */
   .navbar {
     position: relative;
   }
-  /* 메인 메뉴 - 가로 배열 유지 */
-  .navbar ul {
+
+  .nav-links {
     display: flex;
     gap: 70px;
     list-style: none;
-    width: 100%;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    justify-content: center;
   }
-  /* 각 메뉴 아이템 */
-  .navbar ul li {
+
+  .nav-links > li {
     position: relative;
     padding: 20px 0 0;
     white-space: nowrap;
     cursor: pointer;
   }
-  .navbar ul li a {
+
+  .nav-links > li > a {
     display: block;
     padding: 10px 15px;
     text-decoration: none;
     color: #F0F0F0;
   }
 
-  /* 하위 메뉴 전체를 감싸는 드롭다운 레이어 - 기본 숨김 */
-  .navbar ul li ul {
-    /* 드롭다운 서브메뉴는 숨김 상태 */
+  /* 드롭다운 메뉴 */
+  .nav-links > li:hover > .dropdown {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw; /* 전체 화면 너비 */
+    background-color: #1D2023;
     display: flex;
     gap: 30px;
-    position: absolute;
-    top: 100%;   /* 네비게이션 바로 아래 */
-    left: 0;
-    width: 100%; /* 전체 너비 */
-    background-color: #1D2023;
-    padding: 15px 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 15px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     visibility: hidden;
     opacity: 0;
     transform: translateY(-10px);
@@ -240,14 +246,17 @@
     z-index: 999;
   }
 
-  /* 네비게이션 바에 마우스 올리면 드롭다운 전체 보임 */
-  .navbar:hover ul li ul {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0s;
+  .dropdown li {
+    list-style: none;
+  }
+
+  .dropdown li a {
+    color: #F0F0F0;
+    text-decoration: none;
+    white-space: nowrap;
   }
 }
+    /*여기부터는 모바일 부분*/
        @media (max-width: 1024px) {
   .menu-btn {
     display: block;
