@@ -154,11 +154,12 @@
     width: 90px; /* 폭 줄임 - 수정 */
     height: 100vh;
     background: #1D2023;
-    padding-top: 50px;
+    padding-top: 60px;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     z-index: 1000;
-    overflow-y: auto;
+    overflow-y: scroll !imporant; /*스크롤 강제 활성화 */
+    overscroll-behavior: contain; /*스크롱 튕김 방지*/
   }
 
   .nav-links.active {
@@ -175,16 +176,16 @@
 
 .nav-links li a {
   display: block;
-  padding: 0.1rem 0.3rem; /* 위아래 패딩 조정해서 클릭 영역 유지 */
+  padding: 0.3rem 0.4rem; /* 위아래 패딩 조정해서 클릭 영역 유지 */
   font-size: 0.9rem;
-  line-height: 1; /* 이걸로도 간격 줄어듦 */
+  line-height: 1.2; /* 이걸로도 간격 줄어듦 */
  }
 
   .nav-links li .dropdown {
     display: none;
     position: static;
     background: none;
-    padding-left: 0.3rem;
+    padding-left: 0.4rem;
   }
 
   .nav-links li .dropdown.active {
