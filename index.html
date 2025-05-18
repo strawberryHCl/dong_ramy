@@ -552,8 +552,9 @@ pointer-events: none;
   </footer>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
+  let toggleMenuHandler = null; // 전역에 선언하여 중복 이벤트 방지
+
   function closeMenu(navLinks, navOverlay, navBackdrop) {
     navLinks.classList.remove('active');
     navLinks.style.display = 'none';
@@ -579,20 +580,24 @@ pointer-events: none;
 
     const isMobile = window.matchMedia("(max-width: 1024px)").matches;
 
-    function toggleMenu() {
+    // 중복 이벤트 제거 후 새 핸들러 등록
+    if (toggleMenuHandler) {
+      menuBtn.removeEventListener('click', toggleMenuHandler);
+    }
+
+    toggleMenuHandler = function () {
       if (navLinks.classList.contains('active')) {
         closeMenu(navLinks, navOverlay, navBackdrop);
       } else {
         openMenu(navLinks, navOverlay, navBackdrop);
       }
-    }
+    };
+
+    menuBtn.addEventListener('click', toggleMenuHandler);
 
     function backdropClick() {
       closeMenu(navLinks, navOverlay, navBackdrop);
     }
-
-    menuBtn.removeEventListener('click', toggleMenu);
-    menuBtn.addEventListener('click', toggleMenu);
 
     if (navBackdrop) {
       navBackdrop.removeEventListener('click', backdropClick);
@@ -680,6 +685,7 @@ pointer-events: none;
       }
       document.getElementById("breadcrumb").innerHTML = html;
     }
+
     createBreadcrumb();
 
     // B안: 리사이즈 시 메뉴 상태와 이벤트 재설정
