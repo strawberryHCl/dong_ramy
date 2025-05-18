@@ -698,12 +698,16 @@ pointer-events: none;
 
   document.addEventListener("DOMContentLoaded", init);
 
-  // A안: bfcache 감지 시 강력 새로고침
-  window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-      window.location.href = window.location.href;
-    }
-  });
+  // A안 수정: bfcache 또는 뒤로/앞으로 이동 시 메뉴 이벤트 재설정
+window.addEventListener('pageshow', (event) => {
+  const isBackForward = event.persisted || (performance.getEntriesByType("navigation")[0]?.type === "back_forward");
+  if (isBackForward) {
+    setTimeout(() => {
+      forceMenuReset();
+      setupMenu();
+    }, 0);
+  }
+});
 </script>
 </body>
 </html>
