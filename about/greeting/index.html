@@ -57,6 +57,67 @@
       color: #fff;
       text-decoration: none;
     }
+
+  .message-section {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border: 8px solid #848484;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.right-image {
+  flex: 1; /* 이미지가 작게 */
+}
+
+.right-image img {
+  width: 100%;
+  max-width: 400px; /* 필요시 250px~400px 정도로 조정 가능 */
+  height: auto;
+  border-radius: 8px;
+}
+
+.message-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+/* 하이라이트 스타일 */
+.highlight {
+  font-style: italic;
+  background-color: #e6f3fc;
+  border-left: 5px solid #007acc;
+  color: #444;
+  margin: 1.5rem 0;
+  padding: 2rem;
+  text-align: right; /* 텍스트 오른쪽 정렬 */
+  width: 100%;
+  margin-left: auto; /* 오른쪽 정렬 */
+  margin-right: 0;
+}
+
+/* 서명 스타일 */
+.signature {
+  font-weight: bold;
+  text-align: right; /* 텍스트 오른쪽 정렬 */
+  padding-top: 1.5rem;
+  margin-top: 1.5rem; /* 상단 여백 */
+  margin-left: auto; /* 오른쪽 정렬 */
+  margin-right: 0;
+}
   
   .navbar {
     position: relative;
@@ -277,67 +338,6 @@
       padding: 0 1rem;
       text-align: left;
     }
-
-.message-section {
-  max-width: 1100px;
-  margin: 3rem auto;
-  padding: 2rem;
-  background-color: #f9f9f9;
-  border: 8px solid #848484;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-  
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.right-image {
-  flex: 1; /* 이미지가 작게 */
-}
-
-.right-image img {
-  width: 100%;
-  max-width: 400px; /* 필요시 250px~400px 정도로 조정 가능 */
-  height: auto;
-  border-radius: 8px;
-}
-
-.message-title {
-  font-size: 1.6rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
-}
-
-/* 하이라이트 스타일 */
-.highlight {
-  font-style: italic;
-  background-color: #e6f3fc;
-  border-left: 5px solid #007acc;
-  color: #444;
-  margin: 1.5rem 0;
-  padding: 2rem;
-  text-align: right; /* 텍스트 오른쪽 정렬 */
-  width: 100%;
-  margin-left: auto; /* 오른쪽 정렬 */
-  margin-right: 0;
-}
-
-/* 서명 스타일 */
-.signature {
-  font-weight: bold;
-  text-align: right; /* 텍스트 오른쪽 정렬 */
-  padding-top: 1.5rem;
-  margin-top: 1.5rem; /* 상단 여백 */
-  margin-left: auto; /* 오른쪽 정렬 */
-  margin-right: 0;
-}
 
   .image-row img {
     width: 120px;
