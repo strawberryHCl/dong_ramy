@@ -564,6 +564,7 @@ pointer-events: none;
   </footer>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
   function closeMenu(navLinks, navOverlay, navBackdrop) {
     navLinks.classList.remove('active');
@@ -622,7 +623,12 @@ pointer-events: none;
           link.parentElement.classList.toggle('active');
         } else {
           if (window.matchMedia("(max-width: 1024px)").matches) {
-            closeMenu(navLinks, navOverlay, navBackdrop);
+            e.preventDefault();
+            const href = link.getAttribute('href');
+            if (href && href !== '#') {
+              window.location.href = href;
+              window.location.reload(true); // 강제 새로고침
+            }
           }
         }
       };
@@ -635,7 +641,6 @@ pointer-events: none;
     if (isMobile) {
       closeMenu(navLinks, navOverlay, navBackdrop);
     } else {
-      // 데스크탑이면 메뉴 항상 보이기
       openMenu(navLinks, navOverlay, navBackdrop);
     }
   }
@@ -660,7 +665,7 @@ pointer-events: none;
   }
 
   function init() {
-    // Swiper 초기화 등 다른 초기화 코드
+    // Swiper 초기화
     new Swiper('.swiper', {
       loop: true,
       autoplay: { delay: 3000 },
@@ -689,6 +694,7 @@ pointer-events: none;
       }
       document.getElementById("breadcrumb").innerHTML = html;
     }
+
     createBreadcrumb();
 
     window.addEventListener('resize', onResize);
@@ -696,25 +702,24 @@ pointer-events: none;
 
   document.addEventListener("DOMContentLoaded", init);
 
-// bfcache (뒤로가기 캐시) 대응
-window.addEventListener('pageshow', (event) => {
-  const navLinks = document.getElementById('navLinks');
-  const navOverlay = document.querySelector('.nav-overlay');
-  const navBackdrop = document.querySelector('.nav-backdrop');
-  if (navLinks) {
-    navLinks.classList.remove('active');
-    navLinks.style.display = 'none';
-  }
-  if (navOverlay) navOverlay.style.display = 'none';
-  if (navBackdrop) navBackdrop.style.display = 'none';
-  document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
+  // bfcache (뒤로가기 캐시) 대응
+  window.addEventListener('pageshow', (event) => {
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.querySelector('.nav-overlay');
+    const navBackdrop = document.querySelector('.nav-backdrop');
+    if (navLinks) {
+      navLinks.classList.remove('active');
+      navLinks.style.display = 'none';
+    }
+    if (navOverlay) navOverlay.style.display = 'none';
+    if (navBackdrop) navBackdrop.style.display = 'none';
+    document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
 
-  // 페이지가 캐시에서 복원된 경우에도 메뉴 동작 다시 활성화
-  if (event.persisted) {
-    setupMenu();   // 메뉴 이벤트 재등록
-    onResize();    // 모바일/PC 환경 재판별
-  }
-});
+    if (event.persisted) {
+      setupMenu();
+      onResize();
+    }
+  });
 </script>
 
 
