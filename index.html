@@ -561,16 +561,21 @@
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-  // 메뉴 닫기 함수
   function closeMenu(navLinks, navOverlay, navBackdrop) {
     navLinks.classList.remove('active');
     navLinks.style.display = 'none';
     if (navOverlay) navOverlay.style.display = 'none';
     if (navBackdrop) navBackdrop.style.display = 'none';
-    document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('active'));
+    document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
   }
 
-  // 메뉴 설정 함수 (버튼 토글, 백드롭 클릭, 서브메뉴 토글 등)
+  function openMenu(navLinks, navOverlay, navBackdrop) {
+    navLinks.classList.add('active');
+    navLinks.style.display = 'flex';
+    if (navOverlay) navOverlay.style.display = 'block';
+    if (navBackdrop) navBackdrop.style.display = 'block';
+  }
+
   function setupMenu() {
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
@@ -579,23 +584,16 @@
 
     if (!menuBtn || !navLinks) return;
 
-    // 미디어 쿼리와 동기화
     const isMobile = window.matchMedia("(max-width: 1024px)").matches;
 
-    // 메뉴 토글 함수
     function toggleMenu() {
-      const isActive = navLinks.classList.contains('active') && navLinks.style.display === 'flex';
-      if (isActive) {
+      if (navLinks.classList.contains('active')) {
         closeMenu(navLinks, navOverlay, navBackdrop);
       } else {
-        navLinks.classList.add('active');
-        navLinks.style.display = 'flex';
-        if (navOverlay) navOverlay.style.display = 'block';
-        if (navBackdrop) navBackdrop.style.display = 'block';
+        openMenu(navLinks, navOverlay, navBackdrop);
       }
     }
 
-    // 백드롭 클릭 시 메뉴 닫기
     function backdropClick() {
       closeMenu(navLinks, navOverlay, navBackdrop);
     }
@@ -609,7 +607,7 @@
       navBackdrop.addEventListener('click', backdropClick);
     }
 
-    // 서브메뉴 링크 클릭 처리
+    // 서브메뉴 토글 (모바일용)
     document.querySelectorAll('.nav-links > li > a').forEach(link => {
       if (link._clickHandler) link.removeEventListener('click', link._clickHandler);
 
@@ -619,7 +617,7 @@
           e.preventDefault();
           link.parentElement.classList.toggle('active');
         } else {
-          if (isMobile) {
+          if (window.matchMedia("(max-width: 1024px)").matches) {
             closeMenu(navLinks, navOverlay, navBackdrop);
           }
         }
@@ -629,12 +627,15 @@
       link._clickHandler = handler;
     });
 
+    // 초기 상태 : 모바일이면 닫기
     if (isMobile) {
       closeMenu(navLinks, navOverlay, navBackdrop);
+    } else {
+      // 데스크탑이면 메뉴 항상 보이기
+      openMenu(navLinks, navOverlay, navBackdrop);
     }
   }
 
-  // 화면 크기 변경 시 처리
   function onResize() {
     const navLinks = document.getElementById('navLinks');
     const navOverlay = document.querySelector('.nav-overlay');
@@ -644,19 +645,18 @@
     const isMobile = window.matchMedia("(max-width: 1024px)").matches;
 
     if (!isMobile) {
-      navLinks.classList.remove('active');
-      navLinks.style.display = 'flex';
-      if (navOverlay) navOverlay.style.display = 'none';
-      if (navBackdrop) navBackdrop.style.display = 'none';
+      openMenu(navLinks, navOverlay, navBackdrop);
     } else {
-      navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
-      if (navOverlay) navOverlay.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
-      if (navBackdrop) navBackdrop.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
+      if (navLinks.classList.contains('active')) {
+        openMenu(navLinks, navOverlay, navBackdrop);
+      } else {
+        closeMenu(navLinks, navOverlay, navBackdrop);
+      }
     }
   }
 
-  // 초기화 함수 (Swiper 초기화 + 메뉴 설정 + Breadcrumb 등)
   function init() {
+    // Swiper 초기화 등 다른 초기화 코드
     new Swiper('.swiper', {
       loop: true,
       autoplay: { delay: 3000 },
@@ -667,6 +667,7 @@
     setupMenu();
     onResize();
 
+    // Breadcrumb 생성
     const pathMap = {
       "": "홈",
       "about": "회사소개",
@@ -691,7 +692,7 @@
 
   document.addEventListener("DOMContentLoaded", init);
 
-  // bfcache (뒤로가기 캐시) 대응 : 메뉴 상태 초기화
+  // bfcache (뒤로가기 캐시) 대응
   window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
       const navLinks = document.getElementById('navLinks');
@@ -703,9 +704,10 @@
       }
       if (navOverlay) navOverlay.style.display = 'none';
       if (navBackdrop) navBackdrop.style.display = 'none';
-      document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('active'));
+      document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
     }
   });
 </script>
+
 </body>
 </html>
