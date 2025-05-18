@@ -587,6 +587,13 @@
       closeMenu();
     }
 
+    // 새로고침이나 뒤로가기 등 캐시 복원 시 메뉴 초기화
+    window.onpageshow = function(event) {
+      if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+        closeMenu();
+      }
+    };
+
     menuBtn.addEventListener('click', function () {
       // isActive 판단 시 class 뿐 아니라 display도 체크 (수정)
       const isActive = navLinks.classList.contains('active') && navLinks.style.display === 'flex';
@@ -652,6 +659,7 @@
     });
   });
 </script>
+
 
 </body>
 </html>
