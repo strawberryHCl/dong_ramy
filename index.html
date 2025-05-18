@@ -566,18 +566,18 @@ pointer-events: none;
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
   function closeMenu(navLinks, navOverlay, navBackdrop) {
-    // 메뉴, 오버레이, 백드롭에서 active 클래스 제거 (화면에서 숨김)
     navLinks.classList.remove('active');
-    navOverlay?.classList.remove('active');
-    navBackdrop?.classList.remove('active');
+    navLinks.style.display = 'none';
+    if (navOverlay) navOverlay.style.display = 'none';
+    if (navBackdrop) navBackdrop.style.display = 'none';
     document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
   }
 
   function openMenu(navLinks, navOverlay, navBackdrop) {
-    // 메뉴, 오버레이, 백드롭에 active 클래스 추가 (화면에 표시)
     navLinks.classList.add('active');
-    navOverlay?.classList.add('active');
-    navBackdrop?.classList.add('active');
+    navLinks.style.display = 'flex';
+    if (navOverlay) navOverlay.style.display = 'block';
+    if (navBackdrop) navBackdrop.style.display = 'block';
   }
 
   function setupMenu() {
@@ -602,14 +602,16 @@ pointer-events: none;
       closeMenu(navLinks, navOverlay, navBackdrop);
     }
 
-    // 클릭 이벤트 등록 (중복 방지)
+    // 이벤트 중복 등록 방지
     menuBtn.removeEventListener('click', toggleMenu);
     menuBtn.addEventListener('click', toggleMenu);
 
-    navBackdrop?.removeEventListener('click', backdropClick);
-    navBackdrop?.addEventListener('click', backdropClick);
+    if (navBackdrop) {
+      navBackdrop.removeEventListener('click', backdropClick);
+      navBackdrop.addEventListener('click', backdropClick);
+    }
 
-    // 모바일 서브메뉴 클릭 시 토글 / 링크 클릭 시 메뉴 닫기
+    // 서브메뉴 토글 (모바일용)
     document.querySelectorAll('.nav-links > li > a').forEach(link => {
       if (link._clickHandler) link.removeEventListener('click', link._clickHandler);
 
@@ -629,10 +631,11 @@ pointer-events: none;
       link._clickHandler = handler;
     });
 
-    // 초기 상태 설정
+    // 초기 상태 : 모바일이면 닫기
     if (isMobile) {
       closeMenu(navLinks, navOverlay, navBackdrop);
     } else {
+      // 데스크탑이면 메뉴 항상 보이기
       openMenu(navLinks, navOverlay, navBackdrop);
     }
   }
@@ -656,26 +659,8 @@ pointer-events: none;
     }
   }
 
-  function createBreadcrumb() {
-    const pathMap = {
-      "": "홈",
-      "about": "회사소개",
-      "service": "서비스",
-      "media": "미디어",
-      "story": "스토리",
-      "recruit": "채용"
-    };
-    const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
-    let html = '<a href="/dong_ramy/">홈</a>';
-    if (path[0] && pathMap[path[0]]) {
-      html += ` <span> &gt; ${pathMap[path[0]]}</span>`;
-    }
-    const breadcrumb = document.getElementById("breadcrumb");
-    if (breadcrumb) breadcrumb.innerHTML = html;
-  }
-
   function init() {
-    // Swiper 슬라이더 초기화
+    // Swiper 초기화 등 다른 초기화 코드
     new Swiper('.swiper', {
       loop: true,
       autoplay: { delay: 3000 },
@@ -685,21 +670,49 @@ pointer-events: none;
 
     setupMenu();
     onResize();
+
+    // Breadcrumb 생성
+    const pathMap = {
+      "": "홈",
+      "about": "회사소개",
+      "service": "서비스",
+      "media": "미디어",
+      "story": "스토리",
+      "recruit": "채용"
+    };
+
+    function createBreadcrumb() {
+      const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
+      let html = '<a href="/dong_ramy/">홈</a>';
+      if (path[0] && pathMap[path[0]]) {
+        html += ` <span> &gt; ${pathMap[path[0]]}</span>`;
+      }
+      document.getElementById("breadcrumb").innerHTML = html;
+    }
     createBreadcrumb();
 
     window.addEventListener('resize', onResize);
   }
 
-  // 문서 로드 시 초기화
   document.addEventListener("DOMContentLoaded", init);
 
-  // 뒤로가기 캐시 페이지 복원 시 재초기화
+  // bfcache (뒤로가기 캐시) 대응
   window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
-      init(); // 전체 초기화 수행
+      const navLinks = document.getElementById('navLinks');
+      const navOverlay = document.querySelector('.nav-overlay');
+      const navBackdrop = document.querySelector('.nav-backdrop');
+      if (navLinks) {
+        navLinks.classList.remove('active');
+        navLinks.style.display = 'none';
+      }
+      if (navOverlay) navOverlay.style.display = 'none';
+      if (navBackdrop) navBackdrop.style.display = 'none';
+      document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
     }
   });
 </script>
+
 
 </body>
 </html>
