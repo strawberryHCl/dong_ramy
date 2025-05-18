@@ -307,51 +307,47 @@
   }
 
   .nav-links {
-    display: none;
-    flex-direction: column;
-    align-items: flex-end;
-    position: fixed;
-    gap: 0.5rem !important;
-    top: 0;
-    right: 0;
-    width: 180px !important;
-    height: 80% !important;
-    max-height: 100vh !important;
-    border-left: 1px solid #444;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    background: #1D2023;
-    padding-top: 60px !important;
-    padding-right: 0.5rem !important;
-    margin-bottom: 0 !important;
-    padding-bottom: 1rem !important;
-    transform: translateX(100%); /* 슬라이드 초기 상태: 오른쪽 밖으로 */
-    transition: transform 0.3s ease; /* 부드러운 슬라이드 효과 */
-    z-index: 1000;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-  }
+display: none;
+flex-direction: column;
+align-items: flex-end;
+position: fixed;
+gap: 0.5rem !important;
+top: 0;
+right: 0;
+width: 180px !important;
+height: 80% !important;
+max-height: 100vh !important;
+border-left: 1px solid #444;
+border-top-left-radius: 5px;
+border-bottom-left-radius: 5px;
+background: #1D2023;
+padding-top: 60px !important;
+padding-right: 0.5rem !important;
+margin-bottom: 0 !important;
+padding-bottom: 1rem !important;
+transform: translateX(100%);
+transition: transform 0.3s ease;
+z-index: 1000;
+overflow-y: auto;
+overscroll-behavior: contain;
+}
 
-  .nav-links.active {
-    display: flex;
-    transform: translateX(0); /* 활성화 시 오른쪽에서 왼쪽으로 슬라이드 */
-  }
-/* 기존에 pointer-events: none 으로 클릭 막고 있던 문제는 그대로 두되,
-   .active 클래스가 추가되면 보이도록 자바스크립트와 연동 */
+.nav-links.active {
+display: flex;
+transform: translateX(0);
+}
 
-  .nav-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 180px;
-    height: 120px;
-    background: linear-gradient(to bottom, #1D2023, rgba(29,32,35,0));
-    z-index: 1001;
-    pointer-events: none;
-  }
-    .nav-overlay.active {
-  display: block; /* 오버레이도 활성화 시 보이도록 설정 */
+.nav-overlay {
+display: none;
+position: fixed;
+top: 0;
+right: 0;
+width: 180px;
+height: 120px;
+background: linear-gradient(to bottom, #1D2023, rgba(29,32,35,0));
+z-index: 1001;
+pointer-events: none;
+}
 
   .nav-backdrop {
     display: none;
