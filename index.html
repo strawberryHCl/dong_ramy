@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <meta http-equiv="Cache-Control" content="no-store">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" >
   <title>동그라미 스토어 - 공식 쇼핑몰 | 디자인 브랜드</title>
@@ -603,7 +604,6 @@ pointer-events: none;
       closeMenu(navLinks, navOverlay, navBackdrop);
     }
 
-    // 이벤트 중복 등록 방지
     menuBtn.removeEventListener('click', toggleMenu);
     menuBtn.addEventListener('click', toggleMenu);
 
@@ -612,7 +612,6 @@ pointer-events: none;
       navBackdrop.addEventListener('click', backdropClick);
     }
 
-    // 서브메뉴 토글 (모바일용)
     document.querySelectorAll('.nav-links > li > a').forEach(link => {
       if (link._clickHandler) link.removeEventListener('click', link._clickHandler);
 
@@ -623,12 +622,7 @@ pointer-events: none;
           link.parentElement.classList.toggle('active');
         } else {
           if (window.matchMedia("(max-width: 1024px)").matches) {
-            e.preventDefault();
-            const href = link.getAttribute('href');
-            if (href && href !== '#') {
-              window.location.href = href;
-              window.location.reload(true); // 강제 새로고침
-            }
+            closeMenu(navLinks, navOverlay, navBackdrop);
           }
         }
       };
@@ -637,7 +631,6 @@ pointer-events: none;
       link._clickHandler = handler;
     });
 
-    // 초기 상태 : 모바일이면 닫기
     if (isMobile) {
       closeMenu(navLinks, navOverlay, navBackdrop);
     } else {
@@ -665,7 +658,6 @@ pointer-events: none;
   }
 
   function init() {
-    // Swiper 초기화
     new Swiper('.swiper', {
       loop: true,
       autoplay: { delay: 3000 },
@@ -676,7 +668,6 @@ pointer-events: none;
     setupMenu();
     onResize();
 
-    // Breadcrumb 생성
     const pathMap = {
       "": "홈",
       "about": "회사소개",
@@ -694,7 +685,6 @@ pointer-events: none;
       }
       document.getElementById("breadcrumb").innerHTML = html;
     }
-
     createBreadcrumb();
 
     window.addEventListener('resize', onResize);
@@ -702,26 +692,12 @@ pointer-events: none;
 
   document.addEventListener("DOMContentLoaded", init);
 
-  // bfcache (뒤로가기 캐시) 대응
+  // A안: bfcache 감지 시 강력 새로고침
   window.addEventListener('pageshow', (event) => {
-    const navLinks = document.getElementById('navLinks');
-    const navOverlay = document.querySelector('.nav-overlay');
-    const navBackdrop = document.querySelector('.nav-backdrop');
-    if (navLinks) {
-      navLinks.classList.remove('active');
-      navLinks.style.display = 'none';
-    }
-    if (navOverlay) navOverlay.style.display = 'none';
-    if (navBackdrop) navBackdrop.style.display = 'none';
-    document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
-
     if (event.persisted) {
-      setupMenu();
-      onResize();
+      window.location.href = window.location.href; // 강제 리로드
     }
   });
 </script>
-
-
 </body>
 </html>
