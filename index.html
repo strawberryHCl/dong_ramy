@@ -574,37 +574,30 @@
     const navOverlay = document.querySelector('.nav-overlay');
     const navBackdrop = document.querySelector('.nav-backdrop');
 
-    // 햄버거 클릭 이벤트
+    function closeMenu() {
+      navLinks.classList.remove('active');
+      navLinks.style.display = 'none';
+      if (navOverlay) navOverlay.style.display = 'none';
+      if (navBackdrop) navBackdrop.style.display = 'none';
+      document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('active'));
+    }
+
     menuBtn.addEventListener('click', function () {
       const isActive = navLinks.classList.contains('active');
-      navLinks.classList.toggle('active');
-      navLinks.style.display = isActive ? 'none' : 'flex';
-      if (navOverlay) navOverlay.style.display = isActive ? 'none' : 'block';
-      if (navBackdrop) navBackdrop.style.display = isActive ? 'none' : 'block';
-
-      // 드롭다운 초기화
       if (isActive) {
-        document.querySelectorAll('.dropdown').forEach(dropdown => {
-          dropdown.classList.remove('active');
-        });
+        closeMenu();
+      } else {
+        navLinks.classList.add('active');
+        navLinks.style.display = 'flex';
+        if (navOverlay) navOverlay.style.display = 'block';
+        if (navBackdrop) navBackdrop.style.display = 'block';
       }
     });
 
-    // 뒷배경 클릭 시 메뉴 닫기
     if (navBackdrop) {
-      navBackdrop.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        navLinks.style.display = 'none';
-        if (navOverlay) navOverlay.style.display = 'none';
-        navBackdrop.style.display = 'none';
-
-        document.querySelectorAll('.dropdown').forEach(dropdown => {
-          dropdown.classList.remove('active');
-        });
-      });
+      navBackdrop.addEventListener('click', closeMenu);
     }
 
-    // 드롭다운 토글 (모바일)
     document.querySelectorAll('.nav-links > li > a').forEach(link => {
       link.addEventListener('click', e => {
         const submenu = link.nextElementSibling;
@@ -612,21 +605,14 @@
           e.preventDefault();
           link.parentElement.classList.toggle('active');
         } else {
-          // 메뉴 내부 링크 클릭 시 메뉴 닫기 (모바일 전용)
+          // 모바일에서 메뉴 닫기
           if (window.innerWidth <= 1024) {
-            navLinks.classList.remove('active');
-            navLinks.style.display = 'none';
-            if (navOverlay) navOverlay.style.display = 'none';
-            if (navBackdrop) navBackdrop.style.display = 'none';
-            document.querySelectorAll('.dropdown').forEach(dropdown => {
-              dropdown.classList.remove('active');
-            });
+            closeMenu();
           }
         }
       });
     });
 
-    // 빵부스러기 경로 처리
     const pathMap = {
       "": "홈",
       "about": "회사소개",
@@ -646,7 +632,6 @@
     }
     createBreadcrumb();
 
-    // 창 크기 바뀔 때 메뉴 상태 조정
     window.addEventListener('resize', () => {
       if (window.innerWidth > 1024) {
         navLinks.classList.remove('active');
@@ -655,12 +640,8 @@
         if (navBackdrop) navBackdrop.style.display = 'none';
       } else {
         navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
-        if (navOverlay) {
-          navOverlay.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
-        }
-        if (navBackdrop) {
-          navBackdrop.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
-        }
+        if (navOverlay) navOverlay.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
+        if (navBackdrop) navBackdrop.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
       }
     });
   });
