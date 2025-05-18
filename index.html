@@ -561,91 +561,108 @@
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-  new Swiper('.swiper', {
-    loop: true,
-    autoplay: { delay: 3000 },
-    pagination: { el: '.swiper-pagination' },
-    effect: 'slide'
-  });
-
-  const menuBtn = document.getElementById('menuBtn');
-  const navLinks = document.getElementById('navLinks');
-  const navOverlay = document.querySelector('.nav-overlay');
-  const navBackdrop = document.querySelector('.nav-backdrop');
-
-  menuBtn.addEventListener('click', function () {
-    if (!navLinks.classList.contains('active')) {
-      navLinks.classList.add('active');
-      if (navOverlay) navOverlay.style.display = 'block';
-      if (navBackdrop) navBackdrop.style.display = 'block';
-    } else {
-      navLinks.classList.remove('active');
-      if (navOverlay) navOverlay.style.display = 'none';
-      if (navBackdrop) navBackdrop.style.display = 'none';
-      // 드롭다운 초기화
-      document.querySelectorAll('.dropdown').forEach(dropdown => {
-        dropdown.classList.remove('active');
-      });
-    }
-  });
-
-  if (navBackdrop) {
-    navBackdrop.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-      if (navOverlay) navOverlay.style.display = 'none';
-      navBackdrop.style.display = 'none';
-      // 드롭다운 초기화
-      document.querySelectorAll('.dropdown').forEach(dropdown => {
-        dropdown.classList.remove('active');
-      });
+  document.addEventListener("DOMContentLoaded", function () {
+    new Swiper('.swiper', {
+      loop: true,
+      autoplay: { delay: 3000 },
+      pagination: { el: '.swiper-pagination' },
+      effect: 'slide'
     });
-  }
 
-  // 드롭다운 토글 기능 수정 (기존 next.classList.toggle → 부모 li에 active 클래스 토글)
-document.querySelectorAll('.nav-links > li > a').forEach(link => {
-  link.addEventListener('click', e => {
-    const submenu = link.nextElementSibling;
-    if (submenu && submenu.classList.contains('dropdown')) {
-      e.preventDefault();      // 현재 클릭한 메뉴 열고 닫기
-      link.parentElement.classList.toggle('active');
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.querySelector('.nav-overlay');
+    const navBackdrop = document.querySelector('.nav-backdrop');
+
+    // 햄버거 클릭 이벤트
+    menuBtn.addEventListener('click', function () {
+      const isActive = navLinks.classList.contains('active');
+      navLinks.classList.toggle('active');
+      navLinks.style.display = isActive ? 'none' : 'flex';
+      if (navOverlay) navOverlay.style.display = isActive ? 'none' : 'block';
+      if (navBackdrop) navBackdrop.style.display = isActive ? 'none' : 'block';
+
+      // 드롭다운 초기화
+      if (isActive) {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+          dropdown.classList.remove('active');
+        });
       }
     });
-  });
 
-  const pathMap = {
-    "": "홈",
-    "about": "회사소개",
-    "service": "서비스",
-    "media": "미디어",
-    "story": "스토리",
-    "recruit": "채용"
-  };
+    // 뒷배경 클릭 시 메뉴 닫기
+    if (navBackdrop) {
+      navBackdrop.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        navLinks.style.display = 'none';
+        if (navOverlay) navOverlay.style.display = 'none';
+        navBackdrop.style.display = 'none';
 
-  function createBreadcrumb() {
-    const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
-    let html = '<a href="/dong_ramy/">홈</a>';
-    if (path[0] && pathMap[path[0]]) {
-      html += ` <span> &gt; ${pathMap[path[0]]}</span>`;
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+          dropdown.classList.remove('active');
+        });
+      });
     }
-    document.getElementById("breadcrumb").innerHTML = html;
-  }
-  createBreadcrumb();
 
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 1024) {
-      navLinks.classList.remove('active');
-      navLinks.style.display = 'flex';
-      if (navOverlay) navOverlay.style.display = 'none';
-      if (navBackdrop) navBackdrop.style.display = 'none';
-    } else {
-      navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
-      if (navOverlay) {
-        navOverlay.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
+    // 드롭다운 토글 (모바일)
+    document.querySelectorAll('.nav-links > li > a').forEach(link => {
+      link.addEventListener('click', e => {
+        const submenu = link.nextElementSibling;
+        if (submenu && submenu.classList.contains('dropdown')) {
+          e.preventDefault();
+          link.parentElement.classList.toggle('active');
+        } else {
+          // 메뉴 내부 링크 클릭 시 메뉴 닫기 (모바일 전용)
+          if (window.innerWidth <= 1024) {
+            navLinks.classList.remove('active');
+            navLinks.style.display = 'none';
+            if (navOverlay) navOverlay.style.display = 'none';
+            if (navBackdrop) navBackdrop.style.display = 'none';
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+              dropdown.classList.remove('active');
+            });
+          }
+        }
+      });
+    });
+
+    // 빵부스러기 경로 처리
+    const pathMap = {
+      "": "홈",
+      "about": "회사소개",
+      "service": "서비스",
+      "media": "미디어",
+      "story": "스토리",
+      "recruit": "채용"
+    };
+
+    function createBreadcrumb() {
+      const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
+      let html = '<a href="/dong_ramy/">홈</a>';
+      if (path[0] && pathMap[path[0]]) {
+        html += ` <span> &gt; ${pathMap[path[0]]}</span>`;
       }
-      if (navBackdrop) {
-        navBackdrop.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
-      }
+      document.getElementById("breadcrumb").innerHTML = html;
     }
+    createBreadcrumb();
+
+    // 창 크기 바뀔 때 메뉴 상태 조정
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1024) {
+        navLinks.classList.remove('active');
+        navLinks.style.display = 'flex';
+        if (navOverlay) navOverlay.style.display = 'none';
+        if (navBackdrop) navBackdrop.style.display = 'none';
+      } else {
+        navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+        if (navOverlay) {
+          navOverlay.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
+        }
+        if (navBackdrop) {
+          navBackdrop.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
+        }
+      }
+    });
   });
 </script>
 </body>
