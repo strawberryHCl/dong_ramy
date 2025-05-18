@@ -582,8 +582,14 @@
       document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('active'));
     }
 
+    // 페이지 로드시 모바일 메뉴 상태 초기화 (추가)
+    if (window.innerWidth <= 1024) {
+      closeMenu();
+    }
+
     menuBtn.addEventListener('click', function () {
-      const isActive = navLinks.classList.contains('active');
+      // isActive 판단 시 class 뿐 아니라 display도 체크 (수정)
+      const isActive = navLinks.classList.contains('active') && navLinks.style.display === 'flex';
       if (isActive) {
         closeMenu();
       } else {
@@ -646,5 +652,6 @@
     });
   });
 </script>
+
 </body>
 </html>
