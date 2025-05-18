@@ -577,7 +577,9 @@
 
     if (!menuBtn || !navLinks) return;
 
-    // 메뉴 토글 핸들러 분리해서 변수에 저장 (이벤트 제거용)
+    // 화면 너비 체크를 matchMedia로 변경 (미디어쿼리 기준과 일치)
+    const isMobile = window.matchMedia("(max-width: 1024px)").matches;
+
     function toggleMenu() {
       const isActive = navLinks.classList.contains('active') && navLinks.style.display === 'flex';
       if (isActive) {
@@ -590,12 +592,11 @@
       }
     }
 
-    // 메뉴 닫기 핸들러
     function backdropClick() {
       closeMenu(navLinks, navOverlay, navBackdrop);
     }
 
-    // 이벤트 중복 등록 방지 - 기존 이벤트 제거 후 등록
+    // 이벤트 중복 등록 방지용으로 removeEventListener + addEventListener
     menuBtn.removeEventListener('click', toggleMenu);
     menuBtn.addEventListener('click', toggleMenu);
 
@@ -605,29 +606,50 @@
     }
 
     document.querySelectorAll('.nav-links > li > a').forEach(link => {
-      link.removeEventListener('click', link._clickHandler);
+      if (link._clickHandler) link.removeEventListener('click', link._clickHandler);
+
       const handler = function(e) {
         const submenu = link.nextElementSibling;
         if (submenu && submenu.classList.contains('dropdown')) {
           e.preventDefault();
           link.parentElement.classList.toggle('active');
         } else {
-          if (window.innerWidth <= 1024) {
+          if (isMobile) {
             closeMenu(navLinks, navOverlay, navBackdrop);
           }
         }
       };
+
       link.addEventListener('click', handler);
-      // 참조를 남겨서 다음에 이벤트 제거 가능하게
       link._clickHandler = handler;
     });
 
-    if (window.innerWidth <= 1024) {
+    if (isMobile) {
       closeMenu(navLinks, navOverlay, navBackdrop);
     }
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
+  function onResize() {
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.querySelector('.nav-overlay');
+    const navBackdrop = document.querySelector('.nav-backdrop');
+    if (!navLinks) return;
+
+    const isMobile = window.matchMedia("(max-width: 1024px)").matches;
+
+    if (!isMobile) {
+      navLinks.classList.remove('active');
+      navLinks.style.display = 'flex';
+      if (navOverlay) navOverlay.style.display = 'none';
+      if (navBackdrop) navBackdrop.style.display = 'none';
+    } else {
+      navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+      if (navOverlay) navOverlay.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
+      if (navBackdrop) navBackdrop.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
+    }
+  }
+
+  function init() {
     new Swiper('.swiper', {
       loop: true,
       autoplay: { delay: 3000 },
@@ -636,6 +658,7 @@
     });
 
     setupMenu();
+    onResize();
 
     const pathMap = {
       "": "홈",
@@ -656,27 +679,14 @@
     }
     createBreadcrumb();
 
-    window.addEventListener('resize', () => {
-      const navLinks = document.getElementById('navLinks');
-      const navOverlay = document.querySelector('.nav-overlay');
-      const navBackdrop = document.querySelector('.nav-backdrop');
+    window.addEventListener('resize', onResize);
+  }
 
-      if (window.innerWidth > 1024) {
-        navLinks.classList.remove('active');
-        navLinks.style.display = 'flex';
-        if (navOverlay) navOverlay.style.display = 'none';
-        if (navBackdrop) navBackdrop.style.display = 'none';
-      } else {
-        navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
-        if (navOverlay) navOverlay.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
-        if (navBackdrop) navBackdrop.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
-      }
-    });
-  });
+  document.addEventListener("DOMContentLoaded", init);
 
-  // 캐시 복원이나 뒤로가기 시 메뉴 상태만 초기화 (이벤트는 재등록하지 않음)
-  window.onpageshow = function(event) {
-    if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+  // bfcache (뒤로가기 캐시) 대응 : 메뉴 상태 초기화
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
       const navLinks = document.getElementById('navLinks');
       const navOverlay = document.querySelector('.nav-overlay');
       const navBackdrop = document.querySelector('.nav-backdrop');
@@ -688,11 +698,7 @@
       if (navBackdrop) navBackdrop.style.display = 'none';
       document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('active'));
     }
-  };
+  });
 </script>
-
-
-
-
 </body>
 </html>
