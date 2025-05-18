@@ -98,6 +98,25 @@
     margin-bottom: 3rem;
   }
 
+  .image-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap; /* 모바일에서 줄바꿈 허용 */
+}
+
+.image-row img {
+  width: 120px; /* 작게 표시 */
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.image-row img:hover {
+  transform: scale(1.05); /* 살짝 확대 효과 */
+}
+
   footer {
     background: #555A60;
     color: #F0F0F0;
@@ -504,6 +523,14 @@
       <h2>동그라미</h2>
       <p>따듯한 빛을 보내주는 태양, <br>어두운 밤을 비춰주는 달, <br>맛있게 먹을 수 있는 모든 과일 열매들, <br>빨리 나아갈 수 있게 해주는 바퀴, <br>추운 계절이 지나면 어김없이 돌아오는 봄을 비롯한  <br>사계절의 순환을 갖는 공통점은 바로 동그라미 입니다. </p>
     </section>
+    <div class="image-row">
+  <a href="https://dongramystore.co.kr/" target="_blank" rel="noopener noreferrer">
+    <img src="https://i.imgur.com/ao1UydP.jpeg" alt="이미지1" />
+  </a>
+  <a href="https://www.dongramy.co.kr/" target="_blank" rel="noopener noreferrer">
+    <img src="https://i.imgur.com/a4sGcz4.png" alt="이미지2" />
+  </a>
+</div>
   </main>
 
   <footer>
