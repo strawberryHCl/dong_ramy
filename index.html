@@ -657,6 +657,14 @@ pointer-events: none;
     }
   }
 
+  function forceMenuReset() {
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.querySelector('.nav-overlay');
+    const navBackdrop = document.querySelector('.nav-backdrop');
+    if (!navLinks) return;
+    closeMenu(navLinks, navOverlay, navBackdrop);
+  }
+
   function init() {
     new Swiper('.swiper', {
       loop: true,
@@ -687,7 +695,12 @@ pointer-events: none;
     }
     createBreadcrumb();
 
-    window.addEventListener('resize', onResize);
+    // B안: 리사이즈 시 메뉴 상태와 이벤트 재설정
+    window.addEventListener('resize', () => {
+      forceMenuReset();
+      onResize();
+      setupMenu();
+    });
   }
 
   document.addEventListener("DOMContentLoaded", init);
@@ -695,7 +708,7 @@ pointer-events: none;
   // A안: bfcache 감지 시 강력 새로고침
   window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
-      window.location.href = window.location.href; // 강제 리로드
+      window.location.href = window.location.href;
     }
   });
 </script>
