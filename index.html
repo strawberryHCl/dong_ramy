@@ -561,18 +561,13 @@
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    new Swiper('.swiper', {
-      loop: true,
-      autoplay: { delay: 3000 },
-      pagination: { el: '.swiper-pagination' },
-      effect: 'slide'
-    });
-
+  function setupMenu() {
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
     const navOverlay = document.querySelector('.nav-overlay');
     const navBackdrop = document.querySelector('.nav-backdrop');
+
+    if (!menuBtn || !navLinks) return; // 요소 없으면 종료
 
     function closeMenu() {
       navLinks.classList.remove('active');
@@ -582,20 +577,11 @@
       document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('active'));
     }
 
-    // 페이지 로드시 모바일 메뉴 상태 초기화 (추가)
-    if (window.innerWidth <= 1024) {
-      closeMenu();
-    }
+    // 클릭 이벤트를 중복 등록 방지 위해 기존 이벤트 제거 후 등록
+    menuBtn.replaceWith(menuBtn.cloneNode(true));
+    const newMenuBtn = document.getElementById('menuBtn');
 
-    // 새로고침이나 뒤로가기 등 캐시 복원 시 메뉴 초기화
-    window.onpageshow = function(event) {
-      if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
-        closeMenu();
-      }
-    };
-
-    menuBtn.addEventListener('click', function () {
-      // isActive 판단 시 class 뿐 아니라 display도 체크 (수정)
+    newMenuBtn.addEventListener('click', () => {
       const isActive = navLinks.classList.contains('active') && navLinks.style.display === 'flex';
       if (isActive) {
         closeMenu();
@@ -608,7 +594,9 @@
     });
 
     if (navBackdrop) {
-      navBackdrop.addEventListener('click', closeMenu);
+      navBackdrop.replaceWith(navBackdrop.cloneNode(true));
+      const newNavBackdrop = document.querySelector('.nav-backdrop');
+      newNavBackdrop.addEventListener('click', closeMenu);
     }
 
     document.querySelectorAll('.nav-links > li > a').forEach(link => {
@@ -618,13 +606,27 @@
           e.preventDefault();
           link.parentElement.classList.toggle('active');
         } else {
-          // 모바일에서 메뉴 닫기
           if (window.innerWidth <= 1024) {
             closeMenu();
           }
         }
       });
     });
+
+    if (window.innerWidth <= 1024) {
+      closeMenu();
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    new Swiper('.swiper', {
+      loop: true,
+      autoplay: { delay: 3000 },
+      pagination: { el: '.swiper-pagination' },
+      effect: 'slide'
+    });
+
+    setupMenu();
 
     const pathMap = {
       "": "홈",
@@ -646,6 +648,10 @@
     createBreadcrumb();
 
     window.addEventListener('resize', () => {
+      const navLinks = document.getElementById('navLinks');
+      const navOverlay = document.querySelector('.nav-overlay');
+      const navBackdrop = document.querySelector('.nav-backdrop');
+
       if (window.innerWidth > 1024) {
         navLinks.classList.remove('active');
         navLinks.style.display = 'flex';
@@ -658,7 +664,15 @@
       }
     });
   });
+
+  // 캐시 복원이나 뒤로가기 시 메뉴 상태 초기화 및 이벤트 재등록
+  window.onpageshow = function(event) {
+    if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+      setupMenu();
+    }
+  };
 </script>
+
 
 
 </body>
