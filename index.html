@@ -313,6 +313,13 @@
     cursor: pointer;
   }
 
+  /* 모바일 햄버거 메뉴 내부 항목에 호버 시 테두리와 둥근 모서리 */
+.nav-links li a:hover {
+  background-color: #2A2D30; /* 브레드크럼보다 살짝 어두운 배경 */
+  border: 1px solid #444;
+  border-radius: 8px;
+}
+
   /* 하위 메뉴 숨김 (기본) */
   .nav-links li ul.dropdown {
     display: none;
@@ -322,6 +329,13 @@
     margin-top: 0.3rem;
     border-radius: 4px;
   }
+
+  /* 하위 항목에도 동일하게 적용 */
+.nav-links li ul.dropdown li a:hover {
+  background-color: #2A2D30;
+  border: 1px solid #444;
+  border-radius: 8px;
+}
 
   /* 하위 메뉴 활성화 시 보임 */
     .nav-links li.active > ul.dropdown {
