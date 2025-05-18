@@ -561,60 +561,69 @@
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
+  function closeMenu(navLinks, navOverlay, navBackdrop) {
+    navLinks.classList.remove('active');
+    navLinks.style.display = 'none';
+    if (navOverlay) navOverlay.style.display = 'none';
+    if (navBackdrop) navBackdrop.style.display = 'none';
+    document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('active'));
+  }
+
   function setupMenu() {
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
     const navOverlay = document.querySelector('.nav-overlay');
     const navBackdrop = document.querySelector('.nav-backdrop');
 
-    if (!menuBtn || !navLinks) return; // 요소 없으면 종료
+    if (!menuBtn || !navLinks) return;
 
-    function closeMenu() {
-      navLinks.classList.remove('active');
-      navLinks.style.display = 'none';
-      if (navOverlay) navOverlay.style.display = 'none';
-      if (navBackdrop) navBackdrop.style.display = 'none';
-      document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('active'));
-    }
-
-    // 클릭 이벤트를 중복 등록 방지 위해 기존 이벤트 제거 후 등록
-    menuBtn.replaceWith(menuBtn.cloneNode(true));
-    const newMenuBtn = document.getElementById('menuBtn');
-
-    newMenuBtn.addEventListener('click', () => {
+    // 메뉴 토글 핸들러 분리해서 변수에 저장 (이벤트 제거용)
+    function toggleMenu() {
       const isActive = navLinks.classList.contains('active') && navLinks.style.display === 'flex';
       if (isActive) {
-        closeMenu();
+        closeMenu(navLinks, navOverlay, navBackdrop);
       } else {
         navLinks.classList.add('active');
         navLinks.style.display = 'flex';
         if (navOverlay) navOverlay.style.display = 'block';
         if (navBackdrop) navBackdrop.style.display = 'block';
       }
-    });
+    }
+
+    // 메뉴 닫기 핸들러
+    function backdropClick() {
+      closeMenu(navLinks, navOverlay, navBackdrop);
+    }
+
+    // 이벤트 중복 등록 방지 - 기존 이벤트 제거 후 등록
+    menuBtn.removeEventListener('click', toggleMenu);
+    menuBtn.addEventListener('click', toggleMenu);
 
     if (navBackdrop) {
-      navBackdrop.replaceWith(navBackdrop.cloneNode(true));
-      const newNavBackdrop = document.querySelector('.nav-backdrop');
-      newNavBackdrop.addEventListener('click', closeMenu);
+      navBackdrop.removeEventListener('click', backdropClick);
+      navBackdrop.addEventListener('click', backdropClick);
     }
 
     document.querySelectorAll('.nav-links > li > a').forEach(link => {
-      link.addEventListener('click', e => {
+      link.removeEventListener('click', link._clickHandler);
+      const handler = function(e) {
         const submenu = link.nextElementSibling;
         if (submenu && submenu.classList.contains('dropdown')) {
           e.preventDefault();
           link.parentElement.classList.toggle('active');
         } else {
           if (window.innerWidth <= 1024) {
-            closeMenu();
+            closeMenu(navLinks, navOverlay, navBackdrop);
           }
         }
-      });
+      };
+      link.addEventListener('click', handler);
+      // 참조를 남겨서 다음에 이벤트 제거 가능하게
+      link._clickHandler = handler;
     });
 
     if (window.innerWidth <= 1024) {
-      closeMenu();
+      closeMenu(navLinks, navOverlay, navBackdrop);
     }
   }
 
@@ -665,13 +674,23 @@
     });
   });
 
-  // 캐시 복원이나 뒤로가기 시 메뉴 상태 초기화 및 이벤트 재등록
+  // 캐시 복원이나 뒤로가기 시 메뉴 상태만 초기화 (이벤트는 재등록하지 않음)
   window.onpageshow = function(event) {
     if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
-      setupMenu();
+      const navLinks = document.getElementById('navLinks');
+      const navOverlay = document.querySelector('.nav-overlay');
+      const navBackdrop = document.querySelector('.nav-backdrop');
+      if (navLinks) {
+        navLinks.classList.remove('active');
+        navLinks.style.display = 'none';
+      }
+      if (navOverlay) navOverlay.style.display = 'none';
+      if (navBackdrop) navBackdrop.style.display = 'none';
+      document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('active'));
     }
   };
 </script>
+
 
 
 
