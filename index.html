@@ -561,6 +561,7 @@
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
+  // 메뉴 닫기 함수
   function closeMenu(navLinks, navOverlay, navBackdrop) {
     navLinks.classList.remove('active');
     navLinks.style.display = 'none';
@@ -569,6 +570,7 @@
     document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('active'));
   }
 
+  // 메뉴 설정 함수 (버튼 토글, 백드롭 클릭, 서브메뉴 토글 등)
   function setupMenu() {
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
@@ -577,9 +579,10 @@
 
     if (!menuBtn || !navLinks) return;
 
-    // 화면 너비 체크를 matchMedia로 변경 (미디어쿼리 기준과 일치)
+    // 미디어 쿼리와 동기화
     const isMobile = window.matchMedia("(max-width: 1024px)").matches;
 
+    // 메뉴 토글 함수
     function toggleMenu() {
       const isActive = navLinks.classList.contains('active') && navLinks.style.display === 'flex';
       if (isActive) {
@@ -592,11 +595,12 @@
       }
     }
 
+    // 백드롭 클릭 시 메뉴 닫기
     function backdropClick() {
       closeMenu(navLinks, navOverlay, navBackdrop);
     }
 
-    // 이벤트 중복 등록 방지용으로 removeEventListener + addEventListener
+    // 이벤트 중복 등록 방지
     menuBtn.removeEventListener('click', toggleMenu);
     menuBtn.addEventListener('click', toggleMenu);
 
@@ -605,6 +609,7 @@
       navBackdrop.addEventListener('click', backdropClick);
     }
 
+    // 서브메뉴 링크 클릭 처리
     document.querySelectorAll('.nav-links > li > a').forEach(link => {
       if (link._clickHandler) link.removeEventListener('click', link._clickHandler);
 
@@ -629,6 +634,7 @@
     }
   }
 
+  // 화면 크기 변경 시 처리
   function onResize() {
     const navLinks = document.getElementById('navLinks');
     const navOverlay = document.querySelector('.nav-overlay');
@@ -649,6 +655,7 @@
     }
   }
 
+  // 초기화 함수 (Swiper 초기화 + 메뉴 설정 + Breadcrumb 등)
   function init() {
     new Swiper('.swiper', {
       loop: true,
