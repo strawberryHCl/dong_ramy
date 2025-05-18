@@ -696,21 +696,25 @@ pointer-events: none;
 
   document.addEventListener("DOMContentLoaded", init);
 
-  // bfcache (뒤로가기 캐시) 대응
-  window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-      const navLinks = document.getElementById('navLinks');
-      const navOverlay = document.querySelector('.nav-overlay');
-      const navBackdrop = document.querySelector('.nav-backdrop');
-      if (navLinks) {
-        navLinks.classList.remove('active');
-        navLinks.style.display = 'none';
-      }
-      if (navOverlay) navOverlay.style.display = 'none';
-      if (navBackdrop) navBackdrop.style.display = 'none';
-      document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
-    }
-  });
+// bfcache (뒤로가기 캐시) 대응
+window.addEventListener('pageshow', (event) => {
+  const navLinks = document.getElementById('navLinks');
+  const navOverlay = document.querySelector('.nav-overlay');
+  const navBackdrop = document.querySelector('.nav-backdrop');
+  if (navLinks) {
+    navLinks.classList.remove('active');
+    navLinks.style.display = 'none';
+  }
+  if (navOverlay) navOverlay.style.display = 'none';
+  if (navBackdrop) navBackdrop.style.display = 'none';
+  document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
+
+  // 페이지가 캐시에서 복원된 경우에도 메뉴 동작 다시 활성화
+  if (event.persisted) {
+    setupMenu();   // 메뉴 이벤트 재등록
+    onResize();    // 모바일/PC 환경 재판별
+  }
+});
 </script>
 
 
