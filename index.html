@@ -626,7 +626,7 @@ pointer-events: none;
     if (isMobile) {
       closeMenu(navLinks, navOverlay, navBackdrop);
     } else {
-      openMenu(navLinks, navOverlay, navBackdrop);
+      /* openMenu(navLinks, navOverlay, navBackdrop); */
     }
   }
 
@@ -639,7 +639,7 @@ pointer-events: none;
     const isMobile = window.matchMedia("(max-width: 1024px)").matches;
 
     if (!isMobile) {
-      openMenu(navLinks, navOverlay, navBackdrop);
+      /* openMenu(navLinks, navOverlay, navBackdrop); */
     } else {
       if (navLinks.classList.contains('active')) {
         openMenu(navLinks, navOverlay, navBackdrop);
