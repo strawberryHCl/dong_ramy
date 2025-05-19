@@ -631,7 +631,7 @@
     if (isMobile) {
       closeMenu(navLinks, navOverlay, navBackdrop);
     } else {
-      // 데스크탑이면 메뉴 항상 보이기
+      navLinks.removeAttribute('style'); // [수정] 데스크탑에서는 inline style 제거
       openMenu(navLinks, navOverlay, navBackdrop);
     }
   }
@@ -644,8 +644,12 @@
 
     const isMobile = window.matchMedia("(max-width: 1024px)").matches;
 
+    navLinks.removeAttribute('style'); // [수정] 해상도 변경 시 inline style 제거
+
     if (!isMobile) {
-      openMenu(navLinks, navOverlay, navBackdrop);
+      navLinks.classList.remove('active'); // [수정] 데스크탑에선 항상 열려 있도록 설정
+      if (navOverlay) navOverlay.style.display = 'none';
+      if (navBackdrop) navBackdrop.style.display = 'none';
     } else {
       if (navLinks.classList.contains('active')) {
         openMenu(navLinks, navOverlay, navBackdrop);
