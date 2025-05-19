@@ -184,7 +184,7 @@
   }
 
   .nav-links {
-    display: flex;
+    display: flex !important;
     gap: 70px;
     list-style: none;
     margin: 0;
@@ -636,28 +636,30 @@
     }
   }
 
-  function onResize() {
-    const navLinks = document.getElementById('navLinks');
-    const navOverlay = document.querySelector('.nav-overlay');
-    const navBackdrop = document.querySelector('.nav-backdrop');
-    if (!navLinks) return;
+ function onResize() {
+  const navLinks = document.getElementById('navLinks');
+  const navOverlay = document.querySelector('.nav-overlay');
+  const navBackdrop = document.querySelector('.nav-backdrop');
+  if (!navLinks) return;
 
-    const isMobile = window.matchMedia("(max-width: 1024px)").matches;
+  const isMobile = window.matchMedia("(max-width: 1024px)").matches;
 
-    navLinks.removeAttribute('style'); // [수정] 해상도 변경 시 inline style 제거
-
-    if (!isMobile) {
-      navLinks.classList.remove('active'); // [수정] 데스크탑에선 항상 열려 있도록 설정
-      if (navOverlay) navOverlay.style.display = 'none';
-      if (navBackdrop) navBackdrop.style.display = 'none';
+  if (!isMobile) {
+    // 데스크탑 전환 시 메뉴 강제 오픈
+    navLinks.classList.add('active'); // [수정] 데스크탑 전환 시 강제로 활성화
+    navLinks.style.display = 'flex';  // [수정] 데스크탑 전환 시 강제 표시
+    navLinks.style.removeProperty('display');
+    if (navOverlay) navOverlay.style.display = 'none';
+    if (navBackdrop) navBackdrop.style.display = 'none';
+  } else {
+    // 모바일 전환 시 상태 확인 후 열거나 닫기
+    if (navLinks.classList.contains('active')) {
+      navLinks.style.display = 'flex';
     } else {
-      if (navLinks.classList.contains('active')) {
-        openMenu(navLinks, navOverlay, navBackdrop);
-      } else {
-        closeMenu(navLinks, navOverlay, navBackdrop);
-      }
+      navLinks.style.display = 'none';
     }
   }
+}
 
   function init() {
     // Swiper 초기화 등 다른 초기화 코드
