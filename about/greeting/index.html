@@ -613,33 +613,9 @@
     </div>
   </footer>
   
+<!-- 반드시 <body> 맨 아래에 추가하세요 -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const menuBtn = document.getElementById("menuBtn");
-  const navLinks = document.getElementById("navLinks");
-
-  // ✅ 메뉴 초기화
-  if (navLinks) navLinks.classList.remove("active");
-
-  // ✅ 메뉴 토글 이벤트
-  if (menuBtn && navLinks) {
-    menuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-    });
-  }
-
-  // ✅ 드롭다운 토글
-  const navItems = navLinks.querySelectorAll("li");
-  navItems.forEach(item => {
-    const hasDropdown = item.querySelector(".dropdown");
-    if (hasDropdown) {
-      item.addEventListener("click", () => {
-        item.classList.toggle("active");
-      });
-    }
-  });
-});
   function closeMenu(navLinks, navOverlay, navBackdrop) {
     navLinks.classList.remove('active');
     navLinks.style.display = 'none';
@@ -677,71 +653,52 @@ document.addEventListener("DOMContentLoaded", function () {
       closeMenu(navLinks, navOverlay, navBackdrop);
     }
 
-    // 이벤트 중복 등록 방지
-    menuBtn.removeEventListener('click', toggleMenu);
+    // 이벤트 등록
     menuBtn.addEventListener('click', toggleMenu);
+    if (navBackdrop) navBackdrop.addEventListener('click', backdropClick);
 
-    if (navBackdrop) {
-      navBackdrop.removeEventListener('click', backdropClick);
-      navBackdrop.addEventListener('click', backdropClick);
-    }
-
-    // 서브메뉴 토글 (모바일용)
+    // 서브메뉴 토글 (모바일)
     document.querySelectorAll('.nav-links > li > a').forEach(link => {
-      if (link._clickHandler) link.removeEventListener('click', link._clickHandler);
-
       const handler = function(e) {
         const submenu = link.nextElementSibling;
         if (submenu && submenu.classList.contains('dropdown')) {
           e.preventDefault();
           link.parentElement.classList.toggle('active');
         } else {
-          if (window.matchMedia("(max-width: 1024px)").matches) {
-            closeMenu(navLinks, navOverlay, navBackdrop);
-          }
+          if (isMobile) closeMenu(navLinks, navOverlay, navBackdrop);
         }
       };
-
       link.addEventListener('click', handler);
-      link._clickHandler = handler;
     });
 
-    // 초기 상태 : 모바일이면 닫기
+    // 초기화
     if (isMobile) {
       closeMenu(navLinks, navOverlay, navBackdrop);
     } else {
-      navLinks.removeAttribute('style'); // [수정] 데스크탑에서는 inline style 제거
+      navLinks.removeAttribute('style');
       openMenu(navLinks, navOverlay, navBackdrop);
     }
   }
 
- function onResize() {
-  const navLinks = document.getElementById('navLinks');
-  const navOverlay = document.querySelector('.nav-overlay');
-  const navBackdrop = document.querySelector('.nav-backdrop');
-  if (!navLinks) return;
+  function onResize() {
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.querySelector('.nav-overlay');
+    const navBackdrop = document.querySelector('.nav-backdrop');
+    if (!navLinks) return;
 
-  const isMobile = window.matchMedia("(max-width: 1024px)").matches;
-
-  if (!isMobile) {
-    // 데스크탑 전환 시 메뉴 강제 오픈
-    navLinks.classList.add('active'); // [수정] 데스크탑 전환 시 강제로 활성화
-    navLinks.style.display = 'flex';  // [수정] 데스크탑 전환 시 강제 표시
-    navLinks.style.removeProperty('display');
-    if (navOverlay) navOverlay.style.display = 'none';
-    if (navBackdrop) navBackdrop.style.display = 'none';
-  } else {
-    // 모바일 전환 시 상태 확인 후 열거나 닫기
-    if (navLinks.classList.contains('active')) {
+    const isMobile = window.matchMedia("(max-width: 1024px)").matches;
+    if (!isMobile) {
+      navLinks.classList.add('active');
       navLinks.style.display = 'flex';
+      navLinks.style.removeProperty('display');
+      if (navOverlay) navOverlay.style.display = 'none';
+      if (navBackdrop) navBackdrop.style.display = 'none';
     } else {
-      navLinks.style.display = 'none';
+      navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
     }
   }
-}
 
   function init() {
-    // Swiper 초기화 등 다른 초기화 코드
     new Swiper('.swiper', {
       loop: true,
       autoplay: { delay: 3000 },
@@ -752,7 +709,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setupMenu();
     onResize();
 
-    // Breadcrumb 생성
+    // Breadcrumb
     const pathMap = {
       "": "홈",
       "about": "회사소개",
@@ -762,22 +719,19 @@ document.addEventListener("DOMContentLoaded", function () {
       "recruit": "채용"
     };
 
-    function createBreadcrumb() {
-      const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
-      let html = '<a href="/dong_ramy/">홈</a>';
-      if (path[0] && pathMap[path[0]]) {
-        html +=  <span> &gt; ${pathMap[path[0]]}</span>;
-      }
-      document.getElementById("breadcrumb").innerHTML = html;
+    const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
+    let html = '<a href="/dong_ramy/">홈</a>';
+    if (path[0] && pathMap[path[0]]) {
+      html += ` <span> &gt; ${pathMap[path[0]]}</span>`;
     }
-    createBreadcrumb();
+    const breadcrumbEl = document.getElementById("breadcrumb");
+    if (breadcrumbEl) breadcrumbEl.innerHTML = html;
 
     window.addEventListener('resize', onResize);
   }
 
   document.addEventListener("DOMContentLoaded", init);
 
-  // bfcache (뒤로가기 캐시) 대응
   window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
       const navLinks = document.getElementById('navLinks');
@@ -793,5 +747,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 </script>
+
 </body>
 </html>
