@@ -561,6 +561,31 @@
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const menuBtn = document.getElementById("menuBtn");
+  const navLinks = document.getElementById("navLinks");
+
+  // ✅ 메뉴 초기화
+  if (navLinks) navLinks.classList.remove("active");
+
+  // ✅ 메뉴 토글 이벤트
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  }
+
+  // ✅ 드롭다운 토글
+  const navItems = navLinks.querySelectorAll("li");
+  navItems.forEach(item => {
+    const hasDropdown = item.querySelector(".dropdown");
+    if (hasDropdown) {
+      item.addEventListener("click", () => {
+        item.classList.toggle("active");
+      });
+    }
+  });
+});
   function closeMenu(navLinks, navOverlay, navBackdrop) {
     navLinks.classList.remove('active');
     navLinks.style.display = 'none';
@@ -687,7 +712,7 @@
       const path = window.location.pathname.replace("/dong_ramy/", "").replace(/\/$/, "").split("/");
       let html = '<a href="/dong_ramy/">홈</a>';
       if (path[0] && pathMap[path[0]]) {
-        html += ` <span> &gt; ${pathMap[path[0]]}</span>`;
+        html +=  <span> &gt; ${pathMap[path[0]]}</span>;
       }
       document.getElementById("breadcrumb").innerHTML = html;
     }
