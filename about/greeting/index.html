@@ -533,19 +533,19 @@
     align-items: center;
     padding: 1rem;
   }
-    /* 오른쪽 이미지 컨테이너의 스타일 수정 */
+  
   .right-image {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    margin: 1rem 0; /* 여백 추가 */
+    flex: 1;
+    text-align: center; /* 이미지가 중앙 정렬되도록 */
   }
 
-  /* 이미지 크기 조정 */
   .right-image img {
-    display: block;
-    width: 100%;
+    width: 80%;  /* 모바일 화면에서 이미지 크기를 적당히 줄임 */
+    max-width: 400px; /* 최대 너비 설정 (필요에 따라 조정) */
     height: auto;
+    margin: 0 auto;  /* 왼쪽/오른쪽 마진을 auto로 설정하여 중앙 정렬 */
+    display: block;  /* 이미지가 block 요소처럼 동작하도록 */
+    margin-bottom: 4rem;
   }
 
   /* =============================================================== */
