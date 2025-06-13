@@ -490,6 +490,29 @@
     padding: 1rem 0.5rem;       
     font-size: 1rem;
   }
+    /* =============================================================== */
+    /* message-section의 flexbox 조정 */
+  .message-section {
+    flex-direction: column; /* 세로로 정렬 */
+    align-items: center;
+    padding: 1rem;
+  }
+    /* 오른쪽 이미지 컨테이너의 스타일 수정 */
+  .right-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 1rem 0; /* 여백 추가 */
+  }
+
+  /* 이미지 크기 조정 */
+  .right-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* =============================================================== */
 
   .footer-content {
     flex-direction: row;
