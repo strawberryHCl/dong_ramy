@@ -41,6 +41,17 @@
     align-items: center;
     gap: 1rem;
   }
+  .fade-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.fade-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
   .breadcrumb {
     background-color: #444950;
     color: #fff !important;
@@ -625,7 +636,7 @@
   <main style="position: relative; z-index: 0;">
     <div id="breadcrumb" class="breadcrumb"></div>  
     
-    <section class="message-section">
+    <section class="message-section fade-scroll">
   <div class="content">
     <h2 class="message-title">대표님 인사말</h2>
     <p>작고 초라해보일 수 있지만 나름<br><br>
@@ -681,6 +692,27 @@
 <!-- 반드시 <body> 맨 아래에 추가하세요 -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
+  // ----------------------------------------------------------------------------
+   document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          } else {
+            entry.target.classList.remove("visible"); // 벗어나면 fade-out
+          }
+        });
+      },
+      {
+        threshold: 0.2, // 20% 보이면 발동
+      }
+    );
+
+    const elements = document.querySelectorAll(".fade-scroll");
+    elements.forEach((el) => observer.observe(el));
+  });
+  // -----------------------------------------------------------------------------------
   function closeMenu(navLinks, navOverlay, navBackdrop) {
     navLinks.classList.remove('active');
     navLinks.style.display = 'none';
