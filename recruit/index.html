@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -166,10 +165,21 @@
   transform: scale(1.05); /* 살짝 확대 효과 */
 }
 
-  section {
-  font-size: 1.5rem; /* 또는 px: 예, 24px */
-  text-align: center;
+  /*    <!--------------------------------------------------------------------------------------------------------> */
+
+.fade-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+  will-change: opacity, transform;
 }
+
+.fade-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*    <!--------------------------------------------------------------------------------------------------------> */
 
 
   footer {
@@ -491,6 +501,7 @@
   .nav-links li:not(:has(ul.dropdown)) > a::after {
     content: '';
   }
+  /*   ======================================================================== */
 
   .footer-content {
     flex-direction: row;
@@ -566,12 +577,13 @@
 
   <main style="position: relative; z-index: 0;">
     <div id="breadcrumb" class="breadcrumb"></div>  
-    <section>
-      
-   테스트 중
-    
-</section>  
-    <div class="image-row">
+   <!-------------------------------------------------------------------------------------------------------->
+  <section class="fade-scroll">
+      테스트중
+</section>
+
+   <!-------------------------------------------------------------------------------------------------------->
+    <div class="image-row fade-scroll">
   <a href="https://dongramystore.co.kr/" target="_blank" rel="noopener noreferrer">
     <img src="https://i.imgur.com/ao1UydP.jpeg" alt="이미지1" />
   </a>
@@ -581,24 +593,46 @@
 </div>
   </main>
 
-  <footer>
-    <div class="footer-content">
-      <div class="footer-left">
+ <footer>
+    <div class="footer-content fade-scroll">
+      <div class="footer-left fade-scroll">
         <a href="/dong_ramy/">
-          <img src="https://i.imgur.com/tpRkEqi.png" class="footer-logo" alt="DONGRAMY 로고">
+          <img src="https://i.imgur.com/tpRkEqi.png" class="footer-logo fade-scroll" alt="DONGRAMY 로고">
         </a>
-        <div class="footer-icons">
+        <div class="footer-icons fade-scroll">
           <a href="https://blog.naver.com/young5677kv" target="_blank"><img src="https://i.imgur.com/129mPRs.png" alt="Naver Blog"></a>
           <a href="https://www.instagram.com/dong_ramy_official/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"></a>
         </div>
       </div>
-      <p class="footer-text">Copyright © 2021 Dongramy Co. All rights reserved. <br>인천광역시 부평구 길주남로 40, 3층 (부평동 18-2) <br>사업자번호 : 689-39-00711 | 대표 : 한동길</p>
+      <p class="footer-text fade-scroll">Copyright © 2021 Dongramy Co. All rights reserved. <br>인천광역시 부평구 길주남로 40, 3층 (부평동 18-2) <br>사업자번호 : 689-39-00711 | 대표 : 한동길</p>
     </div>
   </footer>
   
 <!-- 반드시 <body> 맨 아래에 추가하세요 -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
+ // ====================================================================================
+    document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          } else {
+            entry.target.classList.remove("visible"); // 벗어나면 fade-out
+          }
+        });
+      },
+      {
+        threshold: 0.2, // 20% 보이면 발동
+      }
+    );
+
+    const elements = document.querySelectorAll(".fade-scroll");
+    elements.forEach((el) => observer.observe(el));
+  });
+  // ====================================================================================
+  
   function closeMenu(navLinks, navOverlay, navBackdrop) {
     navLinks.classList.remove('active');
     navLinks.style.display = 'none';
