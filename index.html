@@ -42,6 +42,18 @@
     align-items: center;
     gap: 1rem;
   }
+/*   ----------------------------------------------------------- */
+  .fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+  /*   ----------------------------------------------------------- */
   .breadcrumb {
     background-color: #444950;
     color: #fff !important;
@@ -526,12 +538,13 @@
       </div>
       <div class="swiper-pagination"></div>
     </div>
-    <section style="text-align:center; margin: 4rem auto; padding: 0 1rem;">
+    
+    <section class="fade-in" style="text-align:center; margin: 4rem auto; padding: 0 1rem;">
       <h2 style="font-size:2rem;">DONG_RAMY <br>DREAM COME TRUE.</h2>
       <p>모든 대한민국 사람들이 통신하면 '동그라미'라는게 머리속에 자연스럽게 떠오르는 그날까지!</p>
       <p>동그라미를 통해 여러분들의 삶이 조금은 더 따듯했으면 합니다</p>
     </section>
-    <section class="left-padding-section">
+    <section class="left-padding-section fade-in">
       <h2>동그라미</h2>
       <p>따듯한 빛을 보내주는 태양, <br>어두운 밤을 비춰주는 달, <br>맛있게 먹을 수 있는 모든 과일 열매들, <br>빨리 나아갈 수 있게 해주는 바퀴, <br>추운 계절이 지나면 어김없이 돌아오는 봄을 비롯한  <br>사계절의 순환을 갖는 공통점은 바로 동그라미 입니다. </p>
     </section>
@@ -563,6 +576,26 @@
 <!-- 반드시 <body> 맨 아래에 추가하세요 -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
+// ----------------------------------------------------------------------
+  document.addEventListener("DOMContentLoaded", () => {
+    const fadeEls = document.querySelectorAll(".fade-in");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target); // 한 번만 실행
+          }
+        });
+      },
+      {
+        threshold: 0.1 // 10% 보이면 작동
+      }
+    );
+    fadeEls.forEach(el => observer.observe(el));
+  });
+// ----------------------------------------------------------------------
+
   function closeMenu(navLinks, navOverlay, navBackdrop) {
     navLinks.classList.remove('active');
     navLinks.style.display = 'none';
