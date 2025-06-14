@@ -167,63 +167,60 @@
 
   /*    <!--------------------------------------------------------------------------------------------------------> */
 
-  .company-status {
-  max-width: 1100px;
-  margin: 4rem auto;
-  padding: 2rem;
-  background-color: #f8f8f8;
-  color: #1D2023;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+.brand-status-modern {
+  background: #1D2023;
+  color: #F0F0F0;
+  padding: 4rem 2rem;
+  text-align: center;
 }
 
-.status-wrapper {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+.brand-status-modern .brand-inner {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.status-text {
-  flex: 1 1 500px;
-}
-
-.status-title {
-  font-size: 2rem;
-  font-weight: bold;
+.brand-status-modern h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
   margin-bottom: 1.5rem;
 }
 
-.status-text p {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  line-height: 1.7;
+.brand-status-modern .highlight {
+  color: #00B0F0;
 }
 
-.highlight-box {
-  margin-top: 1.5rem;
-  background-color: #e6f3fc;
-  border-left: 5px solid #007acc;
-  padding: 1.2rem;
-  font-style: italic;
+.brand-status-modern .lead {
+  font-size: 1.3rem;
   font-weight: 500;
-  border-radius: 8px;
-  text-align: right;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
 }
 
-.status-image {
-  flex: 1 1 300px;
-  display: flex;
-  justify-content: center;
+.brand-status-modern .sub {
+  font-size: 1.05rem;
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
 }
 
-.status-image img {
+.brand-status-modern .brand-image img {
   width: 100%;
-  max-width: 350px;
+  max-width: 500px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  margin-bottom: 2rem;
 }
+
+.brand-status-modern blockquote {
+  font-size: 1.4rem;
+  font-style: italic;
+  color: #f0f0f0;
+  border-left: 4px solid #00B0F0;
+  padding-left: 1rem;
+  text-align: left;
+  margin-top: 2rem;
+}
+
 /*    <!--------------------------------------------------------------------------------------------------------> */
 
 
@@ -548,22 +545,16 @@
   }
   /*   ======================================================================== */
 
-   .status-wrapper {
-    flex-direction: column;
-    align-items: flex-start;
+   .brand-status-modern h2 {
+    font-size: 2rem;
   }
 
-  .highlight-box {
-    text-align: left;
+  .brand-status-modern .lead {
+    font-size: 1.1rem;
   }
 
-  .status-title {
-    font-size: 1.6rem;
-  }
-
-  .status-image img {
-    max-width: 100%;
-    margin-top: 1.5rem;
+  .brand-status-modern blockquote {
+    font-size: 1.2rem;
   }
 /*   ======================================================================== */
 
@@ -642,27 +633,29 @@
   <main style="position: relative; z-index: 0;">
     <div id="breadcrumb" class="breadcrumb"></div>  
    <!-------------------------------------------------------------------------------------------------------->
-   <section class="company-status">
-  <div class="status-wrapper">
-    <div class="status-text">
-      <h2 class="status-title">회사 현황</h2>
-      <p>
-        동그라미는 통신과 엔터테인먼트를 시작으로, 다양한 생활 아이템과 콘텐츠를 아우르는 <strong>종합 브랜드</strong>로 확장 중입니다.
-      </p>
-      <p>
-        설립 <strong>4년 차</strong>를 맞은 지금, 우리는 누구나 쉽게 시작할 수 있는 <strong>동그라미 프랜차이즈 모델</strong>을 통해
-        더 많은 파트너와 함께 성장하는 생태계를 만들어가고자 합니다.
-      </p>
-      <div class="highlight-box">
-        작지만 강한 동그라미,<br />
-        앞으로가 더 기대되는 브랜드입니다.
-      </div>
+  <section class="brand-status-modern">
+  <div class="brand-inner">
+    <h2>작지만 강한 브랜드, <span class="highlight">동그라미</span></h2>
+    <p class="lead">
+      통신과 엔터테인먼트를 시작으로, <br />
+      우리는 다양한 생활 아이템과 콘텐츠를 아우르는 종합 브랜드로 확장하고 있습니다.
+    </p>
+    <p class="sub">
+      4년 차 스타트업이자, <strong>누구나 쉽게 시작할 수 있는 프랜차이즈 모델</strong>을 기반으로  
+      더 많은 파트너와 함께 성장하는 생태계를 만들어갑니다.
+    </p>
+
+    <div class="brand-image">
+      <img src="https://i.imgur.com/a4sGcz4.png" alt="동그라미 비전 이미지" />
     </div>
-    <div class="status-image">
-      <img src="https://i.imgur.com/a4sGcz4.png" alt="동그라미 회사 이미지" />
-    </div>
+
+    <blockquote>
+      앞으로가 더 기대되는 브랜드,<br />
+      우리는 <strong>동그라미</strong>입니다.
+    </blockquote>
   </div>
 </section>
+
    <!-------------------------------------------------------------------------------------------------------->
     <div class="image-row">
   <a href="https://dongramystore.co.kr/" target="_blank" rel="noopener noreferrer">
