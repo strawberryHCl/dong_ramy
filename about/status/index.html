@@ -167,13 +167,14 @@
 
   /*    <!--------------------------------------------------------------------------------------------------------> */
 
-  .fade-in {
+.fade-scroll {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+  will-change: opacity, transform;
 }
 
-.fade-in.visible {
+.fade-scroll.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -653,7 +654,7 @@
   <main style="position: relative; z-index: 0;">
     <div id="breadcrumb" class="breadcrumb"></div>  
    <!-------------------------------------------------------------------------------------------------------->
-  <section class="brand-status-modern fade-in">
+  <section class="brand-status-modern fade-scroll">
   <div class="brand-inner">
     <h2>작지만 강한 브랜드, <span class="brand-name">동그라미</span></h2>
     <p class="lead">
@@ -677,7 +678,7 @@
 </section>
 
    <!-------------------------------------------------------------------------------------------------------->
-    <div class="image-row">
+    <div class="image-row fade-scroll">
   <a href="https://dongramystore.co.kr/" target="_blank" rel="noopener noreferrer">
     <img src="https://i.imgur.com/ao1UydP.jpeg" alt="이미지1" />
   </a>
@@ -705,24 +706,27 @@
 <!-- 반드시 <body> 맨 아래에 추가하세요 -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-
+ // ====================================================================================
     document.addEventListener("DOMContentLoaded", () => {
-    const fadeEls = document.querySelectorAll(".fade-in");
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
-            observer.unobserve(entry.target); // 한 번만 실행
+          } else {
+            entry.target.classList.remove("visible"); // 벗어나면 fade-out
           }
         });
       },
       {
-        threshold: 0.1 // 10% 보이면 작동
+        threshold: 0.2, // 20% 보이면 발동
       }
     );
-    fadeEls.forEach(el => observer.observe(el));
+
+    const elements = document.querySelectorAll(".fade-scroll");
+    elements.forEach((el) => observer.observe(el));
   });
+  // ====================================================================================
   
   function closeMenu(navLinks, navOverlay, navBackdrop) {
     navLinks.classList.remove('active');
