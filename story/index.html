@@ -651,7 +651,6 @@
     if (navBackdrop) navBackdrop.style.display = 'none';
     document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
 
-    document.body.classList.remove('menu-open');
   }
 
   function openMenu(navLinks, navOverlay, navBackdrop) {
@@ -660,7 +659,6 @@
     if (navOverlay) navOverlay.style.display = 'block';
     if (navBackdrop) navBackdrop.style.display = 'block';
 
-    document.body.classList.add('menu-open');
   }
 
   function setupMenu() {
@@ -779,15 +777,9 @@
 
         // 블러 이벤트 추가
 
-    if (navLinks && content) {
-      navLinks.addEventListener('mouseenter', () => {
-        content.classList.add('blur');
-      });
 
-      navLinks.addEventListener('mouseleave', () => {
-        content.classList.remove('blur');
-      });
-    }
+
+      
   });
 </script>
 
