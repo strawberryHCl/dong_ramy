@@ -337,6 +337,16 @@
   .dropdown-column:nth-child(3) {
   transform: translateX(-145px); /* 왼쪽으로 20px 이동 예시 */
 }
+
+     /* ✅ 추가된 부분: 블러 처리 */
+  main {
+    transition: filter 0.4s ease;
+  }
+
+  .navbar:hover ~ main {
+    filter: blur(4px);
+  }
+   
  }
 
 /* ---------- 모바일 전용 ---------- */
