@@ -23,12 +23,6 @@
   <meta name="twitter:image" content="https://i.imgur.com/tpRkEqi.png" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  
-  .blur-background {
-  filter: blur(4px);
-  transition: filter 0.3s ease;
-}
-  
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     background: #1D2023;
@@ -645,9 +639,6 @@
     if (navOverlay) navOverlay.style.display = 'none';
     if (navBackdrop) navBackdrop.style.display = 'none';
     document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
-
-      // 블러 해제
-  mainContent.classList.remove('blur-background');
   }
 
   function openMenu(navLinks, navOverlay, navBackdrop) {
@@ -655,9 +646,6 @@
     navLinks.style.display = 'flex';
     if (navOverlay) navOverlay.style.display = 'block';
     if (navBackdrop) navBackdrop.style.display = 'block';
-
-      // 블러 추가
-  mainContent.classList.add('blur-background');
   }
 
   function setupMenu() {
@@ -779,5 +767,3 @@
 
 </body>
 </html>
-
-
