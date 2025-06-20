@@ -587,8 +587,8 @@ main {
 <div class="nav-backdrop"></div>
 </header>
 
-  <main style="position: relative; z-index: 0;">
-    <div id="breadcrumb" class="breadcrumb"></div>  
+  <main style="position: relative; z-index: 0;"  id="content">
+        <div id="breadcrumb" class="breadcrumb"></div>  
    <!-------------------------------------------------------------------------------------------------------->
   <section class="fade-scroll">
       테스트중
@@ -621,6 +621,7 @@ main {
   </footer>
   
 <!-- 반드시 <body> 맨 아래에 추가하세요 -->
+  
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
  // ====================================================================================
@@ -777,6 +778,13 @@ main {
       if (navOverlay) navOverlay.style.display = 'none';
       if (navBackdrop) navBackdrop.style.display = 'none';
       document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
+
+        // 블러 이벤트 추가
+  const navLinks = document.getElementById('navLinks');
+  const content = document.getElementById('content');
+  if (navLinks && content) {
+    navLinks.addEventListener('mouseenter', () => content.classList.add('blur'));
+    navLinks.addEventListener('mouseleave', () => content.classList.remove('blur'));
     }
   });
 </script>
