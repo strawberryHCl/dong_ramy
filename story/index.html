@@ -23,6 +23,15 @@
   <meta name="twitter:image" content="https://i.imgur.com/tpRkEqi.png" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+body.menu-open main {
+  filter: blur(4px);
+  transition: filter 0.4s ease;
+}
+
+main {
+  transition: filter 0.4s ease;
+}
+  
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     background: #1D2023;
@@ -657,6 +666,8 @@ main {
     if (navOverlay) navOverlay.style.display = 'none';
     if (navBackdrop) navBackdrop.style.display = 'none';
     document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
+
+    document.body.classList.remove('menu-open');
   }
 
   function openMenu(navLinks, navOverlay, navBackdrop) {
@@ -664,6 +675,8 @@ main {
     navLinks.style.display = 'flex';
     if (navOverlay) navOverlay.style.display = 'block';
     if (navBackdrop) navBackdrop.style.display = 'block';
+
+    document.body.classList.add('menu-open');
   }
 
   function setupMenu() {
