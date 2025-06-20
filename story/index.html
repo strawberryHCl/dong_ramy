@@ -338,15 +338,7 @@
   transform: translateX(-145px); /* 왼쪽으로 20px 이동 예시 */
 }
 
-     /* ✅ 추가된 부분: 블러 처리 */
-  main {
-    transition: filter 0.4s ease;
-  }
-
-  .navbar:hover ~ main {
-    filter: blur(4px);
-  }
-   
+  
  }
 
 /* ---------- 모바일 전용 ---------- */
@@ -519,6 +511,22 @@
   .footer-left, footer-text {
     width: 50%;
   }
+}
+
+/* 공통: 블러 트랜지션 */
+main {
+  transition: filter 0.4s ease;
+}
+
+/* PC: hover 시 블러 */
+.navbar:hover ~ main {
+  filter: blur(4px);
+}
+
+/* 모바일: 메뉴 열렸을 때 블러 */
+.nav-links.active ~ main,
+.nav-backdrop[style*="display: block"] ~ main {
+  filter: blur(4px);
 }
   
 </style>
