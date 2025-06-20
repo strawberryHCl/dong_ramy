@@ -23,14 +23,12 @@
   <meta name="twitter:image" content="https://i.imgur.com/tpRkEqi.png" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-body.menu-open main {
-  filter: blur(4px);
-  transition: filter 0.4s ease;
-}
-
-main {
-  transition: filter 0.4s ease;
-}
+  #content {
+    transition: filter 0.3s ease;
+  }
+  .blur {
+    filter: blur(5px);
+  }
   
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -588,6 +586,7 @@ main {
 </header>
 
   <main style="position: relative; z-index: 0;">
+    <main id="content">
         <div id="breadcrumb" class="breadcrumb"></div>  
    <!-------------------------------------------------------------------------------------------------------->
   <section class="fade-scroll">
@@ -780,11 +779,15 @@ main {
       document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
 
         // 블러 이벤트 추가
-  const navLinks = document.getElementById('navLinks');
-  const content = document.getElementById('content');
-  if (navLinks && content) {
-    navLinks.addEventListener('mouseenter', () => content.classList.add('blur'));
-    navLinks.addEventListener('mouseleave', () => content.classList.remove('blur'));
+
+    if (navLinks && content) {
+      navLinks.addEventListener('mouseenter', () => {
+        content.classList.add('blur');
+      });
+
+      navLinks.addEventListener('mouseleave', () => {
+        content.classList.remove('blur');
+      });
     }
   });
 </script>
