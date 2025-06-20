@@ -22,7 +22,7 @@
   <meta name="twitter:description" content="공식 온라인 쇼핑몰 동그라미 스토어. 브랜드 정품을 빠르고 쉽게 구매하세요." />
   <meta name="twitter:image" content="https://i.imgur.com/tpRkEqi.png" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<style>  
+<style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     background: #1D2023;
@@ -337,8 +337,6 @@
   .dropdown-column:nth-child(3) {
   transform: translateX(-145px); /* 왼쪽으로 20px 이동 예시 */
 }
-
-  
  }
 
 /* ---------- 모바일 전용 ---------- */
@@ -512,7 +510,6 @@
     width: 50%;
   }
 }
-
   
 </style>
 </head>
@@ -579,7 +576,7 @@
 </header>
 
   <main style="position: relative; z-index: 0;">
-        <div id="breadcrumb" class="breadcrumb"></div>  
+    <div id="breadcrumb" class="breadcrumb"></div>  
    <!-------------------------------------------------------------------------------------------------------->
   <section class="fade-scroll">
       테스트중
@@ -612,7 +609,6 @@
   </footer>
   
 <!-- 반드시 <body> 맨 아래에 추가하세요 -->
-  
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
  // ====================================================================================
@@ -643,7 +639,6 @@
     if (navOverlay) navOverlay.style.display = 'none';
     if (navBackdrop) navBackdrop.style.display = 'none';
     document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
-
   }
 
   function openMenu(navLinks, navOverlay, navBackdrop) {
@@ -651,7 +646,6 @@
     navLinks.style.display = 'flex';
     if (navOverlay) navOverlay.style.display = 'block';
     if (navBackdrop) navBackdrop.style.display = 'block';
-
   }
 
   function setupMenu() {
@@ -767,12 +761,7 @@
       if (navOverlay) navOverlay.style.display = 'none';
       if (navBackdrop) navBackdrop.style.display = 'none';
       document.querySelectorAll('.dropdown.active').forEach(dropdown => dropdown.classList.remove('active'));
-
-        // 블러 이벤트 추가
-
-
-
-      
+    }
   });
 </script>
 
